@@ -1,0 +1,28 @@
+.welcome-h1 {
+    position: absolute;
+    width: 669px;
+    height: 101px;
+    /* left: 834px; */
+    top: 289px;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 500;
+    font-size: 121px;
+    line-height: 101px;
+    color: #000000;
+}
+.welcome-h2 {
+    position: absolute;
+    /* width: 830px; */
+    height: 128px;
+    /* left: 864px; */
+    top: 494px;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 900;
+    font-size: 122px;
+    line-height: 101px;
+    color: #965A33;
+
+
+}

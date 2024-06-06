@@ -1,0 +1,26 @@
+.dashboard-login{
+   
+}
+.welcome{
+    /* Welcome */
+
+    width: 303px;
+    height: 85px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 70px;
+    line-height: 85px;
+    /* identical to box height */
+
+    color: #241E1E;
+
+    opacity: 0.9;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+}
