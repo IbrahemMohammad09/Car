@@ -1,15 +1,14 @@
 .welcome-img {
     position: absolute;
-    width: 864px;
-    height: 1117px;
-    left: 0px;
-    top: 38px;
+    width: 600px;
+    height: 775px;
+    margin-left: 40px;
+    top: 100px;
 }
 
 .first-element,
 .second-element {
   position: absolute;
-  /* width: 100%; */
   height: 100%;
   display: flex;
   align-items: center;
@@ -37,4 +36,24 @@
 .second-element.hide {
   transform: translateY(100%);
   opacity: 0;
+}
+.left-side{
+  max-width: 600px;
+}
+@media screen and (max-width:1200px) {
+  .welcome-img {
+    width:550px ;
+    height: 710px;
+    margin: 0px;
+    top:180px;
+  }
+}
+@media screen and (max-width:1000px) {
+  .welcome-img {
+    width:450px ;
+    height: 580px;
+    margin: 0px;
+    left: 0px;
+
+  }
 }

@@ -1,28 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+.dash-wel{
+    /* position: relative; */
+    max-width: 700px;
+    max-height: 600px;
+}
 .welcome-h1 {
     position: absolute;
-    width: 669px;
-    height: 101px;
-    /* left: 834px; */
+    width: 660px;
     top: 289px;
     font-family: 'Inter';
     font-style: italic;
     font-weight: 500;
-    font-size: 121px;
+    font-size: 110px;
     line-height: 101px;
     color: #000000;
 }
 .welcome-h2 {
     position: absolute;
-    /* width: 830px; */
-    height: 128px;
-    /* left: 864px; */
     top: 494px;
     font-family: 'Inter';
     font-style: italic;
     font-weight: 900;
-    font-size: 122px;
+    font-size: 112px;
     line-height: 101px;
     color: #965A33;
-
-
 }
