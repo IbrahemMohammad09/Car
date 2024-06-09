@@ -13,13 +13,13 @@ function DashBoardLoginPage (){
     useEffect(() => {
         const timer = setTimeout(() => {
         setShowFirst(false);
-        }, 2000);
+        }, 5000);
 
         return () => clearTimeout(timer);
     }, []);
 
     return(
-        <Container>
+        <Container className='dash-log'>
             <Row>
                 <Col xs={12} md={6}>
                     <div>
@@ -34,8 +34,9 @@ function DashBoardLoginPage (){
                         <div  className={`second-element ${showFirst ? 'hide' : 'show'}`}>
                             <DashboardLogin />
                         </div>
-                        {/* <DashboardLogin /> */}
+                        
                         {/* <DashBoardWelcome /> */}
+                        {/* <DashboardLogin /> */}
                     </div>
                 </Col>
             </Row>

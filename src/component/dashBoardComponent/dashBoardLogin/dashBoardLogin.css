@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 .dashboard-login{
   justify-content: center;
+  max-width: 600px;
 }
 .welcome{
     width: 303px;
@@ -39,7 +40,6 @@
   
   .input-container .input-dash {
     width: 400px;
-    /* width: calc(100% - 40px); */
     font-size: 16px;
     font-family: 'Inter', sans-serif;
     padding: 10px 10px 10px 40px; 
@@ -77,6 +77,25 @@
   .login-button button:hover{
     background-color: #a67e65;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  @media screen and (max-width:700px) {
+    .dashboard-login{
+      max-width: 500px;
+    }
+  }
+  @media screen and (max-width:500px) {
+    .dashboard-login{
+      max-width: 400px;
+    }
+    .input-dash{
+      max-width: 340px;
+    }
+    .login-button button{
+      max-width: 330px;
+    }
+    .welcome{
+      max-width: 350px;
+    }
   }
  
 
