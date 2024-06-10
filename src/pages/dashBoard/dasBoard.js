@@ -11,10 +11,12 @@ function DashBoard (){
     return (
         <div className='bashboard'>
             <div className='sidebar'>
-                <img src={homeIcon} />
-                <img src={carIcon} />
-                <img src={wheelIcon} />
-                <img src={user} />
+                <div className='icons'>
+                    <img className='icon-dashboard' src={homeIcon} />
+                    <img className='icon-dashboard' src={carIcon} />
+                    <img className='icon-dashboard' src={wheelIcon} />
+                    <img className='icon-dashboard' src={user} />
+                </div>
             </div>
             <div>
                 <HomeDashBoard />
