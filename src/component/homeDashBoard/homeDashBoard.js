@@ -7,17 +7,17 @@ function HomeDashBoard (){
     const buttons =[
         {
             name : 'Add a car +',
-            src : '../../../images/dashBoardLogin/carCard.jpg',
+            icon : carIc,
             url : ""
         },
         {
             name : 'View existing cars',
-            src : "",
+            icon : "",
             url : ""
         },
         {
             name : 'View Custimers cars',
-            src : "",
+            icon : "",
             url : ""
         },
     ]
@@ -25,7 +25,7 @@ function HomeDashBoard (){
     return(
         <div>
             {buttons.map(button=>(
-                <CardButton name={button.name}  src={button.src}/>
+                <CardButton name={button.name}  icon={button.icon}/>
             ))}
         </div>
     );

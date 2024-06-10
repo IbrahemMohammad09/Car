@@ -1,11 +1,11 @@
 import './cardButton.css'
 
 
-function CardButton ({src , name}){
+function CardButton ({icon , name}){
 
     return(
         <button>
-            <img src={src} />
+            <img src={icon} />
             <p>{name}</p>
         </button>
     );
