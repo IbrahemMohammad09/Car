@@ -1,0 +1,36 @@
+.car-header{
+    display: flex;
+    align-items: center;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    border: 1px solid #F5F4F6;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .search-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+  }
+  
+  .search-button {
+    background-color: #F5F4F6;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .search-button:hover {
+    background-color: #F5F4F6;
+  }
+  

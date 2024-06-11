@@ -1,28 +1,95 @@
 import './dashBoard.css'
+import { useState } from 'react'
 import homeIcon from '../../images/dashBoardLogin/home.png'
 import carIcon from '../../images/dashBoardLogin/car.png'
 import wheelIcon from '../../images/dashBoardLogin/car-wheel.png'
 import user from '../../images/dashBoardLogin/user.png'
-import HomeDashBoard from '../../component/homeDashBoard/homeDashBoard'
+import carIc from '../../images/dashBoardLogin/carCard.jpg'
+import wheel from '../../images/dashBoardLogin/wheelCard.jpg'
+import profile from '../../images/dashBoardLogin/profileCrad.jpg'
+import car from '../../images/dashBoardLogin/welcome1.jpg'
+import DashBoardCar from '../../component/dashBoardComponent/dashBoardCar/dashBoardCar'
 
 function DashBoard (){
 
-
-    return (
-        <div className='bashboard'>
+    const sidBare = () => {
+        return(
             <div className='sidebar'>
                 <div className='icons'>
-                    <img className='icon-dashboard' src={homeIcon} />
-                    <img className='icon-dashboard' src={carIcon} />
-                    <img className='icon-dashboard' src={wheelIcon} />
-                    <img className='icon-dashboard' src={user} />
+                    <a href='#' onClick={()=>setActiveComponent('home')}><img className='icon-dashboard' src={homeIcon} /></a>
+                    <a href='#' onClick={()=>setActiveComponent('carlist')}><img className='icon-dashboard' src={carIcon} /></a>
+                    <a href='#' onClick={()=>setActiveComponent('2')}><img className='icon-dashboard' src={wheelIcon} /></a>
+                    <a href='#' onClick={()=>setActiveComponent('3')}><img className='icon-dashboard' src={user} /></a>
                 </div>
             </div>
-            <div>
-                <HomeDashBoard />
+        );
+    }
+    const homeDashBoard=()=>{
+        return(
+        <div className='home-dashboard'>
+            <div className='buttons'>
+                    <button className='card-button'onClick={()=>setActiveComponent('1')}>
+                        <img src={carIc} />
+                        <p>Add a car +</p>
+                    </button>
+                    <button className='card-button' onClick={()=>setActiveComponent('carlist')}>
+                        <img src={wheel} />
+                        <p>View existing cars</p>
+                    </button>
+                    <button className='card-button' onClick={()=>setActiveComponent('3')}>
+                        <img src={profile} />
+                        <p>View customer carsv</p>
+                    </button>
             </div>
+            <img className='home-img' src={car}/>
+        </div>
+        );
+    }
+
+    const [activeComponent, setActiveComponent] = useState('home');
+    const renderComponent = () => {
+        switch (activeComponent) {
+          case 'carlist':
+            return (
+                <div className='dashboard'>
+                    {sidBare()}
+                    <DashBoardCar />
+
+                </div>
+                );
+          case '2':
+            return (
+                <div className='dashboard'>
+                    {sidBare()}
+                    2
+                </div>
+                );
+          case '3':
+            return (
+            <div className='dashboard'>
+                {sidBare()}
+                3
+            </div>
+            );
+            
+          default:
+            return (
+                <div className='dashboard'>
+                    {sidBare()}
+                    {homeDashBoard()}
+                </div>
+            );
+        }
+      };
+    
+
+
+    return (
+        <div>
+            {renderComponent()}
         </div>
     );
+    
 }
 
 

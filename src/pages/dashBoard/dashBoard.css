@@ -1,24 +1,99 @@
-.bashboard{
+.dashboard{
     display: flex;
     height: 1200px;
 }
 .sidebar{
     top: 0;
     left: 0;
-    max-width: 100px;
-    height: 1200px;
+    width: 80px;
+    height: 100%;
     background-color: #965933;
-    display: flex;            
     flex-direction: column;    
     align-items: center;     
+}
+.sidebar .icons{
+    margin-top: 30px;
+    margin-left: 10px;
 }
 .icon-dashboard {
     max-width: 50px;
     padding: 10px;            
-    margin: 5px;  
+    margin-left: 5px;  
     
 }
-.sidebar .icons{
-    margin-top: 20px;
-    margin-left: 20px;
+.home-dashboard{
+    left: 1000;
+    display: flex;
+    
+}
+
+
+.buttons{
+    display: flex;            
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+.card-button{
+    box-sizing: border-box;
+    width: 315.05px;
+    height: 156.36px;
+    background: #FFFFFF;
+    border: none;
+    border-bottom: 1px solid #965933;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 10px;
+    border-radius: 4.66733px;
+}
+
+.card-button:hover {
+   box-shadow: 10px 10px 10px rgba(0, 0, 0,0.35);
+}
+.card-button p {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16.3357px;
+    line-height: 25px;
+    letter-spacing: 0.01em;
+    margin: 10px;
+    color: #151C28;
+}
+.home-img{
+    width: 792px;
+    height: 1024px;
+    margin-top: 100px;
+    margin-left: 500px;
+}   
+@media screen and (max-width:1100px) {
+    .dashboard{
+        height: 1500px;
+
+    }
+    .home-img{
+        margin-left: 100px;
+        width: 550px;
+        height: 670px;
+    }
+}
+@media screen and (max-width:850px) {
+    .dashboard{
+        height: 1150px;
+    }
+    .home-img{
+        margin-left: 20px;
+        width: 500px;
+        height: 600px;
+    }
+}
+@media screen and (max-width:600px) {
+    .dashboard{
+        height: 900px;
+    }
+    .home-img{
+        display: none;
+    }
+    .card-button{
+        width: 280px;
+    }
 }
