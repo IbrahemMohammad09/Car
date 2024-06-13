@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+.car-card{
+    position: relative;
+    margin: 30px;
+}
+.car-card h1 {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    color: #242731;
+}
+.car-card .car-img{
+    width: 233px;
+    height: 105px;
+}
+.car-card p {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    color: #72767C;
+}
+.price{
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+    color: #72767C;
+}
+.price{
+    margin: 5px;
+    margin-left: 60px;
+}
+.price span {
+    width: 65px;
+    height: 23px;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 23px;
+    color: #242731;
+}
+.detaels img{
+    width: 20px;
+    height: 20px;
+}
+.detaels ,.gear, .seat {
+    display: flex;
+}
+.gear ,.seat {
+    margin: 5px;
+}
+.car-card .state{
+    display: flex;
+}
+.car-card .state button{
+    border: none;
+    width: 80px;
+    height: 30px;
+    margin-right: 10px;
+}
+.car-card .state .edit{
+    background-color: rgb(151, 168, 0);
+}
+.car-card .state .del{
+    background-color: rgb(157, 0, 0);
+}

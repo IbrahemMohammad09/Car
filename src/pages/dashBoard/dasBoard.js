@@ -9,6 +9,7 @@ import wheel from '../../images/dashBoardLogin/wheelCard.jpg'
 import profile from '../../images/dashBoardLogin/profileCrad.jpg'
 import car from '../../images/dashBoardLogin/welcome1.jpg'
 import DashBoardCar from '../../component/dashBoardComponent/dashBoardCar/dashBoardCar'
+import DashBoardCustomerCar from '../../component/dashBoardComponent/dasBoardCustomerCar/dasBoardCustomerCar'
 
 function DashBoard (){
 
@@ -19,7 +20,7 @@ function DashBoard (){
                     <a href='#' onClick={()=>setActiveComponent('home')}><img className='icon-dashboard' src={homeIcon} /></a>
                     <a href='#' onClick={()=>setActiveComponent('carlist')}><img className='icon-dashboard' src={carIcon} /></a>
                     <a href='#' onClick={()=>setActiveComponent('2')}><img className='icon-dashboard' src={wheelIcon} /></a>
-                    <a href='#' onClick={()=>setActiveComponent('3')}><img className='icon-dashboard' src={user} /></a>
+                    <a href='#' onClick={()=>setActiveComponent('customer car')}><img className='icon-dashboard' src={user} /></a>
                 </div>
             </div>
         );
@@ -36,9 +37,9 @@ function DashBoard (){
                         <img src={wheel} />
                         <p>View existing cars</p>
                     </button>
-                    <button className='card-button' onClick={()=>setActiveComponent('3')}>
+                    <button className='card-button' onClick={()=>setActiveComponent('customer car')}>
                         <img src={profile} />
-                        <p>View customer carsv</p>
+                        <p>View customer cars</p>
                     </button>
             </div>
             <img className='home-img' src={car}/>
@@ -57,11 +58,11 @@ function DashBoard (){
 
                 </div>
                 );
-          case '2':
+          case 'customer car':
             return (
                 <div className='dashboard'>
                     {sidBare()}
-                    2
+                    <DashBoardCustomerCar />
                 </div>
                 );
           case '3':

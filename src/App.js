@@ -6,7 +6,7 @@ import DashBoard from './pages/dashBoard/dasBoard';
 
 function App() {
   return (
-    <div >
+    <div className='App' >
       <BrowserRouter>
         <Routes>
           <Route path='/dashboard_login' element={<DashBoardLoginPage/>}/>
