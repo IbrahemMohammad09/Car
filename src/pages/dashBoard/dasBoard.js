@@ -10,6 +10,8 @@ import profile from '../../images/dashBoardLogin/profileCrad.jpg'
 import car from '../../images/dashBoardLogin/welcome1.jpg'
 import DashBoardCar from '../../component/dashBoardComponent/dashBoardCar/dashBoardCar'
 import DashBoardCustomerCar from '../../component/dashBoardComponent/dasBoardCustomerCar/dasBoardCustomerCar'
+import DashBoardSetting from '../dashBoradSetting/dashBoradSetting'
+import { Link } from 'react-router-dom';
 
 function DashBoard (){
 
@@ -19,7 +21,7 @@ function DashBoard (){
                 <div className='icons'>
                     <a href='#' onClick={()=>setActiveComponent('home')}><img className='icon-dashboard' src={homeIcon} /></a>
                     <a href='#' onClick={()=>setActiveComponent('carlist')}><img className='icon-dashboard' src={carIcon} /></a>
-                    <a href='#' onClick={()=>setActiveComponent('2')}><img className='icon-dashboard' src={wheelIcon} /></a>
+                    <a  href={"/dashboard-setting"}><img className='icon-dashboard' src={wheelIcon} /></a>
                     <a href='#' onClick={()=>setActiveComponent('customer car')}><img className='icon-dashboard' src={user} /></a>
                 </div>
             </div>
@@ -29,10 +31,11 @@ function DashBoard (){
         return(
         <div className='home-dashboard'>
             <div className='buttons'>
-                    <button className='card-button'onClick={()=>setActiveComponent('1')}>
-                        <img src={carIc} />
+                    <Link to="/dashboard-setting" className="card-button">
+                        <img src={carIc} alt="Car Icon" />
                         <p>Add a car +</p>
-                    </button>
+                    </Link>
+                    
                     <button className='card-button' onClick={()=>setActiveComponent('carlist')}>
                         <img src={wheel} />
                         <p>View existing cars</p>
@@ -65,11 +68,11 @@ function DashBoard (){
                     <DashBoardCustomerCar />
                 </div>
                 );
-          case '3':
+          case 'setting':
             return (
             <div className='dashboard'>
                 {sidBare()}
-                3
+                <DashBoardSetting />
             </div>
             );
             

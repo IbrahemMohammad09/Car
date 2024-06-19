@@ -25,7 +25,7 @@ const cars = [
         icon: <FaCar/>
     }
 ]
-const Hero = () => {
+const   Hero = () => {
     return (
         <section className="h-screen relative">
             <img src={Img} alt={'Sport car in the mountain'} className="w-full h-full z-0 absolute left-0 top-0"/>
