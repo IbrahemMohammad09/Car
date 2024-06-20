@@ -10,8 +10,8 @@ import profile from '../../images/dashBoardLogin/profileCrad.jpg'
 import car from '../../images/dashBoardLogin/welcome1.jpg'
 import DashBoardCar from '../../component/dashBoardComponent/dashBoardCar/dashBoardCar'
 import DashBoardCustomerCar from '../../component/dashBoardComponent/dasBoardCustomerCar/dasBoardCustomerCar'
-import DashBoardSetting from '../dashBoradSetting/dashBoradSetting'
-import { Link } from 'react-router-dom';
+import DashBoardSetting from '../../component/dashBoardComponent/dashBoradSetting/dashBoradSetting'
+
 
 function DashBoard (){
 
@@ -21,7 +21,7 @@ function DashBoard (){
                 <div className='icons'>
                     <a href='#' onClick={()=>setActiveComponent('home')}><img className='icon-dashboard' src={homeIcon} /></a>
                     <a href='#' onClick={()=>setActiveComponent('carlist')}><img className='icon-dashboard' src={carIcon} /></a>
-                    <a  href={"/dashboard-setting"}><img className='icon-dashboard' src={wheelIcon} /></a>
+                    <a href="#" onClick={()=>setActiveComponent('setting')}><img className='icon-dashboard' src={wheelIcon} /></a>
                     <a href='#' onClick={()=>setActiveComponent('customer car')}><img className='icon-dashboard' src={user} /></a>
                 </div>
             </div>
@@ -31,10 +31,10 @@ function DashBoard (){
         return(
         <div className='home-dashboard'>
             <div className='buttons'>
-                    <Link to="/dashboard-setting" className="card-button">
-                        <img src={carIc} alt="Car Icon" />
-                        <p>Add a car +</p>
-                    </Link>
+            <button className='card-button' onClick={()=>setActiveComponent('setting')}>
+                        <img src={wheel} />
+                        <p>Add car +</p>
+                    </button>
                     
                     <button className='card-button' onClick={()=>setActiveComponent('carlist')}>
                         <img src={wheel} />

@@ -3,6 +3,7 @@ import './dashBoradSetting.css'
 import { useState } from 'react';
 import DashBoardDetails from './dashBoardDetails/dashBoardDetails';
 import { Link } from 'react-router-dom';
+import DashBoardCarPics from './dashBoardCarPics/dashBoardCarPics';
 
 
 function DashBoardSetting (){
@@ -16,17 +17,17 @@ function DashBoardSetting (){
             
             case "picture":
                 return(
-                    <div>2</div>
+                    <DashBoardCarPics />
                 );
             default:
                 return(
-                    <div>1</div>
+                    <DashBoardDetails/>
                 );
         }
     }
     return(
        <Container className='dash-setting'>
-            <Link className='back-link' to="/dashboard">Back to DashBoard</Link>
+
             <h1>Setting</h1>
             <button className='button-detail' onClick={()=>{setActiveComponent("setting")}}>Details</button>
             <button className='button-pics' onClick={()=>{setActiveComponent("picture")}}>Pictures</button>
