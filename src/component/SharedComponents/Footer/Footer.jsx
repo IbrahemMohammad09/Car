@@ -4,20 +4,12 @@ import { FaPhone, FaWhatsapp } from "react-icons/fa";
 
 const arr1 = [
     {
+        title: 'Home',
+        url: '/',
+    },
+    {
         title: 'About Us',
-        url: '/',
-    },
-    {
-        title: 'Services',
-        url: '/',
-    },
-    {
-        title: 'FAQs',
-        url: '/',
-    },
-    {
-        title: 'Contact Us',
-        url: '/',
+        url: '/about-us',
     },
 ];
 
@@ -79,7 +71,7 @@ const Footer = () => {
             <div className="flex flex-col md:flex-row justify-between container mx-auto gap-[33px]">
                 <div className="flex gap-[60px] max-[500px]:justify-center">
                     <div className="flex flex-col gap-[11px] max-[500px]:items-center">
-                        <h1 className="text-__brown text-[1.6rem] font-medium leading-[24px]">Home</h1>
+                        <h1 className="text-__brown text-[1.6rem] font-medium leading-[24px]">Pages</h1>
                         {arr1.map((e, i) => <Link className="font-normal no-underline duration-300 md:hover:translate-x-[10px] leading-[27.75px] text-black text-[15px]" key={i} to={e.url}>{e.title}</Link>)}
                     </div>
                     <div className="flex flex-col gap-[11px] max-[500px]:items-center">

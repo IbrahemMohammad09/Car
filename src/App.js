@@ -1,11 +1,10 @@
 import './App.css';
+import './animate.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DashBoardLoginPage from './pages/dashBoardLoginPage/dashBoardLoginPage';
 import DashBoard from './pages/dashBoard/dasBoard';
 import Home from './pages/Home/Home';
-
-
 
 function App() {
   return (

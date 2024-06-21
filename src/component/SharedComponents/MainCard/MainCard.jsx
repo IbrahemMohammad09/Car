@@ -45,10 +45,19 @@ const MainCard = ( { pictures, name, daylyPrice, monthlyPrice, weeklyPrice } ) =
                     </div>
                 </div>
                 <h1 className="text-center mx-auto text-__brown font-semibold leading-[19px] text-[1rem] my-2">{name}</h1>
-                <div className="flex justify-center items-center gap-[5px] flex-wrap mb-2">
-                    D<div className="hover:bg-__brown duration-300 p-[2px] overflow-hidden border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center cursor-pointer hover:text-white relative">{daylyPrice} AED</div>
-                    M<div className="hover:bg-__brown duration-300 p-[2px] overflow-hidden border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center cursor-pointer hover:text-white relative">{monthlyPrice} AED</div>
-                    W<div className="hover:bg-__brown duration-300 p-[2px] overflow-hidden border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center cursor-pointer hover:text-white relative">{weeklyPrice} AED</div>
+                <div className="flex justify-center items-center gap-[8px] flex-wrap mb-2">
+                    <div>
+                        <div className="text-center text-[12px]">Dayly</div>
+                        <div className="hover:bg-__brown duration-300 p-[2px] overflow-hidden border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center cursor-pointer hover:text-white relative">{daylyPrice} AED</div>
+                    </div>
+                    <div>
+                        <div className="text-center text-[12px]">Monthly</div>
+                        <div className="hover:bg-__brown duration-300 p-[2px] overflow-hidden border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center cursor-pointer hover:text-white relative">{monthlyPrice} AED</div>    
+                    </div>
+                    <div>
+                        <div className="text-center text-[12px]">Weekly</div>
+                        <div className="hover:bg-__brown duration-300 p-[2px] overflow-hidden border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center cursor-pointer hover:text-white relative">{weeklyPrice} AED</div>
+                    </div>
                 </div>
                 <div className="flex flex-wrap justify-center items-start gap-[2px]">
                     <Link to={'#'} className="flex flex-[30%] py-[5px] justify-center items-center gap-[4px] text-white bg-__brown no-underline duration-300 hover:translate-y-[10%] "><FaWhatsapp/>Whats app</Link>
