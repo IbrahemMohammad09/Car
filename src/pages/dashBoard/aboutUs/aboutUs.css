@@ -1,0 +1,92 @@
+.about-info{
+    padding-top: 100px;
+}
+
+.about-info h2 {
+    width: 767px;
+    font-family: 'Abhaya Libre';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 72px;
+    line-height: 85px;
+    display: flex;
+    align-items: center;
+    color: #965933;
+}
+
+.about-info p {
+    width: 794px;
+    height: 168px;
+    font-family: 'Actor';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 31px;
+    line-height: 135.2%;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.about-info h1 {
+    width: 526px;
+    height: 85px;
+    font-family: 'Abhaya Libre';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 72px;
+    line-height: 85px;
+    display: flex;
+    align-items: center;
+    color: #965933;
+}
+.contact{
+    display: flex;
+    align-items: center;
+}
+.info-button{
+    display: flex;
+    border: 1px solid #965933;
+    border-radius: 9px;
+    width: 114.47px;
+    height: 45px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-right: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    color: white;
+    background-color: #965933; 
+    text-decoration: none;
+    transition: transform 300ms;
+    
+}
+.info-button:hover{
+    transform: translateY(10%);
+}
+.location{
+    padding-top: 20px;
+}
+.location .loaction-title{
+    height: 59px;
+    width: 100%;
+    background-color: #965933;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.location .loaction-title p{
+    padding: 0;
+    margin: 0;
+    width: 240px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+}
+

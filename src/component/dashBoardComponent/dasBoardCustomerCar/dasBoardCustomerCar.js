@@ -52,12 +52,12 @@ function DashBoardCustomerCar() {
         <Table striped hover>
           <thead>
             <tr className='first-row'>
-              <th>Name</th>
-              <th>Phone</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Car</th>
-              <th>Status</th>
+              <th>Name/اسم الزبن</th>
+              <th>Phone/رقم هاتفه</th>
+              <th>Start Date/موعد بدأ التأجير</th>
+              <th>End Date/موعد نهاية التأجير</th>
+              <th>Car/اسم السيارة</th>
+              <th>Status/الحالة</th>
             </tr>
           </thead>
           <tbody>
