@@ -127,7 +127,7 @@ function DashBoardCar (){
                     <div className='car-list'>
                         {cars.map(car=> (
                             <Col>
-                            <CarCard car={car} key={car.id} />
+                                <CarCard car={car} key={car.id} />
                             </Col>
                         ))}
                     </div>
