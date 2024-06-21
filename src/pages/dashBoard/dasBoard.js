@@ -34,15 +34,18 @@ function DashBoard (){
             <button className='card-button' onClick={()=>setActiveComponent('setting')}>
                         <img src={wheel} />
                         <p>Add car +</p>
+                        <p>أضف سيارة</p>
                     </button>
                     
                     <button className='card-button' onClick={()=>setActiveComponent('carlist')}>
                         <img src={wheel} />
                         <p>View existing cars</p>
+                        <p>عرض قائمة بالسيارات الحالية</p>
                     </button>
                     <button className='card-button' onClick={()=>setActiveComponent('customer car')}>
                         <img src={profile} />
                         <p>View customer cars</p>
+                        <p>عرض طلبات الزبائن </p>
                     </button>
             </div>
             <img className='home-img' src={car}/>

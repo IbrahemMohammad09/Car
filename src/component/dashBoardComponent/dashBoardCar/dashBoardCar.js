@@ -107,7 +107,8 @@ function DashBoardCar (){
             <Container>
                 <Row className='car-header '>
                     <Col>
-                        <h1 className=''>DashBoard</h1>
+                        <h1 className=''>Car list</h1>
+                        <h1 className=''>قائمة السيارات</h1>
                     </Col>
                     <Col>
                         <div className="search-container ">

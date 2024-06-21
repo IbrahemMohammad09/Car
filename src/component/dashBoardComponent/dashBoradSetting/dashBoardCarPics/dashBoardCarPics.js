@@ -43,7 +43,7 @@ function DashBoardCarPics (){
                         >
                             <input {...getInputProps()} />
                             <p>drop the picture here </p>
-                            <p> or click here</p>
+                            <p>click here to add picture</p>
                         </div>
                         {selectedImage && (
                             <div className="mt-3 text-center">
