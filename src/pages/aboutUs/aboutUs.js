@@ -1,13 +1,13 @@
 import { Container,Row,Col } from 'react-bootstrap';
-import Hero from '../../../component/HomeComponents/Hero/Hero';
+import Hero from '../../component/HomeComponents/Hero/Hero';
 import './aboutUs.css'
-import aboutCar from '../../../images/aboutUs/aboutCar.jpg'
+import aboutCar from '../../images/aboutUs/aboutCar.jpg'
 import { FaPhone, FaWhatsapp } from "react-icons/fa"
 import { Link } from "react-router-dom";
-import Footer from '../../../component/SharedComponents/Footer/Footer';
-import MainTitle from '../../../component/SharedComponents/MainTitle/MainTitle';
+import Footer from '../../component/SharedComponents/Footer/Footer';
+import MainTitle from '../../component/SharedComponents/MainTitle/MainTitle';
 import ScrollAnimation from 'react-animate-on-scroll';
-import '../../../animate.css';
+import '../../animate.css';
 
 
 

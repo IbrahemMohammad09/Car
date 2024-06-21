@@ -5,7 +5,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import DashBoardLoginPage from './pages/dashBoardLoginPage/dashBoardLoginPage';
 import DashBoard from './pages/dashBoard/dasBoard';
 import Home from './pages/Home/Home';
-import AboutUs from './pages/dashBoard/aboutUs/aboutUs';
+import AboutUs from './pages/aboutUs/aboutUs';
 import BookCar from './pages/bookCar/bookCar';
 
 function App() {
