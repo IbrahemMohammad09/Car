@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom"
+import i18next from "i18next";
 import { useLanguageContext } from "../../../hooks/useLanguageContext"
+import { Link } from "react-router-dom"
 
 const Header = () => {
     const { language, dispatch } = useLanguageContext();
-
     const handleLanguageChange = () => {
-        dispatch({ type: (language === 'EN'? 'AR': 'EN') })
+        dispatch({type: language === 'EN'? 'AR': 'EN'});
     }
 
     return (

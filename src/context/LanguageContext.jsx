@@ -25,7 +25,7 @@ const LanguageReducer = (state, action) => {
 
 export const LanguageContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(LanguageReducer, {
-        language: localStorage.getItem('language')? localStorage.getItem(''): 'EN'
+        language: localStorage.getItem('language')? localStorage.getItem('language'): 'EN'
     })
 
     return (

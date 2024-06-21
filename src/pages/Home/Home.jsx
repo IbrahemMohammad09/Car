@@ -4,11 +4,11 @@ import MainTitle from "../../component/SharedComponents/MainTitle/MainTitle"
 import MainCard from '../../component/SharedComponents/MainCard/MainCard'
 import Img2 from '../../images/carCards/photo_2024-06-13_04-31-26.jpg'
 import Slider from "react-slick"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Img from '../../images/Home/Paragraph+Background+Border (1).png'
 import Img1 from '../../images/Home/Paragraph+Background+Border (2).png'
 import Img3 from '../../images/Home/Paragraph+Background+Border (3).png'
-import Img4 from '../../images/Home/Paragraph+Background+Border (4).png'
+// import Img4 from '../../images/Home/Paragraph+Background+Border (4).png'
 import Footer from "../../component/SharedComponents/Footer/Footer"
 import { FaMessage } from "react-icons/fa6"
 import Img5 from '../../images/Home/unsplash_UF2nwAcD8Mo.png'
@@ -18,6 +18,7 @@ import BrandImg3 from '../../images/Home/b3.jpg.png'
 import BrandImg4 from '../../images/Home/b4.jpg.png'
 import BrandImg5 from '../../images/Home/b5.jpg.png'
 import BrandImg6 from '../../images/Home/b6.jpg.png'
+import { FaPhone, FaWhatsapp } from "react-icons/fa"
 
 const cards = [
     {
@@ -84,9 +85,13 @@ const brands = [
 ]
 const Home = () => {
     const [type, setType] = useState([]);
-
     const [brand, setBrand] = useState();
-    
+    const [isVisible, setIsVisible] = useState();
+    const [isVisible1, setIsVisible1] = useState();
+    const [isVisible2, setIsVisible2] = useState();
+    const [isVisible3, setIsVisible3] = useState();
+    const [isVisible4, setIsVisible4] = useState();
+
     let settings = {
         infinite: true,
         speed: 500,
@@ -97,26 +102,63 @@ const Home = () => {
         pauseOnHover: true,
     }
 
-    window.addEventListener('resize', function(event) {
-        if(window.innerWidth <= 768) {
-            settings = {
-                infinite: true,
-                speed: 500,
-                slidesToShow: 3,
-                slidesToScroll: 2,
-                // autoplay: true,
-                autoplaySpeed: 5000,
-                pauseOnHover: true,
-            }
+    const elementRef = useRef(null)
+    const elementRef1 = useRef(null)
+    const elementRef2 = useRef(null)
+    const elementRef3 = useRef(null)
+    const elementRef4 = useRef(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+        const e1 = elementRef.current?.getBoundingClientRect();
+        const e2 = elementRef1.current?.getBoundingClientRect();
+        const e3 = elementRef2.current?.getBoundingClientRect();
+        const e4 = elementRef3.current?.getBoundingClientRect();
+        const e5 = elementRef4.current?.getBoundingClientRect();
+
+        const viewportHeight = window?.innerHeight;
+        if (e1.top <= viewportHeight / 1.1) {
+            setIsVisible(true);
+        } else {
+            setIsVisible(false);
         }
-    });
+
+        if (e2.top <= viewportHeight / 1.1) {
+            setIsVisible1(true);
+        } else {
+            setIsVisible1(false);
+        }
+
+        if (e3.top <= viewportHeight / 1.1) {
+            setIsVisible2(true);
+        } else {
+            setIsVisible2(false);
+        }
+
+        if (e4.top <= viewportHeight / 1.1) {
+            setIsVisible3(true);
+        } else {
+            setIsVisible3(false);
+        }
+        if (e5.top <= viewportHeight / 1.1) {
+            setIsVisible4(true);
+        } else {
+            setIsVisible4(false);
+        }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+    };
+    }, []);
 
     return (
         <section className="min-h-screen w-full bg-white overflow-x-hidden">
             <Hero/>
 
             <MainTitle title={'Best Car Rental DUBAI'}/>
-            <div className="w-full">
+            <div className={`w-full ${isVisible4 && 'animate-right'}`} ref={elementRef4}>
                 <Slider {...settings} className="p-1">
                     {cards.map((e, i) => <div key={i} className="h-[441px] relative overflow-hidden">
                         {/* <div className="absolute left-0 top-0 z-10" onClick={() => setType(e.title)}>
@@ -127,7 +169,7 @@ const Home = () => {
                     </div>)}
                 </Slider>
             </div>
-            <div className="mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px]">
+            <div ref={elementRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] ${isVisible && 'animate-left'}`}>
                 {brands.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer ${brand === e.title? 'scale-95': 'scale-100'}`} onClick={() => setBrand(e.title)}>
                     <div className="w-[100px] h-[100px]">
                         <img src={e.img} alt={e.title+' brand'} className="w-full h-full object-cover"/>
@@ -137,7 +179,7 @@ const Home = () => {
             </div>
 
             <MainTitle title={'Popular car'}/>
-            <div className="container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px]">
+            <div ref={elementRef3} className={`container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px] ${isVisible3 && 'animate-right'}`}>
                 {[1,2,3,4,5,6,7,8,9,10].map((e, i) => <MainCard key={i} daylyPrice={400} monthlyPrice={3000} weeklyPrice={1000} name={'Mercedes Benz'} pictures={[Img2, Img2, Img2]}/>)}
             </div>
             <div className="mx-auto text-center w-fit mt-[40px]">
@@ -146,10 +188,10 @@ const Home = () => {
 
             <MainTitle title={'Why Choose us?'}/>
             <div className="bg-__dark_white py-[65px] px-[100px] flex justify-center w-full gap-[50px] items-center container mx-auto max-[991px]:flex-col">
-                <div className="h-[687px] w-[524px] max-[600px]:w-full">
+                <div className={`h-[687px] w-[524px] max-[600px]:w-full ${isVisible1 && 'animate-left'}`} ref={elementRef1}>
                     <img src={Img5} alt={'Sport car with orange color'} className="w-full h-full object-fit"/>
                 </div>
-                <div>
+                <div ref={elementRef2} className={`${isVisible2 && 'animate-right'}`}>
                     <h1 className="text-__brown text-[2.5rem] leading-[55px] font-medium min-[992px]:w-[300px] max-[500px]:text-center">Feel the best experience with our deals.</h1>
                     <div className="flex flex-col gap-[20px] mt-[62px]">
                         {arr.map((e, i) => <div key={i} className="flex gap-[30px] max-[991px]:flex-col max-[500px]:text-center">
@@ -166,6 +208,11 @@ const Home = () => {
             </div>
 
             <Footer/>
+
+            <div className="fixed right-[3px] top-[50%] cursor-pointer z-50 flex flex-col justify-center items-center gap-[2px] animate-jump hover:animate-none duration-300">
+                <a href={'#'} className="flex flex-[30%] py-[5px] justify-center items-center gap-[4px] border-[1px] border-solid border-__brown bg-white text-__brown no-underline shadow-[#ccc] duration-300 w-[120px] rounded-md hover:translate-x-[-10%] hover:rounded-[30px]"><FaWhatsapp/>Whats app</a>
+                <a href={'#'} className="flex flex-[30%] py-[5px] justify-center items-center gap-[4px] border-[1px] border-solid border-__brown bg-white text-__brown no-underline shadow-[#ccc] duration-300 w-[120px] rounded-md hover:translate-x-[-10%] hover:rounded-[30px]"><FaPhone/>Call us</a>
+            </div>
         </section>
     )
 }
