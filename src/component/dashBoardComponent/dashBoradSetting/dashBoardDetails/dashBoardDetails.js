@@ -13,6 +13,8 @@ function DashBoardDetails (){
         { id: 2, name: 'Audi' },
         
     ]);
+    const [selectedFile, setSelectedFile] = useState(null);
+  
 
     const handleDelete = (id) => {
         setBrands(Brands.filter(Brand => Brand.id !== id));
@@ -29,6 +31,16 @@ function DashBoardDetails (){
     const brandSelect = (eventKey) => {
         setBrand(eventKey);
       };
+      
+    
+      const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+          setSelectedFile(file);
+          
+        }
+      };
+    
 
 
     return(
@@ -143,18 +155,19 @@ function DashBoardDetails (){
             <hr/>
             <Row>
                 {Brands.map(Brand => (
-                            <Card key={Brand.id} className="mb-3">
-                            <Card.Body>
-                                <Card.Title>{Brand.name}</Card.Title>
-                                <Button variant="danger" onClick={() => handleDelete(Brand.id)}>Delete</Button>
-                            </Card.Body>
-                            </Card>
-                        ))}
+                    <Card key={Brand.id} className="mb-3">
+                        <Card.Body>
+                            <Card.Title>{Brand.name}</Card.Title>
+                            <Button variant="danger" onClick={() => handleDelete(Brand.id)}>Delete</Button>
+                        </Card.Body>
+                        </Card>
+                    ))}
             </Row>
             <Form>                
-                <Form.Group as={Col} controlId="formGridModel">
+                <Form.Group as={Col} >
                     <Form.Label>Add Brand</Form.Label>
                     <Form.Control type="text" placeholder="Add Brand" />
+                    <Form.Control type='file' accept="image/*" placeholder='add brand picture' onChange={handleFileChange}/>
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Add Brand
