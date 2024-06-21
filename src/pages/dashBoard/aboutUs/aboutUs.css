@@ -26,12 +26,7 @@
     align-items: center;
     color: #000000;
 }
-.about-info img {
-    animation: slide-from-left 1s ease forwards;
-}
-.info{
-    animation: slide-from-right 1s ease forwards;
-}
+
 .about-info h1 {
     width: 526px;
     height: 85px;
@@ -71,7 +66,6 @@
 }
 .location{
     padding-top: 20px;
-    animation: slide-from-bottom 1s ease forwards;
 }
 .location .loaction-title{
     height: 59px;
@@ -96,37 +90,3 @@
     color: #FFFFFF;
 }
 
-@keyframes slide-from-right {
-    0% {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  
-
-  @keyframes slide-from-left {
-    0% {
-      transform: translateX(-100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  
-
-  @keyframes slide-from-bottom {
-    0% {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
