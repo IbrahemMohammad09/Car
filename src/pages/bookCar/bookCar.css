@@ -1,5 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&display=swap');
+
+
 .main-img{
     width: 492px;
     height: 360px;
     border-radius: 10px;
+    padding-bottom: 20px;
+    transition: transform 0.3s ease;
 }
+.main-img:hover{
+    transform: translateY(-5px);
+}
+
+.image-gallery {
+    display: grid;
+    max-width: 510px;
+    grid-template-columns: repeat(auto-fill, minmax(calc(33.333% - 10px), 1fr));
+    gap: 10px;
+  }
+  
+  .image-container {
+    max-width: 148px;
+  }
+  
+  .gallery-image {
+    width: 148px;
+    height: 124px;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  .gallery-image:hover{
+    transform: translateY(-5px);
+  }
+.car-details hr{
+    width: 500px;
+}
+.car-details h1 {
+    width: 220px;
+    height: 40px;
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 150%;
+    display: flex;
+    letter-spacing: -0.03em;
+    color: #965933;
+}
+.car-details h2{
+    width: 444px;
+    height: 120px;
+    left: 24px;
+    top: 128px;
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 200%;
+    letter-spacing: -0.02em;
+    color: #596780;
+}
+.car-details p{
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: -0.02em;
+    color: #596780;
+}
+.car-details span{
+    margin-right: 20px;
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: #90A3BF;
+}
+.row-details{
+    max-width: 200px;
+}
+
+.book-form {
+    width: 500px;
+    margin-left: 200px;
+}
+.book-form div{
+    margin-bottom: 20px;
+}
+.book-form label {
+    display: block; 
+    margin-bottom: 5px; 
+    width: 218px;
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.02em;
+    color: #965933;
+}
+
+.book-form input {
+    padding: 8px;
+    border: none;
+    box-sizing: border-box; 
+    width: 304px;
+    background: #F6F7F9;
+    border-radius: 10px;
+}
+.book-form input:focus{
+    outline: none;
+    border: none;
+}
+.book-button{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width:450px) {
+    .car-details h2{
+        width: 400px;
+        height: 200px;
+    }
+}
+@media screen and (max-width:1200px) {
+    .book-form{
+        margin: 0px;
+    }
+}
+  

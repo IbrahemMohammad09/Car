@@ -8,6 +8,7 @@ import Footer from '../../component/SharedComponents/Footer/Footer';
 import MainTitle from '../../component/SharedComponents/MainTitle/MainTitle';
 import ScrollAnimation from 'react-animate-on-scroll';
 import '../../animate.css';
+import SideLink from '../../component/SharedComponents/sideLink/sideLink';
 
 
 
@@ -17,13 +18,13 @@ function AboutUs() {
         <Hero />
         <Container className='about-info'>
           <Row>
-            <Col>
-              <ScrollAnimation animateIn="slideInLeft" animateOnce={true}>
+            <Col lg={6}>
+              <ScrollAnimation animateIn="slideInLeft" animateOnce={false}>
                 <img src={aboutCar} alt="About Car" />
               </ScrollAnimation>
             </Col>
             <Col className='info'>
-              <ScrollAnimation animateIn="slideInRight" animateOnce={true}>
+              <ScrollAnimation animateIn="slideInRight" animateOnce={false}>
                 <h2>MEI Car Rentals Dubai</h2>
                 <p> Car Rental, where we offer the latest cars at competitive prices and excellent customer service. 
                     Enjoy a smooth and comfortable rental experience with us. Book now to discover the difference!</p>
@@ -31,12 +32,8 @@ function AboutUs() {
                 <h1>Contact US</h1>
                 <Row>
                   <Col className='contact'>
-                    <ScrollAnimation animateIn="fadeInUp" animateOnce={true}>
                       <Link to={'#'} className="info-button"><FaWhatsapp />Whats app</Link>
-                    </ScrollAnimation>
-                    <ScrollAnimation animateIn="fadeInUp" animateOnce={true} delay={300}>
                       <Link to={'#'} className="info-button"><FaPhone />Call us</Link>
-                    </ScrollAnimation>
                   </Col>
                 </Row>
               </ScrollAnimation>
@@ -61,8 +58,10 @@ function AboutUs() {
                 ></iframe>
             </ScrollAnimation>
           </Row>
+          
         </Container>
         <Footer />
+        <SideLink />
       </div>
     );
   }
