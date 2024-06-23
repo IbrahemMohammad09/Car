@@ -12,7 +12,7 @@ function DashBoardLoginPage (){
 
     useEffect(() => {
         const timer = setTimeout(() => {
-        setShowFirst(false);
+            setShowFirst(false);
         }, 700);
 
         return () => clearTimeout(timer);

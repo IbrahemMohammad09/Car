@@ -2,7 +2,7 @@ import Hero from "../../component/HomeComponents/Hero/Hero"
 import MainButton from "../../component/SharedComponents/MainButton/MainButton"
 import MainTitle from "../../component/SharedComponents/MainTitle/MainTitle"
 import MainCard from '../../component/SharedComponents/MainCard/MainCard'
-import Img2 from '../../images/carCards/photo_2024-06-13_04-31-26.jpg'
+// import Img2 from '../../images/carCards/photo_2024-06-13_04-31-26.jpg'
 import Slider from "react-slick"
 import { useEffect, useRef, useState } from "react"
 import Img from '../../images/Home/Paragraph+Background+Border (1).png'
@@ -12,14 +12,16 @@ import Img3 from '../../images/Home/Paragraph+Background+Border (3).png'
 import Footer from "../../component/SharedComponents/Footer/Footer"
 import { FaMessage } from "react-icons/fa6"
 import Img5 from '../../images/Home/unsplash_UF2nwAcD8Mo.png'
-import BrandImg1 from '../../images/Home/b1.jpg.png'
-import BrandImg2 from '../../images/Home/b2.jpg.png'
-import BrandImg3 from '../../images/Home/b3.jpg.png'
-import BrandImg4 from '../../images/Home/b4.jpg.png'
-import BrandImg5 from '../../images/Home/b5.jpg.png'
-import BrandImg6 from '../../images/Home/b6.jpg.png'
-import { FaPhone, FaWhatsapp } from "react-icons/fa"
+// import BrandImg1 from '../../images/Home/b1.jpg.png'
+// import BrandImg2 from '../../images/Home/b2.jpg.png'
+// import BrandImg3 from '../../images/Home/b3.jpg.png'
+// import BrandImg4 from '../../images/Home/b4.jpg.png'
+// import BrandImg5 from '../../images/Home/b5.jpg.png'
+// import BrandImg6 from '../../images/Home/b6.jpg.png'
+// import { FaPhone, FaWhatsapp } from "react-icons/fa"
 import SideLink from "../../component/SharedComponents/sideLink/sideLink"
+import axios from "axios"
+import API from "../../constant/api"
 
 const cards = [
     {
@@ -58,32 +60,32 @@ const arr = [
     },
 ]
 
-const brands = [
-    {
-        title: 'Audi',
-        img: BrandImg1
-    },
-    {
-        title: 'BMW',
-        img: BrandImg2
-    },
-    {
-        title: 'Ford',
-        img: BrandImg3
-    },
-    {
-        title: 'Mercedes Benz',
-        img: BrandImg4
-    },
-    {
-        title: 'Peugeot',
-        img: BrandImg5
-    },
-    {
-        title: 'Volkswagen',
-        img: BrandImg6
-    },
-]
+// const brands = [
+//     {
+//         title: 'Audi',
+//         img: BrandImg1
+//     },
+//     {
+//         title: 'BMW',
+//         img: BrandImg2
+//     },
+//     {
+//         title: 'Ford',
+//         img: BrandImg3
+//     },
+//     {
+//         title: 'Mercedes Benz',
+//         img: BrandImg4
+//     },
+//     {
+//         title: 'Peugeot',
+//         img: BrandImg5
+//     },
+//     {
+//         title: 'Volkswagen',
+//         img: BrandImg6
+//     },
+// ]
 const Home = () => {
     const [type, setType] = useState([]);
     const [brand, setBrand] = useState();
@@ -109,8 +111,41 @@ const Home = () => {
     const elementRef3 = useRef(null)
     const elementRef4 = useRef(null)
 
-  useEffect(() => {
-    const handleScroll = () => {
+    const [brands, setBrands] = useState([]);
+
+    useEffect(() => {
+        axios.get(API.GET.ALLBRANDS, {
+            'Contet-Type': 'application/json',
+        })
+            .then(res => {
+                if(res?.data.state === 'success') {
+                    setBrands(res?.data?.brands);
+                }
+            })
+            .catch(err => {
+                // setAgain(!again)
+            })
+    }, []);
+
+    const [cars, setCars] = useState([]);
+    // const [again2, setAgain2] = useState(false);
+
+    useEffect(() => {
+        axios.get(API.GET.ALLCARS+1, {
+            'Contet-Type': 'application/json',
+        })
+            .then(res => {
+                if(res?.data.state === 'success') {
+                    setCars(res?.data?.cars);
+                }
+            })
+            .catch(err => {
+                // setAgain2(!again2)
+            })
+    }, []);
+
+    useEffect(() => {
+        const handleScroll = () => {
         const e1 = elementRef.current?.getBoundingClientRect();
         const e2 = elementRef1.current?.getBoundingClientRect();
         const e3 = elementRef2.current?.getBoundingClientRect();
@@ -162,26 +197,23 @@ const Home = () => {
             <div className={`w-full ${isVisible4 && 'animate-right'}`} ref={elementRef4}>
                 <Slider {...settings} className="p-1">
                     {cards.map((e, i) => <div key={i} className="h-[441px] relative overflow-hidden">
-                        {/* <div className="absolute left-0 top-0 z-10" onClick={() => setType(e.title)}>
-                            <h1>{e.title}</h1>
-                            <h2>Car</h2>
-                        </div> */}
                         <img src={e.img} alt={e.title + 'slide' + i} onClick={() => setType(prev => [...prev, e.title])} className={`w-full h-full object-contain mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
                     </div>)}
                 </Slider>
             </div>
+
             <div ref={elementRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] ${isVisible && 'animate-left'}`}>
-                {brands.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer ${brand === e.title? 'scale-95': 'scale-100'}`} onClick={() => setBrand(e.title)}>
+                {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer ${brand === e.name? 'scale-95': 'scale-100'}`} onClick={() => setBrand(e.name)}>
                     <div className="w-[100px] h-[100px]">
-                        <img src={e.img} alt={e.title+' brand'} className="w-full h-full object-cover"/>
+                        <img src={e.picture} alt={e.name+' brand'} className="w-full h-full object-cover"/>
                     </div>
-                    <h1 className="text-[18px] font-normal leading-[20px]">{e.title}</h1>
+                    <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
                 </div>)}
             </div>
 
             <MainTitle title={'Popular car'}/>
             <div ref={elementRef3} className={`container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px] ${isVisible3 && 'animate-right'}`}>
-                {[1,2,3,4,5,6,7,8,9,10].map((e, i) => <MainCard key={i} daylyPrice={400} monthlyPrice={3000} weeklyPrice={1000} name={'Mercedes Benz'} pictures={[Img2, Img2, Img2]}/>)}
+                {cars && cars?.map((e, i) => <MainCard key={i} daylyPrice={e.price.dayly} monthlyPrice={e.price.monthly} weeklyPrice={e.price.weekly} name={e.name} pictures={e.pictures} id={e._id}/>)}
             </div>
             <div className="mx-auto text-center w-fit mt-[40px]">
                 <MainButton name={'Load More'}/>

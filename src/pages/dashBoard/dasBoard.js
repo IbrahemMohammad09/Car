@@ -11,9 +11,7 @@ import DashBoardCar from '../../component/dashBoardComponent/dashBoardCar/dashBo
 import DashBoardCustomerCar from '../../component/dashBoardComponent/dasBoardCustomerCar/dasBoardCustomerCar'
 import DashBoardSetting from '../../component/dashBoardComponent/dashBoradSetting/dashBoradSetting'
 
-
 function DashBoard (){
-
     const sidBare = () => {
         return(
             <div className='sidebar'>
@@ -86,9 +84,7 @@ function DashBoard (){
                 </div>
             );
         }
-      };
-    
-
+    };
 
     return (
         <div>
