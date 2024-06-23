@@ -8,6 +8,7 @@ import SideLink from '../../component/SharedComponents/sideLink/sideLink';
 import MainButton from '../../component/SharedComponents/MainButton/MainButton';
 import ScrollAnimation from 'react-animate-on-scroll';
 import '../../animate.css';
+import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
 
 
 function BookCar (){
@@ -45,6 +46,7 @@ function BookCar (){
     const restPic = cars.slice(1);
     return(
         <div>
+            <ChangeTitle title={"MEI | Book Your Car"} />
             <Hero/>
             <MainTitle title={"Details Of Car"} />
             <Container>

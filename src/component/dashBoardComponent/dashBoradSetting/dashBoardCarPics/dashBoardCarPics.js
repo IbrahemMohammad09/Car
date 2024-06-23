@@ -55,7 +55,13 @@ function DashBoardCarPics (){
                     </Card>
                 </Col>
             </Row>
+            <div className='pic-add'>
+                <Button variant="primary" type="submit">
+                    App the Pictures
+                </Button>
+            </div>
             
+
         </Container>
     );
 }

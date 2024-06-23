@@ -7,6 +7,7 @@ import DashBoard from './pages/dashBoard/dasBoard';
 import Home from './pages/Home/Home';
 import AboutUs from './pages/aboutUs/aboutUs';
 import BookCar from './pages/bookCar/bookCar';
+import ErrorPage from './pages/errorPage/errorPage';
 
 function App() {
   return (
@@ -19,10 +20,9 @@ function App() {
           <Route path='/dashboard-login' element={<DashBoardLoginPage/>}/>
           <Route path='/dashboard' element={<DashBoard />} />
           <Route path='*' element={<Navigate to={'/error'} />} />
-          <Route path='/error' element={<div>error</div>} />          
+          <Route path='/error' element={<ErrorPage />} />          
         </Routes>
       </BrowserRouter>
-      
     </div>
   );
 }

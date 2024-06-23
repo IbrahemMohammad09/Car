@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react"
 import Img from '../../images/Home/Paragraph+Background+Border (1).png'
 import Img1 from '../../images/Home/Paragraph+Background+Border (2).png'
 import Img3 from '../../images/Home/Paragraph+Background+Border (3).png'
-// import Img4 from '../../images/Home/Paragraph+Background+Border (4).png'
+import { useTranslation } from 'react-i18next';
 import Footer from "../../component/SharedComponents/Footer/Footer"
 import { FaMessage } from "react-icons/fa6"
 import Img5 from '../../images/Home/unsplash_UF2nwAcD8Mo.png'
@@ -20,6 +20,8 @@ import BrandImg5 from '../../images/Home/b5.jpg.png'
 import BrandImg6 from '../../images/Home/b6.jpg.png'
 import { FaPhone, FaWhatsapp } from "react-icons/fa"
 import SideLink from "../../component/SharedComponents/sideLink/sideLink"
+import ChangeTitle from "../../component/SharedComponents/ChangeTitle"
+
 
 const cards = [
     {
@@ -40,23 +42,6 @@ const cards = [
     },
 ];
 
-const arr = [
-    {
-        title: 'Deals for every budget',
-        subtitle: 'Provide rental options for various time periods as per customer requirements.',
-        icon: <FaMessage className="text-white"/>
-    },
-    {
-        title: 'Best price guaranteed',
-        subtitle: "Find a lower price? We’ll refund you 100% of the difference.",
-        icon: <FaMessage className="text-white"/>
-    },
-    {
-        title: "24-hours services",
-        subtitle: "Provide 24-hour emergency assistance services to provide support if customers encounter problems during rentals.",
-        icon: <FaMessage className="text-white"/>
-    },
-]
 
 const brands = [
     {
@@ -85,6 +70,14 @@ const brands = [
     },
 ]
 const Home = () => {
+
+    const [t,il8n]=useTranslation();
+    const HomeTitle = t("HomeTitle");
+    const PopularCar = t("PopularCar");
+    const LoadMore =t("LoadMore");
+    const WhyUs =t("WhyUs");
+    const FeelHome =t("FeelHome");
+
     const [type, setType] = useState([]);
     const [brand, setBrand] = useState();
     const [isVisible, setIsVisible] = useState();
@@ -92,6 +85,33 @@ const Home = () => {
     const [isVisible2, setIsVisible2] = useState();
     const [isVisible3, setIsVisible3] = useState();
     const [isVisible4, setIsVisible4] = useState();
+
+
+    const Deals = t("Deals");
+    const Best =t("Best");
+    const hours =t("hours");
+    const provide=t("provide");
+    const Find = t("Find");
+    const HoursDetail =t("HoursDetail");
+
+
+    const arr = [
+        {
+            title: Deals,
+            subtitle: provide,
+            icon: <FaMessage className="text-white"/>
+        },
+        {
+            title: Best,
+            subtitle: Find,
+            icon: <FaMessage className="text-white"/>
+        },
+        {
+            title: hours,
+            subtitle: HoursDetail,
+            icon: <FaMessage className="text-white"/>
+        },
+    ]
 
     let settings = {
         infinite: true,
@@ -153,12 +173,13 @@ const Home = () => {
         window.removeEventListener('scroll', handleScroll);
     };
     }, []);
+    
 
     return (
         <section className="min-h-screen w-full bg-white overflow-x-hidden">
             <Hero/>
-
-            <MainTitle title={'Best Car Rental DUBAI'}/>
+            <ChangeTitle title={"MEI | Home"}/>
+            <MainTitle title={HomeTitle}/>
             <div className={`w-full ${isVisible4 && 'animate-right'}`} ref={elementRef4}>
                 <Slider {...settings} className="p-1">
                     {cards.map((e, i) => <div key={i} className="h-[441px] relative overflow-hidden">
@@ -179,21 +200,21 @@ const Home = () => {
                 </div>)}
             </div>
 
-            <MainTitle title={'Popular car'}/>
+            <MainTitle title={PopularCar}/>
             <div ref={elementRef3} className={`container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px] ${isVisible3 && 'animate-right'}`}>
                 {[1,2,3,4,5,6,7,8,9,10].map((e, i) => <MainCard key={i} daylyPrice={400} monthlyPrice={3000} weeklyPrice={1000} name={'Mercedes Benz'} pictures={[Img2, Img2, Img2]}/>)}
             </div>
             <div className="mx-auto text-center w-fit mt-[40px]">
-                <MainButton name={'Load More'}/>
+                <MainButton name={LoadMore}/>
             </div>
 
-            <MainTitle title={'Why Choose us?'}/>
+            <MainTitle title={WhyUs}/>
             <div className="bg-__dark_white py-[65px] px-[100px] flex justify-center w-full gap-[50px] items-center container mx-auto max-[991px]:flex-col">
                 <div className={`h-[687px] w-[524px] max-[600px]:w-full ${isVisible1 && 'animate-left'}`} ref={elementRef1}>
                     <img src={Img5} alt={'Sport car with orange color'} className="w-full h-full object-fit"/>
                 </div>
                 <div ref={elementRef2} className={`${isVisible2 && 'animate-right'}`}>
-                    <h1 className="text-__brown text-[2.5rem] leading-[55px] font-medium min-[992px]:w-[300px] max-[500px]:text-center">Feel the best experience with our deals.</h1>
+                    <h1 className="text-__brown text-[2.5rem] leading-[55px] font-medium min-[992px]:w-[300px] max-[500px]:text-center">{FeelHome}</h1>
                     <div className="flex flex-col gap-[20px] mt-[62px]">
                         {arr.map((e, i) => <div key={i} className="flex gap-[30px] max-[991px]:flex-col max-[500px]:text-center">
                             <div className="bg-__brown flex justify-center items-center rounded-full w-[47px] h-[47px] max-[500px]:mx-auto">

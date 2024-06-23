@@ -104,7 +104,7 @@ function DashBoardDetails (){
                 </Row>
                 <Row className="mb-3">
                     <Form.Group as={Col} >
-                        <Form.Label>Number of engine cylinders/عدد اسطوانات المحرك</Form.Label>
+                        <Form.Label>Cylinders Nummber/عدد اسطوانات المحرك</Form.Label>
                         <Form.Control type="number" placeholder="cylinders" />
                     </Form.Group>
 
@@ -131,7 +131,6 @@ function DashBoardDetails (){
                     </Form.Group>    
                 </Row>      
                 <p>Update the price here</p>  
-                
                 <hr/>
                 <Row className="mb-3">
                     <Form.Group as={Col} >
@@ -151,7 +150,7 @@ function DashBoardDetails (){
                     Add Car
                 </Button>
             </Form>
-            <p>Update the brand here</p>
+            {/* <p>Update the brand here</p>
             <hr/>
             <Row>
                 {Brands.map(Brand => (
@@ -172,7 +171,7 @@ function DashBoardDetails (){
                 <Button variant="primary" type="submit">
                     Add Brand
                 </Button>
-            </Form>
+            </Form> */}
         </Container>
     );
 }
