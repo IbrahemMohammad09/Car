@@ -116,3 +116,14 @@
       opacity: 1;
     }
   }
+
+
+.animate-loading {
+    animation: loading 1s linear infinite;
+}
+
+@keyframes loading {
+    to {
+        transform: translateX(-50%) rotate(360deg);
+    }
+}

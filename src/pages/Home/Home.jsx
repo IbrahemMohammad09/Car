@@ -8,20 +8,15 @@ import { useEffect, useRef, useState } from "react"
 import Img from '../../images/Home/Paragraph+Background+Border (1).png'
 import Img1 from '../../images/Home/Paragraph+Background+Border (2).png'
 import Img3 from '../../images/Home/Paragraph+Background+Border (3).png'
-// import Img4 from '../../images/Home/Paragraph+Background+Border (4).png'
+import { useTranslation } from 'react-i18next';
 import Footer from "../../component/SharedComponents/Footer/Footer"
 import { FaMessage } from "react-icons/fa6"
 import Img5 from '../../images/Home/unsplash_UF2nwAcD8Mo.png'
-// import BrandImg1 from '../../images/Home/b1.jpg.png'
-// import BrandImg2 from '../../images/Home/b2.jpg.png'
-// import BrandImg3 from '../../images/Home/b3.jpg.png'
-// import BrandImg4 from '../../images/Home/b4.jpg.png'
-// import BrandImg5 from '../../images/Home/b5.jpg.png'
-// import BrandImg6 from '../../images/Home/b6.jpg.png'
-// import { FaPhone, FaWhatsapp } from "react-icons/fa"
+import Loading from '../../component/SharedComponents/Loading/Loading'
 import SideLink from "../../component/SharedComponents/sideLink/sideLink"
 import axios from "axios"
 import API from "../../constant/api"
+import ChangeTitle from "../../component/SharedComponents/ChangeTitle"
 
 const cards = [
     {
@@ -42,51 +37,14 @@ const cards = [
     },
 ];
 
-const arr = [
-    {
-        title: 'Deals for every budget',
-        subtitle: 'Provide rental options for various time periods as per customer requirements.',
-        icon: <FaMessage className="text-white"/>
-    },
-    {
-        title: 'Best price guaranteed',
-        subtitle: "Find a lower price? We’ll refund you 100% of the difference.",
-        icon: <FaMessage className="text-white"/>
-    },
-    {
-        title: "24-hours services",
-        subtitle: "Provide 24-hour emergency assistance services to provide support if customers encounter problems during rentals.",
-        icon: <FaMessage className="text-white"/>
-    },
-]
-
-// const brands = [
-//     {
-//         title: 'Audi',
-//         img: BrandImg1
-//     },
-//     {
-//         title: 'BMW',
-//         img: BrandImg2
-//     },
-//     {
-//         title: 'Ford',
-//         img: BrandImg3
-//     },
-//     {
-//         title: 'Mercedes Benz',
-//         img: BrandImg4
-//     },
-//     {
-//         title: 'Peugeot',
-//         img: BrandImg5
-//     },
-//     {
-//         title: 'Volkswagen',
-//         img: BrandImg6
-//     },
-// ]
 const Home = () => {
+    const [t,il8n]=useTranslation();
+    const HomeTitle = t("HomeTitle");
+    const PopularCar = t("PopularCar");
+    const LoadMore =t("LoadMore");
+    const WhyUs =t("WhyUs");
+    const FeelHome =t("FeelHome");
+
     const [type, setType] = useState([]);
     const [brand, setBrand] = useState();
     const [isVisible, setIsVisible] = useState();
@@ -94,6 +52,32 @@ const Home = () => {
     const [isVisible2, setIsVisible2] = useState();
     const [isVisible3, setIsVisible3] = useState();
     const [isVisible4, setIsVisible4] = useState();
+    const [loading, setLoading] = useState(false);
+
+    const Deals = t("Deals");
+    const Best =t("Best");
+    const hours =t("hours");
+    const provide=t("provide");
+    const Find = t("Find");
+    const HoursDetail =t("HoursDetail");
+
+    const arr = [
+        {
+            title: Deals,
+            subtitle: provide,
+            icon: <FaMessage className="text-white"/>
+        },
+        {
+            title: Best,
+            subtitle: Find,
+            icon: <FaMessage className="text-white"/>
+        },
+        {
+            title: hours,
+            subtitle: HoursDetail,
+            icon: <FaMessage className="text-white"/>
+        },
+    ]
 
     let settings = {
         infinite: true,
@@ -128,19 +112,20 @@ const Home = () => {
     }, []);
 
     const [cars, setCars] = useState([]);
-    // const [again2, setAgain2] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         axios.get(API.GET.ALLCARS+1, {
             'Contet-Type': 'application/json',
         })
             .then(res => {
                 if(res?.data.state === 'success') {
+                    setLoading(false);
                     setCars(res?.data?.cars);
                 }
             })
             .catch(err => {
-                // setAgain2(!again2)
+                setLoading(false);
             })
     }, []);
 
@@ -171,7 +156,7 @@ const Home = () => {
             setIsVisible2(false);
         }
 
-        if (e4.top <= viewportHeight / 1.1) {
+        if (e4.top <= viewportHeight / 1.1 && !loading) {
             setIsVisible3(true);
         } else {
             setIsVisible3(false);
@@ -188,12 +173,13 @@ const Home = () => {
         window.removeEventListener('scroll', handleScroll);
     };
     }, []);
+    
 
     return (
         <section className="min-h-screen w-full bg-white overflow-x-hidden">
             <Hero/>
-
-            <MainTitle title={'Best Car Rental DUBAI'}/>
+            <ChangeTitle title={"MEI | Home"}/>
+            <MainTitle title={HomeTitle}/>
             <div className={`w-full ${isVisible4 && 'animate-right'}`} ref={elementRef4}>
                 <Slider {...settings} className="p-1">
                     {cards.map((e, i) => <div key={i} className="h-[441px] relative overflow-hidden">
@@ -211,21 +197,22 @@ const Home = () => {
                 </div>)}
             </div>
 
-            <MainTitle title={'Popular car'}/>
-            <div ref={elementRef3} className={`container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px] ${isVisible3 && 'animate-right'}`}>
-                {cars && cars?.map((e, i) => <MainCard key={i} daylyPrice={e.price.dayly} monthlyPrice={e.price.monthly} weeklyPrice={e.price.weekly} name={e.name} pictures={e.pictures} id={e._id}/>)}
+            <MainTitle title={PopularCar}/>
+            <div ref={elementRef3} className={`container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px] relative ${isVisible3 && 'animate-right'}`}>
+                <Loading loading={loading} style={'absolute left-[50%] translate-x-[-50%]'}/>
+                {cars && !loading && cars?.map((e, i) => <MainCard key={i} daylyPrice={e.price.dayly} monthlyPrice={e.price.monthly} weeklyPrice={e.price.weekly} name={e.name} pictures={e.pictures} id={e._id}/>)}
             </div>
-            <div className="mx-auto text-center w-fit mt-[40px]">
-                <MainButton name={'Load More'}/>
+            <div className={`mx-auto text-center w-fit ${loading? 'mt-[200px]': 'mt-[40px]'}`}>
+                <MainButton name={LoadMore}/>
             </div>
 
-            <MainTitle title={'Why Choose us?'}/>
+            <MainTitle title={WhyUs}/>
             <div className="bg-__dark_white py-[65px] px-[100px] flex justify-center w-full gap-[50px] items-center container mx-auto max-[991px]:flex-col">
                 <div className={`h-[687px] w-[524px] max-[600px]:w-full ${isVisible1 && 'animate-left'}`} ref={elementRef1}>
                     <img src={Img5} alt={'Sport car with orange color'} className="w-full h-full object-fit"/>
                 </div>
                 <div ref={elementRef2} className={`${isVisible2 && 'animate-right'}`}>
-                    <h1 className="text-__brown text-[2.5rem] leading-[55px] font-medium min-[992px]:w-[300px] max-[500px]:text-center">Feel the best experience with our deals.</h1>
+                    <h1 className="text-__brown text-[2.5rem] leading-[55px] font-medium min-[992px]:w-[300px] max-[500px]:text-center">{FeelHome}</h1>
                     <div className="flex flex-col gap-[20px] mt-[62px]">
                         {arr.map((e, i) => <div key={i} className="flex gap-[30px] max-[991px]:flex-col max-[500px]:text-center">
                             <div className="bg-__brown flex justify-center items-center rounded-full w-[47px] h-[47px] max-[500px]:mx-auto">

@@ -1,6 +1,5 @@
 import Hero from '../../component/HomeComponents/Hero/Hero';
 import './bookCar.css'
-import car from '../../images/car.jpg'
 import MainTitle from '../../component/SharedComponents/MainTitle/MainTitle';
 import { Container,Row,Col } from 'react-bootstrap';
 import Footer from '../../component/SharedComponents/Footer/Footer';
@@ -15,8 +14,8 @@ import API from '../../constant/api';
 import { useLanguageContext } from '../../hooks/useLanguageContext';
 import MainCard from '../../component/SharedComponents/MainCard/MainCard';
 import Loading from '../../component/SharedComponents/Loading/Loading';
-import Err from '../../component/SharedComponents/Error/Error';
-
+import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
+import { ToastContainer, toast } from 'react-toastify';
 
 function BookCar (){
     const [isVisible, setIsVisible] = useState();
@@ -25,7 +24,7 @@ function BookCar (){
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState();
+    const [loading1, setLoading1] = useState(false);
 
     const { language } = useLanguageContext();
 
@@ -39,19 +38,18 @@ function BookCar (){
     const elementRef = useRef(null)
 
     useEffect(() => {
-        setLoading(true);
+        setLoading1(true);
         axios.get(API.GET.ONECAR+id)
             .then(res => {
-                console.log(1,res);
                 if(res?.data.state === 'success') {
                     setCar(res?.data?.car);
                     setOther(res?.data?.other?.otherCars);
-                    setLoading(false);
+                    setLoading1(false);
                 }
             })
             .catch(err => {
                 if(err?.response?.data?.state === 'failed') {
-                    setLoading(false);
+                    setLoading1(false);
                     to('/error');
                 }
             })
@@ -62,7 +60,7 @@ function BookCar (){
         const e1 = elementRef?.current?.getBoundingClientRect();
 
         const viewportHeight = window?.innerHeight;
-        if (e1?.top <= viewportHeight / 1.1) {
+        if (e1?.top <= viewportHeight / 1.1 && !loading1) {
             setIsVisible(true);
         } else {
             setIsVisible(false);
@@ -80,8 +78,11 @@ function BookCar (){
             return;
         }
 
+        if(new Date(startDate).getTime() > new Date(endDate).getTime()) {
+            return toast.error('You cannot insert start date bigger than end date!');
+        }
+
         setLoading(true);
-        setError(false);
 
         axios.post(API.POST.BOOKING+id, {
             phone,
@@ -92,24 +93,29 @@ function BookCar (){
             .then(res => {
                 if(res?.data?.state === 'success') {
                     setLoading(false);
+                    toast.success(res?.data?.message);
                     to('/');
                 }
             })
             .catch(err => {
                 if(err?.response?.data?.state === 'failed') {
                     setLoading(false);
-                    setError(err?.response?.data?.message);
+                    return toast.error(err?.response?.data?.message);
                 }
             })
     }
 
     return(
-        <div>
+        <div className='overflow-x-hidden'>
+            <ToastContainer/>
+            <ChangeTitle title={"MEI | Book Your Car"} />
             <Hero/>
             <MainTitle title={"Details Of Car"} />
-            {
-            car &&
             <Container>
+                <Loading loading={loading1} style={'absolute left-[50%] translate-x-[-50%]'}/>
+            {
+            !loading1 && car &&
+                <>
                 <Row>
                     <Col>
                         <ScrollAnimation animateIn="slideInLeft" animateOnce={false}>
@@ -160,24 +166,23 @@ function BookCar (){
                                 <Col className='book-form' >
                                     <div>
                                         <label htmlFor="name">Name</label>
-                                        <input id="name" type='text' placeholder='Your name' value={name} onChange={(e) => setName(e.target.value)}/>
+                                        <input className="ps-3 py-3" id="name" type='text' placeholder='Your name' value={name} onChange={(e) => setName(e.target.value)}/>
                                     </div>
                                     <div>
                                         <label htmlFor="startdate">Start Date</label>
-                                        <input id="startdate" type='date' value={startDate} onChange={(e) => setStartDate(e.target.value)}/>
+                                        <input className="ps-3 py-3" id="startdate" type='date' value={startDate} onChange={(e) => setStartDate(e.target.value)}/>
                                     </div>
                                 </Col>
                                 <Col className='book-form'>
                                     <div>
                                         <label htmlFor="phonenumber">Phone Number</label>
-                                        <input id="phonenumber" type='text' placeholder='Your phone number' value={phone} onChange={(e) => setPhone(e.target.value)}/>
+                                        <input className="ps-3 py-3" id="phonenumber" type='text' placeholder='Your phone number' value={phone} onChange={(e) => setPhone(e.target.value)}/>
                                     </div>
                                     <div>
                                         <label htmlFor="enddate">End Date</label>
-                                        <input id="enddate" type='date' value={endDate} onChange={(e) => setEndDate(e.target.value)}/>
+                                        <input className="ps-3 py-3" id="enddate" type='date' value={endDate} onChange={(e) => setEndDate(e.target.value)}/>
                                     </div>
                                 </Col>
-                                <Err err={error}/>
                             </Row>
                             <Row>
                             <div className='book-button' onClick={handleBook}>
@@ -187,14 +192,15 @@ function BookCar (){
                         </form>
                     </Container>
                 </ScrollAnimation>
-
-            </Container>
+                </>
             }
-                <div ref={elementRef} className={`${isVisible && 'animate-right'} mt-5`}>
-                    <MainTitle title={'See other cars'}/>
+            </Container>
+                <div ref={elementRef} className={`${isVisible && 'animate-right'} ${loading1? 'mb-[200px]':'mt-5'}`}>
+                    {!loading1 && <><MainTitle title={'See other cars'}/>
                     <div className={`container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px]`}>
                         {other && other?.map((e, i) => <MainCard key={i} daylyPrice={e.price.dayly} monthlyPrice={e.price.monthly} weeklyPrice={e.price.weekly} name={e.name} pictures={e.pictures} id={e._id}/>)}
                     </div>
+                    </>}
                 </div>
             <Footer />
             <SideLink />

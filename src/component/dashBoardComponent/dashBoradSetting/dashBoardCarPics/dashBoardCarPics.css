@@ -14,6 +14,7 @@
     color: #242731;
 }
 .dash-pic p{
+    padding-top: 10px;
     width: 180px;
     height: 21px;
     font-family: 'DM Sans';
@@ -30,6 +31,9 @@
 .dash-pic .drop-pic{
     padding-top: 30px;
 }
-/* .drop-pic{
-    width: 1000px;
-} */
+.dash-details hr{
+    padding-top: 20px;
+}
+.pic-add{
+    padding-top: 30px;
+}

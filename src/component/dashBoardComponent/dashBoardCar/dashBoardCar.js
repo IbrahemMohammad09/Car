@@ -1,110 +1,43 @@
 import './dashBoardCar.css' 
 import searchIcon from '../../../images/dashBoardLogin/search.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Row ,Col, Container  } from 'react-bootstrap';
+import { Row ,Col, Container, ToastContainer  } from 'react-bootstrap';
 import CarCard from './carCard/carCard';
 import CarIcon from '../../../images/carCards/photo_2024-06-13_04-31-26.jpg'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import API from '../../../constant/api';
+import Loading from '../../SharedComponents/Loading/Loading';
 
 
 
 
 function DashBoardCar (){
-    const cars =[
-        {
-            id:1,
-            name: 'BMW',
-            img : CarIcon,
-            type: 'coupe',
-            seats:4,
-            gear: 'Manual',
-            price :300,
-            state:'active',
-        },
-        {
-            id:2,
-            name: 'BMW',
-            img : CarIcon,
-            type: 'sedan',
-            seats:4,
-            gear: 'Manual',
-            price :400,
-            state:'active',
-        },
-        {
-            id:3,
-            name: 'BMW',
-            img : CarIcon,
-            type: 'coupe',
-            seats:4,
-            gear: 'auto',
-            price :350,
-            state:'active',
-        },
-        {
-            id:4,
-            name: 'BMW',
-            img : CarIcon,
-            type: 'coupe',
-            seats:4,
-            gear: 'Manual',
-            price :300,
-            state:'active',
-        },
-        {
-            id:5,
-            name: 'BMW',
-            img : CarIcon,
-            type: 'sedan',
-            seats:4,
-            gear: 'Manual',
-            price :400,
-            state:'active',
-        },
-        {
-            id:6,
-            name: 'BMW',
-            img : CarIcon,
-            type: 'coupe',
-            seats:4,
-            gear: 'auto',
-            price :350,
-            state:'active',
-        },
-        {
-            id:7,
-            name: 'BMW',
-            img : CarIcon,
-            type: 'coupe',
-            seats:4,
-            gear: 'Manual',
-            price :300,
-            state:'active',
-        },
-        {
-            id:8,
-            name: 'BMW',
-            img : CarIcon,
-            type: 'sedan',
-            seats:4,
-            gear: 'Manual',
-            price :400,
-            state:'active',
-        },
-        {
-            id:9,
-            name: 'BMW',
-            img : CarIcon,
-            type: 'coupe',
-            seats:4,
-            gear: 'auto',
-            price :350,
-            state:'active',
-        },
-    ]    
+    const [cars, setCars] = useState([]);
+    const [isDelete, setDelete] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [page, setPage] = useState(1);
     
+    useEffect(() => {
+        setLoading(true);
+        axios.get(API.GET.ALLCARS+page, {
+            'Contet-Type': 'application/json',
+        })
+            .then(res => {
+                if(res?.data.state === 'success') {
+                    setLoading(false);
+                    setCars(res?.data?.cars);
+                }
+            })
+            .catch(err => {
+                setLoading(false);
+            })
+    }, [isDelete]);
+
     return(
         <div className='dash-car'>
-            <Container>
+            <ToastContainer/>
+            <Container className='px-0 mx-0'>
                 <Row className='car-header '>
                     <Col>
                         <h1 className=''>Car list</h1>
@@ -124,10 +57,11 @@ function DashBoardCar (){
                     </Col>
                 </Row>
                 <Row>
-                    <div className='car-list'>
-                        {cars.map(car=> (
-                            <Col>
-                                <CarCard car={car} key={car.id} />
+                    <div className='car-list relative'>
+                        <Loading loading={loading} style={'absolute left-[50%] top-[50%] translate-x-[-50%]'}/>
+                        {!loading && cars && cars?.map(car=> (
+                            <Col key={car._id}>
+                                <CarCard car={car} setDelete={setDelete} key={car.id} />
                             </Col>
                         ))}
                     </div>

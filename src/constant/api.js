@@ -1,4 +1,5 @@
-const url = 'https://cars-carage.onrender.com/api';
+// const url = 'https://cars-carage.onrender.com/api';
+export const url = 'http://localhost:3000/api'
 
 const API = {
     GET: {

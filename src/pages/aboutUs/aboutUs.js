@@ -9,12 +9,17 @@ import MainTitle from '../../component/SharedComponents/MainTitle/MainTitle';
 import ScrollAnimation from 'react-animate-on-scroll';
 import '../../animate.css';
 import SideLink from '../../component/SharedComponents/sideLink/sideLink';
-
+import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
+import { useTranslation } from 'react-i18next';
 
 
 function AboutUs() {
+  const [t,il8n]=useTranslation();
+
+
     return (
       <div>
+        <ChangeTitle title={"MEI | About Us"} />
         <Hero />
         <Container className='about-info'>
           <Row>
@@ -25,7 +30,7 @@ function AboutUs() {
             </Col>
             <Col className='info'>
               <ScrollAnimation animateIn="slideInRight" animateOnce={false}>
-                <h2>MEI Car Rentals Dubai</h2>
+                <h2>{t("FooterTitle")}</h2>
                 <p> Car Rental, where we offer the latest cars at competitive prices and excellent customer service. 
                     Enjoy a smooth and comfortable rental experience with us. Book now to discover the difference!</p>
                 <hr />

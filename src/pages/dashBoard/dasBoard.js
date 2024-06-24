@@ -10,6 +10,8 @@ import car from '../../images/dashBoardLogin/welcome1.jpg'
 import DashBoardCar from '../../component/dashBoardComponent/dashBoardCar/dashBoardCar'
 import DashBoardCustomerCar from '../../component/dashBoardComponent/dasBoardCustomerCar/dasBoardCustomerCar'
 import DashBoardSetting from '../../component/dashBoardComponent/dashBoradSetting/dashBoradSetting'
+import ChangeTitle from '../../component/SharedComponents/ChangeTitle'
+import { ToastContainer } from 'react-bootstrap'
 
 function DashBoard (){
     const sidBare = () => {
@@ -27,6 +29,7 @@ function DashBoard (){
     const homeDashBoard=()=>{
         return(
         <div className='home-dashboard'>
+            <ChangeTitle title={"MEI | Dashboard"} />
             <div className='buttons'>
             <button className='card-button' onClick={()=>setActiveComponent('setting')}>
                         <img src={wheel} />
@@ -58,7 +61,6 @@ function DashBoard (){
                 <div className='dashboard'>
                     {sidBare()}
                     <DashBoardCar />
-
                 </div>
                 );
           case 'customer car':
@@ -70,10 +72,10 @@ function DashBoard (){
                 );
           case 'setting':
             return (
-            <div className='dashboard'>
-                {sidBare()}
-                <DashBoardSetting />
-            </div>
+                <div className='dashboard'>
+                    {sidBare()}
+                    <DashBoardSetting />
+                </div>
             );
             
           default:
@@ -88,6 +90,7 @@ function DashBoard (){
 
     return (
         <div>
+            <ToastContainer/>
             {renderComponent()}
         </div>
     );
