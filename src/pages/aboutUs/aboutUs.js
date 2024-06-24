@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next';
 
 function AboutUs() {
   const [t,il8n]=useTranslation();
-
+  const HomeTitle = t("HomeTitle");
 
     return (
       <div>
@@ -31,10 +31,9 @@ function AboutUs() {
             <Col className='info'>
               <ScrollAnimation animateIn="slideInRight" animateOnce={false}>
                 <h2>{t("FooterTitle")}</h2>
-                <p> Car Rental, where we offer the latest cars at competitive prices and excellent customer service. 
-                    Enjoy a smooth and comfortable rental experience with us. Book now to discover the difference!</p>
+                <p>{t("About")}</p>
                 <hr />
-                <h1>Contact US</h1>
+                <h1>{t("Contact")}</h1>
                 <Row>
                   <Col className='contact'>
                       <Link to={'#'} className="info-button"><FaWhatsapp />Whats app</Link>
@@ -46,9 +45,9 @@ function AboutUs() {
           </Row>
           <Row className='location'>
             <ScrollAnimation animateIn="slideInUp" animateOnce={true}>
-                <MainTitle title={"Best Car Rental DUBAI"} />
+                <MainTitle title={HomeTitle} />
                 <div className='loaction-title'>
-                <p>OUR Location</p>
+                <p>{t("location")}</p>
                 </div>
                 
                 <iframe

@@ -26,5 +26,9 @@
     "WorkTime1": "Monday – Friday: 09:00AM – 09:00 PM",
     "WorkTime2":"Saturday: 09:00AM – 07:00PM",
     "WorkTime3":"Sunday: Closed",
-    "About":"Car Rental, where we offer the latest cars at competitive prices and excellent customer service. Enjoy a smooth and comfortable rental experience with us. Book now to discover the difference!"
+    "About":"Car Rental, where we offer the latest cars at competitive prices and excellent customer service. Enjoy a smooth and comfortable rental experience with us. Book now to discover the difference!",
+    "location":"Our Location",
+    "carDetail":"Details Of Car"
+
+
 }

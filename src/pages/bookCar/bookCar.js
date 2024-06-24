@@ -16,8 +16,11 @@ import MainCard from '../../component/SharedComponents/MainCard/MainCard';
 import Loading from '../../component/SharedComponents/Loading/Loading';
 import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
 import { ToastContainer, toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 function BookCar (){
+    const [t ,il8n] = useTranslation();
+    const carDetail = t("carDetail");
     const [isVisible, setIsVisible] = useState();
     const [name, setName] = useState();
     const [phone, setPhone] = useState();
@@ -104,13 +107,13 @@ function BookCar (){
                 }
             })
     }
-
+    
     return(
         <div className='overflow-x-hidden'>
             <ToastContainer/>
             <ChangeTitle title={"MEI | Book Your Car"} />
             <Hero/>
-            <MainTitle title={"Details Of Car"} />
+            <MainTitle title={carDetail} />
             <Container>
                 <Loading loading={loading1} style={'absolute left-[50%] translate-x-[-50%]'}/>
             {

@@ -2,7 +2,6 @@ import Hero from "../../component/HomeComponents/Hero/Hero"
 import MainButton from "../../component/SharedComponents/MainButton/MainButton"
 import MainTitle from "../../component/SharedComponents/MainTitle/MainTitle"
 import MainCard from '../../component/SharedComponents/MainCard/MainCard'
-// import Img2 from '../../images/carCards/photo_2024-06-13_04-31-26.jpg'
 import Slider from "react-slick"
 import { useEffect, useRef, useState } from "react"
 import Img from '../../images/Home/Paragraph+Background+Border (1).png'
@@ -38,6 +37,7 @@ const cards = [
 ];
 
 const Home = () => {
+
     const [t,il8n]=useTranslation();
     const HomeTitle = t("HomeTitle");
     const PopularCar = t("PopularCar");
