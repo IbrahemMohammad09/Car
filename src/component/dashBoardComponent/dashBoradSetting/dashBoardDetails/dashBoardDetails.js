@@ -2,97 +2,130 @@ import './dashBoardDetails.css'
 import { Container, Form, Row, Col, Button, Dropdown, DropdownButton,Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
+import API from '../../../../constant/api';
 
 
-function DashBoardDetails (){
-    const [brand , setBrand] = useState("select a brand")
-    const [category,setCategory] = useState("select a category")
-    const [gear,setGear] = useState("select a gear")
+function DashBoardDetails (
+    {
+        setBrand,
+        setCategory,
+        setColor,
+        setDayly,
+        setDescAr,
+        setDescEn,
+        setGear,
+        setHorse,
+        setModel,
+        setMonthly,
+        setTopSpeed,
+        setName,
+        setSeatNumber,
+        setWeekly
+    }
+){
+    const [brandd , setBrandd] = useState("select a brand")
+    const [categoryy,setCategoryy] = useState("select a category")
+    const [gearr,setGearr] = useState("select a gear")
     const [Brands , setBrands] = useState([
         { id: 1, name: 'BMW' },
         { id: 2, name: 'Audi' },
         
     ]);
     const [selectedFile, setSelectedFile] = useState(null);
-  
 
     const handleDelete = (id) => {
         setBrands(Brands.filter(Brand => Brand.id !== id));
-      };
+    };
 
     const gearSelect = (eventKey) => {
+        setGearr(eventKey);
         setGear(eventKey);
-      };
+    };
 
     const categorySelect = (eventKey) => {
+        setCategoryy(eventKey);
         setCategory(eventKey);
-      };
+    };
 
     const brandSelect = (eventKey) => {
+        setBrandd(eventKey);
         setBrand(eventKey);
-      };
-      
+    };
     
-      const handleFileChange = (event) => {
+    const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
-          setSelectedFile(file);
-          
+            setSelectedFile(file);      
         }
-      };
+    };
+
+    const [allBrands, setAllBrands] = useState([]);
+
+    useEffect(() => {
+        axios.get(API.GET.ALLBRANDS)
+            .then(res => {
+                if(res?.data.state === 'success') {
+                    setAllBrands(res?.data?.brands);
+                }
+            })
+            .catch(err => {
+                // setAgain(!again)
+            })
+    }, []);
     
-
-
     return(
         <Container className='dash-details'>
             <h2>Details</h2>
-            <p>Update the details here</p>
+            <p>Add the details here</p>
             <hr/>
             <Form>
                 <Row className="mb-3">
                     <Form.Group as={Col} >
                         <Form.Label>Name/الاسم</Form.Label>
-                        <Form.Control type="text" placeholder="Enter name" />
+                        <Form.Control type="text" placeholder="Enter name" onChange={(e) => setName(e.target.value)} required/>
                     </Form.Group>
 
                     <Form.Group as={Col} >
                         <Form.Label>Description Of Car in English</Form.Label>
-                        <Form.Control as="textarea" rows={3} />
+                        <Form.Control as="textarea" rows={3} onChange={(e) => setDescEn(e.target.value)} required/>
                     </Form.Group>
                     <Form.Group as={Col} >
                         <Form.Label>وصف السيارة باللغة العربية</Form.Label>
-                        <Form.Control as="textarea" rows={3} />
+                        <Form.Control as="textarea" rows={3} onChange={(e) => setDescAr(e.target.value)} required/>
                     </Form.Group>
 
                     <Form.Group as={Col} >
                         <Form.Label>Brand</Form.Label>
                         <DropdownButton
                             id="dropdown-basic-button"
-                            title={brand}
+                            title={brandd}
                             onSelect={brandSelect}
                             >
-                            <Dropdown.Item eventKey="BMW">BMW</Dropdown.Item>
-                            <Dropdown.Item eventKey="Mercedes-Benz">Mercedes-Benz</Dropdown.Item>
-                            <Dropdown.Item eventKey="Audi">Audi</Dropdown.Item>
+                            {allBrands && allBrands.map((e, i) => <Dropdown.Item key={i} eventKey={e._id}>{e.name}</Dropdown.Item>)}
+                            
+                            {/* <Dropdown.Item eventKey="Mercedes-Benz">Mercedes-Benz</Dropdown.Item> */}
+                            {/* <Dropdown.Item eventKey="Audi">Audi</Dropdown.Item> */}
                         </DropdownButton>
                     </Form.Group>
                 </Row>
                 <Row className="mb-3">
                     <Form.Group as={Col} >
                         <Form.Label>Color/اللون</Form.Label>
-                        <Form.Control type="text" placeholder="Color" />
+                        <Form.Control type="text" placeholder="Color" onChange={(e) => setColor(e.target.value)} required/>
                     </Form.Group>
 
                     <Form.Group as={Col} controlId="formGridModel">
                         <Form.Label>Model</Form.Label>
-                        <Form.Control type="text" placeholder="Model" />
+                        <Form.Control type="text" placeholder="Model" onChange={(e) => setModel(e.target.value)} required/>
                     </Form.Group>
 
                     <Form.Group as={Col} >
                         <Form.Label>Category/فئة السيارة</Form.Label>
                         <DropdownButton
                             id="dropdown-basic-button"
-                            title={category}
+                            title={categoryy}
                             onSelect={categorySelect}
                             >
                             <Dropdown.Item eventKey="Sport">Sport</Dropdown.Item>
@@ -105,24 +138,24 @@ function DashBoardDetails (){
                 <Row className="mb-3">
                     <Form.Group as={Col} >
                         <Form.Label>Cylinders Nummber/عدد اسطوانات المحرك</Form.Label>
-                        <Form.Control type="number" placeholder="cylinders" />
+                        <Form.Control type="number" placeholder="cylinders" onChange={(e) => setHorse(e.target.value)} required/>
                     </Form.Group>
 
                     <Form.Group as={Col} >
                         <Form.Label>Top Speed/السرعة القصوى</Form.Label>
-                        <Form.Control type="number" placeholder="Speed" />
+                        <Form.Control type="number" placeholder="Speed" onChange={(e) => setTopSpeed(e.target.value)} required/>
                     </Form.Group>
 
                     <Form.Group as={Col} >
                         <Form.Label>Seats/عدد المقاعد</Form.Label>
-                        <Form.Control type="number" placeholder="Seats" />
+                        <Form.Control type="number" placeholder="Seats" onChange={(e) => setSeatNumber(e.target.value)}  required/>
                     </Form.Group>
 
                     <Form.Group as={Col} >
                         <Form.Label>Gear box/نوع علبة التروس</Form.Label>
                         <DropdownButton
                             id="dropdown-basic-button"
-                            title={gear}
+                            title={gearr}
                             onSelect={gearSelect}
                             >
                             <Dropdown.Item eventKey="Manual">Manual</Dropdown.Item>
@@ -130,27 +163,24 @@ function DashBoardDetails (){
                         </DropdownButton>
                     </Form.Group>    
                 </Row>      
-                <p>Update the price here</p>  
+                <p>Add the price here</p>  
                 <hr/>
                 <Row className="mb-3">
                     <Form.Group as={Col} >
                         <Form.Label>Daily in $/الايجار اليومي</Form.Label>
-                        <Form.Control type="number" placeholder="$" />
+                        <Form.Control type="number" placeholder="$" onChange={(e) => setDayly(e.target.value)} required/>
                     </Form.Group>
                     <Form.Group as={Col} >
                         <Form.Label>Weekly in $/الايجار الاسبوعي</Form.Label>
-                        <Form.Control type="number" placeholder="$" />
+                        <Form.Control type="number" placeholder="$" onChange={(e) => setWeekly(e.target.value)}  required/>
                     </Form.Group>
                     <Form.Group as={Col} >
                         <Form.Label>Monthly in $/الايجار الشهري</Form.Label>
-                        <Form.Control type="number" placeholder="$" />
+                        <Form.Control type="number" onChange={(e) => setMonthly(e.target.value)} placeholder="$"  required/>
                     </Form.Group>
                 </Row>
-                <Button variant="primary" type="submit">
-                    Add Car
-                </Button>
             </Form>
-            {/* <p>Update the brand here</p>
+            {/* <p>Add the brandd here</p>
             <hr/>
             <Row>
                 {Brands.map(Brand => (
@@ -166,7 +196,7 @@ function DashBoardDetails (){
                 <Form.Group as={Col} >
                     <Form.Label>Add Brand</Form.Label>
                     <Form.Control type="text" placeholder="Add Brand" />
-                    <Form.Control type='file' accept="image/*" placeholder='add brand picture' onChange={handleFileChange}/>
+                    <Form.Control type='file' accept="image/*" placeholder='add brand picture' onChange={handleFileChange} required/>
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Add Brand

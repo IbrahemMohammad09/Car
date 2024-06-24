@@ -11,10 +11,9 @@ import DashBoardCar from '../../component/dashBoardComponent/dashBoardCar/dashBo
 import DashBoardCustomerCar from '../../component/dashBoardComponent/dasBoardCustomerCar/dasBoardCustomerCar'
 import DashBoardSetting from '../../component/dashBoardComponent/dashBoradSetting/dashBoradSetting'
 import ChangeTitle from '../../component/SharedComponents/ChangeTitle'
-
+import { ToastContainer } from 'react-bootstrap'
 
 function DashBoard (){
-
     const sidBare = () => {
         return(
             <div className='sidebar'>
@@ -87,12 +86,11 @@ function DashBoard (){
                 </div>
             );
         }
-      };
-    
-
+    };
 
     return (
         <div>
+            <ToastContainer/>
             {renderComponent()}
         </div>
     );

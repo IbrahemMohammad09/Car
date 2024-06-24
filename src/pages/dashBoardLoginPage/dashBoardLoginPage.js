@@ -15,12 +15,10 @@ function DashBoardLoginPage (){
 
     useEffect(() => {
         const timer = setTimeout(() => {
-        setShowFirst(false);
-        }, 2000);
-
+            setShowFirst(false);
+        }, 700);
         return () => clearTimeout(timer);
     }, []);
-
 
     return(
         <Container className='dash-log'>

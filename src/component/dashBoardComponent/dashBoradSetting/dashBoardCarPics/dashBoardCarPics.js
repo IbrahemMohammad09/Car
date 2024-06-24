@@ -1,32 +1,50 @@
 import './dashBoardCarPics.css'
 import car from '../../../../images/Home/Ford Shelby GT350.jpeg'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
 
-function DashBoardCarPics (){
-    const [selectedImage, setSelectedImage] = useState(null);
+function DashBoardCarPics ({
+    setPictures,
+    setPage
+}){
+    const [selectedImage, setSelectedImage] = useState([]);
 
-    const onDrop = useCallback((acceptedFiles) => {
-        const file = acceptedFiles[0];
-        setSelectedImage(URL.createObjectURL(file));
-    }, []);
+    const imgRef = useRef(null);
 
-    const { getRootProps, getInputProps } = useDropzone({
-        onDrop,
-        accept: 'image/*',
-        multiple: false
-    });
+    // const onDrop = useCallback((acceptedFiles) => {
+    //     const file = acceptedFiles[0];
+    //     setSelectedImage(prev => [...prev, URL.createObjectURL(file)]);
+    //     console.log(selectedImage);
+    // }, []);
 
-    const removeImage = () => {
-        setSelectedImage(null);
+    const handleImgChange = (e) => {
+        if (e.target.files && e.target.files[0]) {
+            const file = e.target.files[0];
+            const imageUrl = URL.createObjectURL(file);
+            setSelectedImage(prev => [...prev, imageUrl]);
+        }
     };
+
+    const removeImage = (e) => {
+        setSelectedImage(selectedImage.filter(i => i !== e));
+    };
+
+    const handleAddPics = () => {
+        console.log(selectedImage);
+        setPictures(selectedImage);
+        setPage('details')
+    }
+
+    const openFiles = () => {
+        return imgRef.current.click();;
+    }
 
     return(
         <Container className='dash-pic'>
             <h2>Details</h2>
-            <p>Update the details here</p>
+            <p>Add the pictures here</p>
             <hr/>
             <Row>
                 <img src={car} alt="car" />
@@ -37,27 +55,39 @@ function DashBoardCarPics (){
                     <Card>
                         <Card.Body>
                         <div
-                            {...getRootProps()}
-                            className="border border-primary rounded p-3 text-center"
+                            className="border border-primary rounded p-4 text-center flex justify-center items-center flex-col"
                             style={{ cursor: 'pointer' }}
+                            onClick={openFiles}
                         >
-                            <input {...getInputProps()} />
+                            {/* <input {...getInputProps()} /> */}
+                            <input
+                                ref={imgRef}
+                                type="file"
+                                name="img"
+                                id="inputImg"
+                                onChange={handleImgChange}
+                                style={{ display: "none" }}
+                            />
                             <p>drop the picture here </p>
                             <p>click here to add picture</p>
                         </div>
-                        {selectedImage && (
-                            <div className="mt-3 text-center">
-                                <Image src={selectedImage} thumbnail />
-                                <Button variant="danger" className="mt-2" onClick={removeImage}>Delete </Button>
-                            </div>
-                        )}
                         </Card.Body>
                     </Card>
+                        <div className='grid grid-cols-4 gap-3 w-screen mt-3'>
+                        {selectedImage && (
+                            selectedImage.map((e, i) => 
+                            <div className="text-center w-fit" key={i}>
+                                <Image src={e} thumbnail className='w-full h-full'/>
+                                <Button variant="danger" className="mt-2" onClick={() => removeImage(e)}>Delete</Button>
+                            </div>
+                            )
+                        )}
+                        </div>
                 </Col>
             </Row>
             <div className='pic-add'>
-                <Button variant="primary" type="submit">
-                    App the Pictures
+                <Button variant="primary" type="submit" onClick={handleAddPics}>
+                    Add the Pictures
                 </Button>
             </div>
             

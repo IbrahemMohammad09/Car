@@ -3,3 +3,8 @@
 .App{
 
 }
+
+.slick-slider div:focus {
+    border: none !important;
+    outline: none !important;
+}

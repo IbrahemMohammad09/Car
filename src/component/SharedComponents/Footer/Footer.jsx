@@ -1,9 +1,18 @@
 import { Link } from "react-router-dom"
 import MainTitle from "../MainTitle/MainTitle"
 import { FaPhone, FaWhatsapp } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import API from "../../../constant/api";
 import { useTranslation } from 'react-i18next';
 
 
+
+const arr3 = [
+    "Monday – Friday: 09:00AM – 09:00 PM",
+    "Saturday: 09:00AM – 07:00PM",
+    "Sunday: Closed",
+]
 
 const arr2 = [
     {
@@ -40,8 +49,6 @@ const arr2 = [
     },
 ]
 
-
-
 const arr4 = [
     {
         icon: <FaWhatsapp className="text-__brown text-[1.4rem]"/>,
@@ -53,6 +60,20 @@ const arr4 = [
     },
 ]
 const Footer = () => {
+    const [brands, setBrands] = useState([]);
+
+    useEffect(() => {
+        axios.get(API.GET.ALLBRANDS)
+            .then(res => {
+                if(res?.data.state === 'success') {
+                    setBrands(res?.data?.brands);
+                }
+            })
+            .catch(err => {
+                // setAgain(!again)
+            })
+    }, []);
+
     const [t,il8n]=useTranslation();
     const home =t("NavHome");
     const about =t("NavAboutUS");
@@ -86,6 +107,10 @@ const Footer = () => {
                         <h1 className="text-__brown text-[1.6rem] font-medium leading-[24px]">{t("Pages")}</h1>
                         {arr1.map((e, i) => <Link className="font-normal no-underline duration-300 md:hover:translate-x-[10px] leading-[27.75px] text-black text-[15px]" key={i} to={e.url}>{e.title}</Link>)}
                     </div>
+                    {brands?.length > 0 && <div className="flex flex-col gap-[11px] max-[500px]:items-center">
+                        <h1 className="text-__brown text-[1.6rem] font-medium leading-[24px]">Our Brands</h1>
+                        {brands && brands?.map((e, i) => i <= 7 && <span className="font-normal no-underline duration-300 md:hover:translate-x-[10px] leading-[27.75px] text-black text-[15px]" key={i}>{e.name}</span>)}
+                    </div>}
                     <div className="flex flex-col gap-[11px] max-[500px]:items-center">
                         <h1 className="text-__brown text-[1.6rem] font-medium leading-[24px]">{t("Brands")}</h1>
                         {arr2.map((e, i) => <Link className="font-normal no-underline duration-300 md:hover:translate-x-[10px] leading-[27.75px] text-black text-[15px]" key={i} to={'/'}>{e.title}</Link>)}

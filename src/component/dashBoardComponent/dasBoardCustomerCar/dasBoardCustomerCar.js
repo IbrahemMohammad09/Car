@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './dasBoardCustomerCar.css';
 import { Table, Badge, Pagination } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
+import API from '../../../constant/api';
+import Loading from '../../SharedComponents/Loading/Loading';
 
 function DashBoardCustomerCar() {
   const customers = [
@@ -33,22 +36,40 @@ function DashBoardCustomerCar() {
   ];
 
   const [currentPage, setCurrentPage] = useState(1);
-  const rowsPerPage = 10;
+  const [bookings, setBookings] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const totalPages = Math.ceil(customers.length / rowsPerPage);
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    setLoading(true);
+    axios.get(API.GET.ALLBOOKINGS+currentPage, {
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    })
+      .then(res => {
+        if(res?.data?.state === 'success') {
+          setBookings(res?.data?.messages)
+        }
+        setLoading(false);
+      })
+      .catch(err => {
+        setLoading(false);
+      })
+  }, []);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
-  const currentCustomers = customers.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
   return (
     <div className='dash-customer'>
       <div className='customer-h1'>
         <h1>All Customers</h1>
       </div>
-      <div className='customer-table'>
+      <Loading loading={loading} style={'absolute left-[50%] translate-x-[-50%]'}/>
+      {!loading && bookings && <div className='customer-table'>
         <Table striped hover>
           <thead>
             <tr className='first-row'>
@@ -61,16 +82,17 @@ function DashBoardCustomerCar() {
             </tr>
           </thead>
           <tbody>
-            {currentCustomers.map((customer, index) => (
+            {bookings && bookings.map((book, index) => (
               <tr key={index}>
-                <td>{customer.name}</td>
-                <td>{customer.phone}</td>
-                <td>{customer.startDate}</td>
-                <td>{customer.endDate}</td>
-                <td>{customer.car}</td>
+                <td>{book.name}</td>
+                <td>{book.phone}</td>
+                <td>{book.start}</td>
+                <td>{book.end}</td>
+                <td>{book.car_id}</td>
                 <td>
-                  <Badge bg={customer.status === 'Active' ? 'success' : 'danger'}>
-                    {customer.status}
+                  <Badge bg={book.status === 'accepted' ? 'success' : 
+                  book.status === 'rejected'? 'danger': 'dark'}>
+                    {book.status}
                   </Badge>
                 </td>
               </tr>
@@ -79,7 +101,7 @@ function DashBoardCustomerCar() {
         </Table>
         <Pagination>
           <Pagination.First className='Pagination' onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
-          {[...Array(totalPages)].map((_, index) => (
+          {[...Array(bookings.total)].map((_, index) => (
             <Pagination.Item
             className='Pagination'  
               key={index + 1}
@@ -89,9 +111,9 @@ function DashBoardCustomerCar() {
               {index + 1}
             </Pagination.Item>
           ))}
-          <Pagination.Last className='Pagination' onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} />
+          <Pagination.Last className='Pagination' onClick={() => handlePageChange(bookings.total)} disabled={currentPage === bookings.total} />
         </Pagination>
-      </div>
+      </div>}
     </div>
   );
 }
