@@ -1,11 +1,12 @@
-// const url = 'https://cars-carage.onrender.com/api';
-export const url = 'http://localhost:3000/api'
+export const url = 'https://cars-carage.onrender.com/api';
+// export const url = 'http://localhost:3000/api'
 
 const API = {
     GET: {
         ALLBOOKINGS: url+'/bookings/page/',
         ONEBOOKING: url+'/bookings/',
         ALLCARS: url+'/cars/page/',
+        ALLACTIVECARS: url+'/cars/available/page/',
         ONECAR: url+'/cars/',
         ALLBRANDS: url+'/brands',
         ONEBRAND: url+'/brands/',
@@ -15,7 +16,8 @@ const API = {
         LOGOUT: url+'/users/logout',
         BOOKING: url+'/bookings/create/',
         BRAND: url+'/brands/create/',
-        CAR: url+'/cars/create/',        
+        CAR: url+'/cars/create/',   
+        UPLOAD: url+'/uploads/'     
     },
     PUT: {
         ACCEPTBOOKING: url+'/bookings/accept/',
@@ -23,6 +25,8 @@ const API = {
         BOOKING: url+'/bookings/update/',
         BRAND: url+'/brands/update/',
         CAR: url+'/cars/update/', 
+        ACCEPTBOOKINGS: url+'/accept/',
+        REJECTBOOKINGS: url+'/reject/',
     }, 
     DELETE: {
         BOOKING: url+'/bookings/delete/',

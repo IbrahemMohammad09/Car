@@ -4,18 +4,22 @@ import MainTitle from "../../component/SharedComponents/MainTitle/MainTitle"
 import MainCard from '../../component/SharedComponents/MainCard/MainCard'
 import Slider from "react-slick"
 import { useEffect, useRef, useState } from "react"
-import Img from '../../images/Home/Paragraph+Background+Border (1).png'
-import Img1 from '../../images/Home/Paragraph+Background+Border (2).png'
-import Img3 from '../../images/Home/Paragraph+Background+Border (3).png'
+import Img from '../../images/Home/download (40).jpeg'
+import Img1 from '../../images/Home/43c5bd76-c3e4-40ee-98eb-ecc2c6dddbc3.jpeg'
+import Img3 from '../../images/Home/2014 Honda Accord.jpeg'
 import { useTranslation } from 'react-i18next';
 import Footer from "../../component/SharedComponents/Footer/Footer"
 import { FaMessage } from "react-icons/fa6"
 import Img5 from '../../images/Home/unsplash_UF2nwAcD8Mo.png'
+import Img4 from '../../images/Home/Best small SUVs and crossovers for 2024 - Which_.jpeg'
+import Img6 from '../../images/Home/Chevrolet Corvette C7 Z06 Convertible painted in Arctic White  Photo taken by_ @autoblog on Instagram.jpeg'
 import Loading from '../../component/SharedComponents/Loading/Loading'
 import SideLink from "../../component/SharedComponents/sideLink/sideLink"
 import axios from "axios"
 import API from "../../constant/api"
 import ChangeTitle from "../../component/SharedComponents/ChangeTitle"
+import { Link } from "react-router-dom"
+import { MdDashboardCustomize } from "react-icons/md"
 
 const cards = [
     {
@@ -28,11 +32,15 @@ const cards = [
     },
     {
         title: 'Family', 
-        img: Img3,    
+        img: Img4,    
     },
     {
         title: 'Economy', 
-        img: Img,    
+        img: Img3,    
+    },
+    {
+        title: 'Convertible', 
+        img: Img6,    
     },
 ];
 
@@ -88,6 +96,24 @@ const Home = () => {
         autoplaySpeed: 5000,
         pauseOnHover: true,
     }
+    let settings2 = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        // autoplay: true,
+        autoplaySpeed: 5000,
+        pauseOnHover: true,
+    }
+    let settings3 = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 2,
+        // autoplay: true,
+        autoplaySpeed: 5000,
+        pauseOnHover: true,
+    }
 
     const elementRef = useRef(null)
     const elementRef1 = useRef(null)
@@ -115,7 +141,7 @@ const Home = () => {
 
     useEffect(() => {
         setLoading(true);
-        axios.get(API.GET.ALLCARS+1, {
+        axios.get(API.GET.ALLACTIVECARS+1, {
             'Contet-Type': 'application/json',
         })
             .then(res => {
@@ -174,16 +200,44 @@ const Home = () => {
     };
     }, []);
     
-
+    const token = localStorage.getItem('token');
     return (
         <section className="min-h-screen w-full bg-white overflow-x-hidden">
             <Hero/>
             <ChangeTitle title={"MEI | Home"}/>
+            {token && <Link to={'/dashboard'} className="fixed z-50 top-[20px] left-[20px] flex flex-[30%] py-[5px] justify-center items-center gap-[4px] border-[1px] border-solid border-__brown bg-white text-__brown no-underline shadow-[#ccc] duration-300 w-[120px] rounded-md hover:rounded-[30px]">
+                <MdDashboardCustomize/>
+                Dashboard
+            </Link>}
             <MainTitle title={HomeTitle}/>
             <div className={`w-full ${isVisible4 && 'animate-right'}`} ref={elementRef4}>
-                <Slider {...settings} className="p-1">
+                <Slider {...settings} className="p-1 slide1">
                     {cards.map((e, i) => <div key={i} className="h-[441px] relative overflow-hidden">
-                        <img src={e.img} alt={e.title + 'slide' + i} onClick={() => setType(prev => [...prev, e.title])} className={`w-full h-full object-contain mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
+                        <img src={e.img} alt={e.title + 'slide' + i} onClick={() => setType(prev => [...prev, e.title])} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
+                        <p className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
+                            <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
+                            <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>    
+                        </p>
+                    </div>)}
+                </Slider>
+
+                <Slider {...settings2} className="p-1 slide2">
+                    {cards.map((e, i) => <div key={i} className="h-[441px] relative overflow-hidden">
+                        <img src={e.img} alt={e.title + 'slide' + i} onClick={() => setType(prev => [...prev, e.title])} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
+                        <p className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
+                            <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
+                            <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>    
+                        </p>
+                    </div>)}
+                </Slider>
+
+                <Slider {...settings3} className="p-1 slide3">
+                    {cards.map((e, i) => <div key={i} className="h-[441px] relative overflow-hidden">
+                        <img src={e.img} alt={e.title + 'slide' + i} onClick={() => setType(prev => [...prev, e.title])} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
+                        <p className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
+                            <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
+                            <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>    
+                        </p>
                     </div>)}
                 </Slider>
             </div>
@@ -191,7 +245,7 @@ const Home = () => {
             <div ref={elementRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] ${isVisible && 'animate-left'}`}>
                 {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer ${brand === e.name? 'scale-95': 'scale-100'}`} onClick={() => setBrand(e.name)}>
                     <div className="w-[100px] h-[100px]">
-                        <img src={e.picture} alt={e.name+' brand'} className="w-full h-full object-cover"/>
+                        <img src={'https://cars-carage.onrender.com/'+e.picture} alt={e.name+' brand'} className="w-full h-full object-cover"/>
                     </div>
                     <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
                 </div>)}

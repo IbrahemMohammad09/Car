@@ -1,10 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-.App{
-
-}
-
 .slick-slider div:focus {
     border: none !important;
     outline: none !important;
 }
+
+@media screen and (min-width: 801px) {
+    .slide2 {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .slide1 {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .slide2 {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 501px) {
+    .slide3 {
+        display: none !important;
+    }
+}
+

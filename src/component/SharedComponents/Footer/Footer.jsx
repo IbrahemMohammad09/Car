@@ -14,41 +14,6 @@ const arr3 = [
     "Sunday: Closed",
 ]
 
-const arr2 = [
-    {
-        title: 'Toyota',
-        url: '/',
-    },
-    {
-        title: 'Porsche',
-        url: '/',
-    },
-    {
-        title: 'Audi',
-        url: '/',
-    },
-    {
-        title: 'BMW',
-        url: '/',
-    },
-    {
-        title: 'Ford',
-        url: '/',
-    },
-    {
-        title: 'Nissan',
-        url: '/',
-    },
-    {
-        title: 'Peugeot',
-        url: '/',
-    },
-    {
-        title: 'Volkswagen',
-        url: '/',
-    },
-]
-
 const arr4 = [
     {
         icon: <FaWhatsapp className="text-__brown text-[1.4rem]"/>,
@@ -111,10 +76,6 @@ const Footer = () => {
                         <h1 className="text-__brown text-[1.6rem] font-medium leading-[24px]">Our Brands</h1>
                         {brands && brands?.map((e, i) => i <= 7 && <span className="font-normal no-underline duration-300 md:hover:translate-x-[10px] leading-[27.75px] text-black text-[15px]" key={i}>{e.name}</span>)}
                     </div>}
-                    <div className="flex flex-col gap-[11px] max-[500px]:items-center">
-                        <h1 className="text-__brown text-[1.6rem] font-medium leading-[24px]">{t("Brands")}</h1>
-                        {arr2.map((e, i) => <Link className="font-normal no-underline duration-300 md:hover:translate-x-[10px] leading-[27.75px] text-black text-[15px]" key={i} to={'/'}>{e.title}</Link>)}
-                    </div>
                 </div>
                 <div className="flex flex-col gap-[33px] max-[500px]:items-center">
                     <div className="flex flex-col gap-[11px] max-[500px]:items-center">

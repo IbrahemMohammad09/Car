@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
 import './errorPage.css'
 
@@ -14,7 +15,7 @@ function ErrorPage (){
                 </div>
                 <div className="shadow"></div>
             </div>
-            <a href="/" className="home-link">Go Home</a>
+            <Link to={localStorage.getItem('token')? '/dashboard':'/'} className="home-link">Go Home</Link>
         </div>
     );
 }

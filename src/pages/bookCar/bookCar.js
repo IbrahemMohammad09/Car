@@ -63,7 +63,7 @@ function BookCar (){
         const e1 = elementRef?.current?.getBoundingClientRect();
 
         const viewportHeight = window?.innerHeight;
-        if (e1?.top <= viewportHeight / 1.1 && !loading1) {
+        if (e1?.top <= viewportHeight / .5 && !loading1) {
             setIsVisible(true);
         } else {
             setIsVisible(false);
@@ -122,11 +122,11 @@ function BookCar (){
                 <Row>
                     <Col>
                         <ScrollAnimation animateIn="slideInLeft" animateOnce={false}>
-                        <img src={car.pictures[0]} className='main-img' />
+                        <img src={'https://cars-carage.onrender.com/'+car.pictures[0]} className='main-img' />
                         <div className="image-gallery">
                             {car.pictures.map((car, i) => ( i !== 0 &&
                                 <div key={i} className="image-container">
-                                    <img src={car} alt={`Car ${car.id}`} className="gallery-image" />
+                                    <img src={'https://cars-carage.onrender.com/'+car} alt={`Car ${car.id}`} className="gallery-image" />
                                 </div>
                             ))}
                         </div>
