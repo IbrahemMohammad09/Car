@@ -23,7 +23,7 @@ import { MdDashboardCustomize } from "react-icons/md"
 
 const cards = [
     {
-        title: 'Sport', 
+        title: '', 
         img: Img,    
     },
     {

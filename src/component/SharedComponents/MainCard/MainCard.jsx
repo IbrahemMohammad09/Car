@@ -62,7 +62,6 @@ const MainCard = ( { pictures, name, daylyPrice, monthlyPrice, weeklyPrice, id }
                 <div className="flex flex-wrap justify-center items-start gap-[2px]">
                     <a href={'#'} className="flex flex-[30%] py-[5px] justify-center items-center gap-[4px] text-white bg-__brown no-underline duration-300 hover:translate-y-[10%] "><FaWhatsapp/>Whats app</a>
                     <a href={'#'} className="flex flex-[30%] py-[5px] justify-center items-center gap-[4px] text-white bg-__brown no-underline duration-300 hover:translate-y-[10%] "><FaPhone/>Call us</a>
-                    <Link className="flex flex-[30%] py-[5px] justify-center items-center gap-[4px] text-white bg-__brown no-underline duration-300 hover:translate-y-[10%]" to={'/book-car/'+id}><FaCalendar/>Book now</Link>
                 </div>
             </div>
         </div>

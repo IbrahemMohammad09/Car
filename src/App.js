@@ -33,6 +33,7 @@ function App() {
           <Route path='/book-car/:id' element={<BookCar />}/>
           {/* <Route path='/book-car' element={<BookCar />}/> */}
           <Route path='/dashboard-login' element={!token ?<DashBoardLoginPage/>: <Navigate to="/dashboard"/>}/>
+
           <Route path='/dashboard' element={token? <HomeDash/>: <Navigate to="/"/>} />
           <Route path='/dashboard/add' element={token? <AddCar/>: <Navigate to="/"/>} />
           <Route path='/dashboard/show' element={token? <ShowCars />: <Navigate to="/"/>} />
@@ -40,6 +41,7 @@ function App() {
           <Route path='/dashboard/brands/:id' element={token? <AddBrand />: <Navigate to="/"/>} />
           <Route path='/dashboard/bookings' element={token? <Bookings />: <Navigate to="/"/>} />
           <Route path='/dashboard/edit/:id' element={token? <AddCar />: <Navigate to="/"/>} />
+
           <Route path='*' element={<Navigate to={'/error'} />} />
           <Route path='/error' element={<ErrorPage />} />          
         </Routes>
