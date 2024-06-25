@@ -19,7 +19,7 @@ import ChangeTitle from "../../component/SharedComponents/ChangeTitle"
 
 const cards = [
     {
-        title: 'Sport', 
+        title: '', 
         img: Img,    
     },
     {

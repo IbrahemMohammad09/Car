@@ -167,15 +167,15 @@ function DashBoardDetails (
                 <hr/>
                 <Row className="mb-3">
                     <Form.Group as={Col} >
-                        <Form.Label>Daily in $/الايجار اليومي</Form.Label>
+                        <Form.Label>Daily in ADU/الايجار اليومي</Form.Label>
                         <Form.Control type="number" placeholder="$" onChange={(e) => setDayly(e.target.value)} required/>
                     </Form.Group>
                     <Form.Group as={Col} >
-                        <Form.Label>Weekly in $/الايجار الاسبوعي</Form.Label>
+                        <Form.Label>Weekly in ADU/الايجار الاسبوعي</Form.Label>
                         <Form.Control type="number" placeholder="$" onChange={(e) => setWeekly(e.target.value)}  required/>
                     </Form.Group>
                     <Form.Group as={Col} >
-                        <Form.Label>Monthly in $/الايجار الشهري</Form.Label>
+                        <Form.Label>Monthly in ADU/الايجار الشهري</Form.Label>
                         <Form.Control type="number" onChange={(e) => setMonthly(e.target.value)} placeholder="$"  required/>
                     </Form.Group>
                 </Row>
