@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import MainTitle from "../MainTitle/MainTitle"
 import { FaPhone, FaWhatsapp } from "react-icons/fa";
 import { useEffect, useState } from "react";
@@ -62,6 +62,7 @@ const Footer = () => {
             url: '/about-us',
         },
     ];
+    const navigate = useNavigate();
 
     return (
         <footer className="w-full bg-white">
@@ -74,7 +75,7 @@ const Footer = () => {
                     </div>
                     {brands?.length > 0 && <div className="flex flex-col gap-[11px] max-[500px]:items-center">
                         <h1 className="text-__brown text-[1.6rem] font-medium leading-[24px]">Our Brands</h1>
-                        {brands && brands?.map((e, i) => i <= 7 && <span className="font-normal no-underline duration-300 md:hover:translate-x-[10px] leading-[27.75px] text-black text-[15px]" key={i}>{e.name}</span>)}
+                        {brands && brands?.map((e, i) => i <= 7 && <span onClick={()=>navigate("/search/"+e.name)} className="font-normal no-underline duration-300 md:hover:translate-x-[10px] leading-[27.75px] text-black text-[15px]" key={i}>{e.name}</span>)}
                     </div>}
                 </div>
                 <div className="flex flex-col gap-[33px] max-[500px]:items-center">

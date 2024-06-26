@@ -3,33 +3,37 @@ import Img from '../../../images/Home/background@3x.png'
 import Header from '../Header/Header'
 import HeroInput from '../HeroInput/HeroInput'
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const cars = [
     {
-        title: 'Suv',
+        title: 'Sport',
         icon: <FaCar/>
     },
     {
-        title: 'Sedan',
+        title: 'Luxury',
         icon: <FaCar/>
     },
     {
-        title: 'HatchBack',
+        title: 'Family',
         icon: <FaCar/>
     },
     {
-        title: 'Coupe',
+        title: 'Economy',
         icon: <FaCar/>
     },
     {
-        title: 'Hybrid',
+        title: 'Convertible',
         icon: <FaCar/>
     }
 ]
 const   Hero = () => {
+    const navigate = useNavigate();
     const [t , il8n] = useTranslation();
+
+    
     
     return (
         <section className="h-screen relative">
@@ -41,7 +45,7 @@ const   Hero = () => {
                 <HeroInput/>
                 <h3 className='text-[15px] text-white font-normal mt-[20px]'>{t("HeroH3")}</h3>
                 <div className='flex justify-center items-center gap-[10px] flex-wrap'>
-                    {cars.map((e, i) => <div key={i} className='bg-__opacity_white rounded-[44px] py-[13px] px-[31px] flex items-center gap-[8px] text-white duration-300 hover:bg-__brown cursor-pointer shadow-sm shadow-[#ccc] max-[600px]:py-2'>{e.icon} {e.title}</div>)}
+                    {cars.map((e, i) => <div onClick={()=>{navigate('/search/'+e.title)}} key={i} className='bg-__opacity_white rounded-[44px] py-[13px] px-[31px] flex items-center gap-[8px] text-white duration-300 hover:bg-__brown cursor-pointer shadow-sm shadow-[#ccc] max-[600px]:py-2'>{e.icon} {e.title}</div>)}
                 </div>
             </div>
         </section>

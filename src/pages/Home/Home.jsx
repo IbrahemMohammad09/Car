@@ -4,7 +4,7 @@ import MainTitle from "../../component/SharedComponents/MainTitle/MainTitle"
 import MainCard from '../../component/SharedComponents/MainCard/MainCard'
 import Slider from "react-slick"
 import { useEffect, useRef, useState } from "react"
-import Img from '../../images/Home/download (40).jpeg'
+import Img from '../../images/Home/sport.png'
 import Img1 from '../../images/Home/43c5bd76-c3e4-40ee-98eb-ecc2c6dddbc3.jpeg'
 import Img3 from '../../images/Home/2014 Honda Accord.jpeg'
 import { useTranslation } from 'react-i18next';
@@ -18,12 +18,13 @@ import SideLink from "../../component/SharedComponents/sideLink/sideLink"
 import axios from "axios"
 import API from "../../constant/api"
 import ChangeTitle from "../../component/SharedComponents/ChangeTitle"
-import { Link } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import { MdDashboardCustomize } from "react-icons/md"
+
 
 const cards = [
     {
-        title: '', 
+        title: 'Sport', 
         img: Img,    
     },
     {
@@ -201,6 +202,8 @@ const Home = () => {
     }, []);
     
     const token = localStorage.getItem('token');
+    const navigate = useNavigate();
+
     return (
         <section className="min-h-screen w-full bg-white overflow-x-hidden">
             <Hero/>
@@ -216,7 +219,7 @@ const Home = () => {
                         <img src={e.img} alt={e.title + 'slide' + i} onClick={() => setType(prev => [...prev, e.title])} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
                         <p className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
                             <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
-                            <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>    
+                            <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>  
                         </p>
                     </div>)}
                 </Slider>
@@ -245,7 +248,7 @@ const Home = () => {
             <div ref={elementRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] ${isVisible && 'animate-left'}`}>
                 {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer ${brand === e.name? 'scale-95': 'scale-100'}`} onClick={() => setBrand(e.name)}>
                     <div className="w-[100px] h-[100px]">
-                        <img src={'https://cars-carage.onrender.com/'+e.picture} alt={e.name+' brand'} className="w-full h-full object-cover"/>
+                        <img src={'https://cars-carage.onrender.com/'+e.picture} onClick={()=>{navigate("/search/"+e.name)}} alt={e.name+' brand'} className="w-full h-full object-cover"/>
                     </div>
                     <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
                 </div>)}
