@@ -72,10 +72,11 @@ function SearchPage (){
 
         if (category.includes(searchType)){
             SetRes(filterCarsByCategory(cars,searchType));
-        }else if(brands.includes(searchType)){
+        }
+        if(brands.includes(searchType)){
             SetRes(filterCarsByBrand(cars,searchType))
         }else {
-            navigate("/");
+            navigate("/search/:name");
         }
 
     },[pathname])

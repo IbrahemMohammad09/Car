@@ -122,11 +122,11 @@ function BookCar (){
                 <Row>
                     <Col>
                         <ScrollAnimation animateIn="slideInLeft" animateOnce={false}>
-                        <img src={'https://cars-carage.onrender.com/'+car.pictures[0]} className='main-img' />
+                        <img src={'http://meirentacar.com/'+car.pictures[0]} className='main-img' />
                         <div className="image-gallery">
                             {car.pictures.map((car, i) => ( i !== 0 &&
                                 <div key={i} className="image-container">
-                                    <img src={'https://cars-carage.onrender.com/'+car} alt={`Car ${car.id}`} className="gallery-image" />
+                                    <img src={'http://meirentacar.com/'+car} alt={`Car ${car.id}`} className="gallery-image" />
                                 </div>
                             ))}
                         </div>

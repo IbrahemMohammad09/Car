@@ -8,9 +8,9 @@ const Header = () => {
     const handleLanguageChange = () => {
         dispatch({type: language === 'EN'? 'AR': 'EN'});
         if (language === 'EN'){
-            il8n.changeLanguage('en');
-        } else{
             il8n.changeLanguage('ar');
+        } else{
+            il8n.changeLanguage('en');
         }
         
     }
