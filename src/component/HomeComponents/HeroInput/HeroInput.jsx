@@ -14,8 +14,14 @@ const HeroInput = ( { setCars } ) => {
     const [modelInput, setModelInput] = useState('');
     const [textInput, setTextInput] = useState('');
     const navigate = useNavigate();
+    
     const handleSearch = () => {
-        if (textInput ===''){navigate("/")}else{
+        console.log(textInput === '');
+        if (!textInput){
+            console.log(1);
+            navigate("/")
+        }else{
+            console.log(2);
             navigate("/search/"+textInput);
         }
         

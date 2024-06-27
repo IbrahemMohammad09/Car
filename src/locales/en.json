@@ -28,7 +28,6 @@
     "WorkTime3":"Sunday: Closed",
     "About":"Car Rental, where we offer the latest cars at competitive prices and excellent customer service. Enjoy a smooth and comfortable rental experience with us. Book now to discover the difference!",
     "location":"Our Location",
-    "carDetail":"Details Of Car"
-
-
+    "carDetail":"Details Of Car",
+    "noResults": "No results found"
 }
