@@ -382,7 +382,6 @@ const AddCar = () => {
                                             style={{ cursor: 'pointer' }}
                                             onClick={openFiles}
                                         >
-                                            {/* <input {...getInputProps()} /> */}
                                             <input
                                                 ref={imgRef}
                                                 type="file"

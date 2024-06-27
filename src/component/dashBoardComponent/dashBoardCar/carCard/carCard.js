@@ -49,7 +49,7 @@ function CarCard ({car, setDelete}){
             </div>
             <div className='w-full h-[180px] rounded-md overflow-hidden hover:opacity-80 duration-500'>
                 <Link className='cursor-pointer no-underline text-black' to={'/book-car/'+car._id}>
-                    <img className='h-full w-full object-cover' src={'https://cars-carage.onrender.com/'+car.pictures[0]}/>
+                    <img className='h-full w-full object-cover' src={'http://meirentacar.com/api/'+car.pictures}/>
                 </Link>
             </div>
             <div className='w-full mt-2 flex gap-4 justify-center'>
