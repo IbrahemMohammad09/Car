@@ -44,9 +44,11 @@
 .contact{
     display: flex;
     align-items: center;
+    /* margin-left: 150px; */
 }
 .info-button{
     display: flex;
+    align-items: center;
     border: 1px solid #965933;
     border-radius: 9px;
     width: 114.47px;
@@ -55,7 +57,6 @@
     padding-bottom: 5px;
     margin-right: 20px;
     justify-content: center;
-    align-items: center;
     gap: 4px;
     color: white;
     background-color: #965933; 
@@ -98,10 +99,13 @@
     .about-info p{
         height: 200px;
     }
+    .about-info h1 {
+        font-size: 60px;
+    }
 
 }
 @media screen and (max-width:550px) {
-    .about-info h2{
+    .about-info h2 {
         height: 350px;
     }
     .about-info p{
@@ -109,5 +113,10 @@
     }
 
 }
+@media screen and (max-width:400px) {
+    .about-info h1{
+        height: 200px;
+    }
 
+}
 

@@ -13,6 +13,7 @@ import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
 import { useTranslation } from 'react-i18next';
 
 
+
 function AboutUs() {
   const [t,il8n]=useTranslation();
   const HomeTitle = t("HomeTitle");
@@ -33,11 +34,12 @@ function AboutUs() {
                 <h2>{t("FooterTitle")}</h2>
                 <p>{t("About")}</p>
                 <hr />
-                <h1>{t("Contact")}</h1>
+                <h1 >{t("Contact")}</h1>
                 <Row>
                   <Col className='contact'>
-                      <Link to={'#'} className="info-button"><FaWhatsapp />Whats app</Link>
-                      <Link to={'#'} className="info-button"><FaPhone />Call us</Link>
+                      <Link to={'#'} className="info-button "><FaWhatsapp />{t("WhatsApp")}</Link>
+                      <Link to={'#'} className="info-button "><FaPhone />{t("CallUs")}</Link>
+
                   </Col>
                 </Row>
               </ScrollAnimation>
