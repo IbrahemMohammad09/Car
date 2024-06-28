@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useTransition } from 'react';
+import { useTranslation } from 'react-i18next';
 import Hero from '../../component/HomeComponents/Hero/Hero';
 import Footer from '../../component/SharedComponents/Footer/Footer';
 import './searchPage.css'
@@ -11,7 +12,8 @@ import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
 
 
 function SearchPage (){
-    const [isVisible, setIsVisible] = useState();
+    const [t , il8n] = useTranslation();
+    const seeButton = t("seeAllCar");
     const currentLocation = useLocation();
     const [searchType ,setSearchType] = useState ();
     const [res ,SetRes] = useState();
@@ -64,12 +66,11 @@ function SearchPage (){
     };
     const filterCarsByCategory = (cars, category) => {
         return cars.filter(car => car.category === category);
-        console.log (cars);
+
       };
-    const filterCars = (cars, name, model, category) => {
+    const filterCars = (cars, name, category) => {
       return cars.filter(car => 
         car.name === name && 
-        car.model === model && 
         car.category === category
        );
     };
@@ -78,9 +79,10 @@ function SearchPage (){
     const pathParts = pathname.split('/');
     const lastWord = pathParts[pathParts.length - 1];
 
+
+
     useEffect(()=>{
         setSearchType(lastWord);
-
 
         if (category.includes(lastWord)){
             console.log(lastWord);
@@ -91,6 +93,7 @@ function SearchPage (){
         }else {
             // navigate("/search/:name");
         }
+
 
     },[pathname])
 
@@ -104,8 +107,7 @@ function SearchPage (){
     return (
         <div>
             <Hero />
-            <ChangeTitle title={"MEI | Search Page"} />
-
+            <ChangeTitle title={"MEI | Search Page"}/>
             <div className="mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] animate-left">
                 {brands && brands?.map((e, i) => <div key={i} className="border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer scale-100" >
                         <div className="w-[100px] h-[100px]">
@@ -118,7 +120,9 @@ function SearchPage (){
                 {res && !loading && res?.map((e, i) => <MainCard key={i} daylyPrice={e.price.dayly} monthlyPrice={e.price.monthly} weeklyPrice={e.price.weekly} name={e.name} pictures={e.pictures} id={e._id}/>)}
             </div>
             <div className="flex justify-center items-center pt-20">
-                <button onClick={showAllCars}  className="cursor-pointer border-[1px] border-solid border-__brown bg-__brown text-white text-[1rem] font-bold leading-[25.8px] rounded-sm block no-underline duration-300 opacity-90 hover:opacity-100 w-fit py-[10px] px-[30px]">See All Cars</button>
+                <button onClick={showAllCars}  className="cursor-pointer border-[1px] border-solid border-__brown bg-__brown text-white text-[1rem] font-bold leading-[25.8px] rounded-sm block no-underline duration-300 opacity-90 hover:opacity-100 w-fit py-[10px] px-[30px]">
+                    {seeButton}
+                </button>
             </div>
             <Footer/>
             <SideLink />

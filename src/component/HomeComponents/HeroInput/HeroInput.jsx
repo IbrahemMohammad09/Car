@@ -23,24 +23,24 @@ const HeroInput = ( { setCars } ) => {
 
     const [selectedValue, setSelectedValue] = useState('');
 
-    const MakeInput = (value) => {
-        setMakeInput(value);
-        setSelectedValue(value)
-        setShow(false); 
+    // const MakeInput = (value) => {
+    //     setMakeInput(value);
+    //     setSelectedValue(value)
+    //     setShow(false); 
 
-    };
+    // };
 
 
     const handleSearch = () => {
         if (textInput ===''){navigate("/")}else{
-            navigate("/search/"+makeInput+"/"+textInput);
+            navigate("/search/"+textInput);
         }
         
     };
 
     return (
         <div className="bg-white rounded-[10px] min-[671px]:rounded-[80px] max-[670px]:p-[20px] p-[10px] min-[671px]:ps-[55px] w-[95%] md:w-[700px] lg:w-[930px] flex items-center gap-[31px] max-[670px]:flex-col max-[670px]:w-fit max-[600px]:gap-5">
-            <div className="relative flex items-center">
+            {/* <div className="relative flex items-center">
                 <span onClick={() => setShow(!show)} className="cursor-pointer flex gap-4 lg:gap-8 items-center justify-center text-nowrap">
                     {selectedValue || make} <FaAngleDown className={`${show && 'rotate-180'}`} />
                 </span>
@@ -51,8 +51,8 @@ const HeroInput = ( { setCars } ) => {
                     </div>
                     ))}
                 </div>
-            <div className="w-[1px] h-[30px] bg-__brown ms-[10px] max-[670px]:hidden"></div>
-            </div> 
+                <div className="w-[1px] h-[30px] bg-__brown ms-[10px] max-[670px]:hidden"></div>
+            </div>  */}
             {/* <MainSelect name={make} />
             <MainSelect name={model}/> */}
             <input type="text" className="bg-white border-none outline-none min-[671px]:w-full" placeholder={placeHolder} onChange={(e) => setTextInput(e.target.value)} />

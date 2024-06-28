@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 const Header = () => {
     const [t , il8n] = useTranslation();
-    const { language, dispatch } = useLanguageContext("AR");
+    const { language, dispatch } = useLanguageContext("EN");
     const handleLanguageChange = () => {
         dispatch({type: language === 'EN'? 'AR': 'EN'});
         if (language === 'EN'){

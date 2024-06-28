@@ -285,7 +285,7 @@ const AddCar = () => {
                                     onSelect={brandSelect}
                                     defaultValue={brand}
                                     >
-                                    {allBrands && allBrands.map((e, i) => <Dropdown.Item key={i} eventKey={e._id}>{e.name}</Dropdown.Item>)}
+                                    {allBrands && allBrands.map((e, i) => <Dropdown.Item key={i} eventKey={e.name}>{e.name}</Dropdown.Item>)}
                                     
                                     {/* <Dropdown.Item eventKey="Mercedes-Benz">Mercedes-Benz</Dropdown.Item> */}
                                     {/* <Dropdown.Item eventKey="Audi">Audi</Dropdown.Item> */}

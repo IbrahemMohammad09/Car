@@ -6,7 +6,7 @@
     "HeroH3":"Or Browse Featured Model",
     "HeroMakes":"Any Makes",
     "HeroModel":"Any Model",
-    "HeroPlaceHolder":"Find your request..",
+    "HeroPlaceHolder":"type the car name or category to finde it",
     "HeroSearchButton":"Search Cars",
     "HomeTitle":"Best Car Rental DUBAI",
     "PopularCar":"Popular Car",
@@ -28,7 +28,8 @@
     "WorkTime3":"Sunday: Closed",
     "About":"Car Rental, where we offer the latest cars at competitive prices and excellent customer service. Enjoy a smooth and comfortable rental experience with us. Book now to discover the difference!",
     "location":"Our Location",
-    "carDetail":"Details Of Car"
+    "carDetail":"Details Of Car",
+    "seeAllCar":"See all car"
 
 
 }

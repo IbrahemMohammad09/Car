@@ -74,7 +74,7 @@ const Footer = () => {
                         {arr1.map((e, i) => <Link className="font-normal no-underline duration-300 md:hover:translate-x-[10px] leading-[27.75px] text-black text-[15px]" key={i} to={e.url}>{e.title}</Link>)}
                     </div>
                     {brands?.length > 0 && <div className="flex flex-col gap-[11px] max-[500px]:items-center">
-                        <h1 className="text-__brown text-[1.6rem] font-medium leading-[24px]">Our Brands</h1>
+                        <h1 className="text-__brown text-[1.6rem] font-medium leading-[24px]">{t("Brands")}</h1>
                         {brands && brands?.map((e, i) => i <= 7 && <span onClick={()=>navigate("/search/"+e.name)} className="font-normal no-underline duration-300 md:hover:translate-x-[10px] leading-[27.75px] text-black text-[15px]" key={i}>{e.name}</span>)}
                     </div>}
                 </div>
