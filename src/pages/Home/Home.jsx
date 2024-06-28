@@ -217,20 +217,22 @@ const Home = () => {
                 <Slider {...settings} className="p-1 slide1">
                     {cards.map((e, i) => <div key={i} className="h-[441px] relative overflow-hidden">
                         <img src={e.img} alt={e.title + 'slide' + i} onClick={() => setType(prev => [...prev, e.title])} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
-                        <p className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
+                        <div className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
                             <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
                             <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>  
-                        </p>
+                            <a href={"/search/"+e.title} className="text-2xl left-0 bottom-0 text-xl text-__brown text-[3rem] no-underline ">search </a>
+                        </div>
                     </div>)}
                 </Slider>
 
                 <Slider {...settings2} className="p-1 slide2">
                     {cards.map((e, i) => <div key={i} className="h-[441px] relative overflow-hidden">
                         <img src={e.img} alt={e.title + 'slide' + i} onClick={() => setType(prev => [...prev, e.title])} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
-                        <p className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
+                        <div className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
                             <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
-                            <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>    
-                        </p>
+                            <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>
+                            <a href={"/search/"+e.title} className="text-2xl left-0 bottom-0 text-xl text-__brown text-[3rem] no-underline ">search </a>
+                        </div>
                     </div>)}
                 </Slider>
 
@@ -239,7 +241,8 @@ const Home = () => {
                         <img src={e.img} alt={e.title + 'slide' + i} onClick={() => setType(prev => [...prev, e.title])} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
                         <div className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
                             <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
-                            <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>    
+                            <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>  
+                            <a href={"/search/"+e.title} className="text-2xl left-0 bottom-0 text-xl text-__brown text-[3rem] no-underline ">search </a>  
                         </div>
                     </div>)}
                 </Slider>
