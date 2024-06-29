@@ -37,7 +37,7 @@ const MainCard = ( { pictures, name, daylyPrice, monthlyPrice, weeklyPrice, id }
                 <div className="w-full relative border-b-[1px] border-__brown border-solid">
                     <Slider ref={sliderRef} {...settings} className="p-1">
                         {pictures?.map((e, i) => <div key={i} className="h-[300px]">
-                            <img src={'https://cars-carage.onrender.com/'+e} alt={name + 'slide' + i} className="w-full h-full"/>
+                            <img src={'http://meirentacar.com/'+e} alt={name + 'slide' + i} className="w-full h-full"/>
                         </div>)}
                     </Slider>
                     <div className="flex justify-center items-center gap-[2px] absloute bottom-[0] z-[10] mb-1">
