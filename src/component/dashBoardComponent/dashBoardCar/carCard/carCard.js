@@ -37,8 +37,8 @@ function CarCard ({car, setDelete}){
     }
 
     return(
-        <div>
-            <div className='w-full flex justify-between'>
+        <div >
+            <div className='w-full  flex justify-between'>
                 <div>
                     <h1 className='text-[1rem]'>{car.name}</h1>
                     <h2 className='text-[.8rem]'>{car.category}</h2>
@@ -47,9 +47,9 @@ function CarCard ({car, setDelete}){
                     <BiEditAlt className='duration-300 hover:scale-110 cursor-pointer text-[1.5rem] text-green-700'/>
                 </Link>
             </div>
-            <div className='w-full h-[180px] rounded-md overflow-hidden hover:opacity-80 duration-500'>
+            <div className='w-full  rounded-md overflow-hidden hover:opacity-80 duration-500'>
                 <Link className='cursor-pointer no-underline text-black' to={'/book-car/'+car._id}>
-                    <img className='h-full w-full object-cover' src={'http://meirentacar.com/'+car.pictures[0]}/>
+                    <img className='w-[450px] h-[300px] object-cover' src={'http://195.110.58.11:4000/'+ car.pictures[0]} alt={car.name}/>
                 </Link>
             </div>
             <div className='w-full mt-2 flex gap-4 justify-center'>

@@ -46,7 +46,7 @@ function DashBoardCar (){
                     <Col>
                         <div className="search-container ">
                             <button className="search-button" >
-                                <img src={searchIcon} />
+                                <img src={searchIcon} alt={'search icon'}/>
                             </button>
                             <input
                                 type="search"

@@ -382,7 +382,6 @@ const AddCar = () => {
                                             style={{ cursor: 'pointer' }}
                                             onClick={openFiles}
                                         >
-                                            {/* <input {...getInputProps()} /> */}
                                             <input
                                                 ref={imgRef}
                                                 type="file"
@@ -400,8 +399,8 @@ const AddCar = () => {
                                         {selectedImage && (
                                             selectedImage.map((e, i) => 
                                             <div className="text-center" key={i}>
-                                                <div className="w-[200px] h-[200px] overflow-hidden">
-                                                    <Image src={e} thumbnail className='w-full h-full object-cover'/>
+                                                <div className="w-full w-full overflow-hidden">
+                                                    <Image src={e} thumbnail className='w-[450px] h-[300px]  object-cover'/>
                                                 </div>
                                                 <Button variant="danger" className="mt-2" onClick={() => removeImage(e)}>Delete</Button>
                                             </div>

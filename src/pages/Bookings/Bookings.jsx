@@ -26,7 +26,8 @@ function Bookings() {
     })
       .then(res => {
         if(res?.data?.state === 'success') {
-          setBookings(res?.data?.messages)
+          const sortedBookings = res?.data?.messages.sort((a, b) => new Date(b.start) - new Date(a.start));
+          setBookings(sortedBookings.reverse()); 
         }
         setLoading(false);
       })

@@ -34,6 +34,7 @@ function App() {
           <Route path='/book-car/:id' element={<BookCar />}/>
           <Route path='/dashboard-login' element={!token ?<DashBoardLoginPage/>: <Navigate to="/dashboard"/>}/>
           <Route path='/dashboard' element={token? <HomeDash/>: <Navigate to="/"/>} />
+          <Route path='/dash' element={<HomeDash/>}/>
           <Route path='/dashboard/add' element={token? <AddCar/>: <Navigate to="/"/>} />
           <Route path='/dashboard/show' element={token? <ShowCars />: <Navigate to="/"/>} />
           <Route path='/dashboard/brands' element={token? <AddBrand />: <Navigate to="/"/>} />

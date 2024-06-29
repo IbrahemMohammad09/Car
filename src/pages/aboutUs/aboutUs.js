@@ -11,33 +11,36 @@ import '../../animate.css';
 import SideLink from '../../component/SharedComponents/sideLink/sideLink';
 import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
 import { useTranslation } from 'react-i18next';
+import { useLanguageContext } from '../../hooks/useLanguageContext';
+
 
 
 function AboutUs() {
   const [t,il8n]=useTranslation();
   const HomeTitle = t("HomeTitle");
+  const { language } = useLanguageContext();
 
     return (
       <div>
         <ChangeTitle title={"MEI | About Us"} />
         <Hero />
-        <Container className='about-info'>
-          <Row>
+        <Container className='about-info' dir={language === 'AR'? 'rtl':'ltr'}>
+          <Row className='max-[600px]:text-center'>
             <Col lg={6}>
-              <ScrollAnimation animateIn="slideInLeft" animateOnce={false}>
+              <ScrollAnimation animateIn={language === 'AR'? 'slideInRight': 'slideInLeft'} animateOnce={false}>
                 <img src={aboutCar} alt="About Car" />
               </ScrollAnimation>
             </Col>
             <Col className='info'>
-              <ScrollAnimation animateIn="slideInRight" animateOnce={false}>
+              <ScrollAnimation animateIn={language === 'AR'? 'slideInLeft': 'slideInRight'} animateOnce={false}>
                 <h2>{t("FooterTitle")}</h2>
                 <p>{t("About")}</p>
                 <hr />
-                <h1>{t("Contact")}</h1>
+                <h1 >{t("Contact")}</h1>
                 <Row>
-                  <Col className='contact'>
-                      <Link to={'#'} className="info-button"><FaWhatsapp />Whats app</Link>
-                      <Link to={'#'} className="info-button"><FaPhone />Call us</Link>
+                  <Col className='contact max-[600px]:flex-col gap-2'>
+                      <Link to={'#'} className="info-button "><FaWhatsapp />{t("WhatsApp")}</Link>
+                      <Link to={'#'} className="info-button "><FaPhone />{t("CallUs")}</Link>
                   </Col>
                 </Row>
               </ScrollAnimation>
@@ -47,10 +50,9 @@ function AboutUs() {
             <ScrollAnimation animateIn="slideInUp" animateOnce={true}>
                 <MainTitle title={HomeTitle} />
                 <div className='loaction-title'>
-                <p>{t("location")}</p>
-                </div>
-                
-                <iframe
+                <span className='text-center text-white text-[1.8rem] font-bold'>{t("location")}</span>
+                </div>  
+              <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.266808322186!2d55.28676497622934!3d25.19422327771291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69360c85e4a3%3A0x15cdd1b9539998ca!2sMeem%20Rent%20A%20Car%20in%20Dubai%20UAE%20-%20Economy%20Sedan%20Convertible%20SUV%20Commercial%20Pick%20up%20Van%20Bus!5e0!3m2!1sen!2siq!4v1718938272931!5m2!1sen!2siq"
                     width="100%"
                     height="450"
@@ -62,7 +64,6 @@ function AboutUs() {
                 ></iframe>
             </ScrollAnimation>
           </Row>
-          
         </Container>
         <Footer />
         <SideLink />

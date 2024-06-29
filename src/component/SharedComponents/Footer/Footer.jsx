@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import API from "../../../constant/api";
 import { useTranslation } from 'react-i18next';
+import { phone } from "../../../constant/infoData";
+import { LanguageContext } from "../../../context/LanguageContext";
+import { useLanguageContext } from "../../../hooks/useLanguageContext";
 
 
 
@@ -17,11 +20,11 @@ const arr3 = [
 const arr4 = [
     {
         icon: <FaWhatsapp className="text-__brown text-[1.4rem]"/>,
-        url: '/',
+        url: 'https://wa.me/'+phone,
     },
     {
         icon: <FaPhone className="text-__brown text-[1.4rem]"/>,
-        url: '/',
+        url: 'tel:'+phone,
     },
 ]
 const Footer = () => {
@@ -64,8 +67,10 @@ const Footer = () => {
     ];
     const navigate = useNavigate();
 
+    const { language } = useLanguageContext();
+
     return (
-        <footer className="w-full bg-white">
+        <footer className="w-full bg-white" dir={language === 'AR'? 'rtl':'ltr'}>
             <MainTitle title={FooterTitle}/>
             <div className="flex flex-col md:flex-row justify-between container mx-auto gap-[33px]">
                 <div className="flex gap-[60px] max-[500px]:justify-center">
@@ -74,7 +79,7 @@ const Footer = () => {
                         {arr1.map((e, i) => <Link className="font-normal no-underline duration-300 md:hover:translate-x-[10px] leading-[27.75px] text-black text-[15px]" key={i} to={e.url}>{e.title}</Link>)}
                     </div>
                     {brands?.length > 0 && <div className="flex flex-col gap-[11px] max-[500px]:items-center">
-                        <h1 className="text-__brown text-[1.6rem] font-medium leading-[24px]">Our Brands</h1>
+                        <h1 className="text-__brown text-[1.6rem] font-medium leading-[24px]">{t("Brands")}</h1>
                         {brands && brands?.map((e, i) => i <= 7 && <span onClick={()=>navigate("/search/"+e.name)} className="font-normal no-underline duration-300 md:hover:translate-x-[10px] leading-[27.75px] text-black text-[15px]" key={i}>{e.name}</span>)}
                     </div>}
                 </div>
@@ -92,7 +97,12 @@ const Footer = () => {
                 </div>
             </div>
             <div className="border-t-[1px] border-solid border-[#ccc] mt-[55px] max-[500px]:text-center">
-                <p className="my-[36px] text-[15px] leading-[27.75px] font-normal container mx-auto">© 2024 Powerd by SPARK. All rights reserved.</p>
+            <p className="my-[36px] text-[15px] leading-[27.75px] font-normal container mx-auto">
+                <a target="_blank" href="https://sparkengdev.com/" className="no-underline text-black">
+                    © 2024 Powered by SPARK. All rights reserved.
+                </a>
+            </p>
+
             </div>
         </footer>
     )
