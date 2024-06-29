@@ -7,8 +7,10 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Car Rental, where we offer the latest cars at competitive prices and excellent customer service. Enjoy a smooth and comfortable rental experience with us. Book now to discover the difference!"
     />
+    <meta name="keywords" content="car rental dubai, rent a car in dubai, dubai car hire, luxury car rental dubai, economy car rental dubai, dubai car rental companies">
+    <meta name="author" content="MEI company">
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -30,5 +32,28 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "CarRental",
+        "name": "MEI company",
+        "description": "Rent a car in Dubai with [Your Company Name]. Get the best deals on luxury and economy cars for hire.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Al Asayel St",
+          "addressLocality": "Dubai",
+          "addressRegion": "Dubai",
+          "addressCountry": "United Arab Emirates"
+        },
+        "telephone": "[Your Phone Number]",
+        "email": "[Your Email]",
+        "openingHours": "[Your Opening Hours]",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": [Your Latitude],
+          "longitude": [Your Longitude]
+        }
+      }
+      </script>
   </body>
 </html>

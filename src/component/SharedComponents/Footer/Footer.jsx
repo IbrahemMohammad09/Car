@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import API from "../../../constant/api";
 import { useTranslation } from 'react-i18next';
+import { phone } from "../../../constant/infoData";
+import { LanguageContext } from "../../../context/LanguageContext";
+import { useLanguageContext } from "../../../hooks/useLanguageContext";
 
 
 
@@ -17,11 +20,11 @@ const arr3 = [
 const arr4 = [
     {
         icon: <FaWhatsapp className="text-__brown text-[1.4rem]"/>,
-        url: '/',
+        url: 'https://wa.me/'+phone,
     },
     {
         icon: <FaPhone className="text-__brown text-[1.4rem]"/>,
-        url: '/',
+        url: 'tel:'+phone,
     },
 ]
 const Footer = () => {
@@ -64,8 +67,10 @@ const Footer = () => {
     ];
     const navigate = useNavigate();
 
+    const { language } = useLanguageContext();
+
     return (
-        <footer className="w-full bg-white">
+        <footer className="w-full bg-white" dir={language === 'AR'? 'rtl':'ltr'}>
             <MainTitle title={FooterTitle}/>
             <div className="flex flex-col md:flex-row justify-between container mx-auto gap-[33px]">
                 <div className="flex gap-[60px] max-[500px]:justify-center">

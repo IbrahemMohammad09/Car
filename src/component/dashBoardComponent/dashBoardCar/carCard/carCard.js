@@ -49,7 +49,7 @@ function CarCard ({car, setDelete}){
             </div>
             <div className='w-full  rounded-md overflow-hidden hover:opacity-80 duration-500'>
                 <Link className='cursor-pointer no-underline text-black' to={'/book-car/'+car._id}>
-                    <img className='w-[450px] h-[300px] object-cover' src={'http://meirentacar.com/'+ car.pictures[0]}/>
+                    <img className='w-[450px] h-[300px] object-cover' src={'http://195.110.58.11:4000/'+ car.pictures[0]} alt={car.name}/>
                 </Link>
             </div>
             <div className='w-full mt-2 flex gap-4 justify-center'>

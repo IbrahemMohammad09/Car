@@ -20,6 +20,7 @@ import API from "../../constant/api"
 import ChangeTitle from "../../component/SharedComponents/ChangeTitle"
 import { Link, Navigate, useNavigate } from "react-router-dom"
 import { MdDashboardCustomize } from "react-icons/md"
+import { useLanguageContext } from "../../hooks/useLanguageContext"
 
 
 const cards = [
@@ -69,6 +70,7 @@ const Home = () => {
     const provide=t("provide");
     const Find = t("Find");
     const HoursDetail =t("HoursDetail");
+    const SearchByCategory =t("SearchByCategory");
 
     const arr = [
         {
@@ -204,6 +206,8 @@ const Home = () => {
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
 
+    const { language } = useLanguageContext();
+
     return (
         <section className="min-h-screen w-full bg-white overflow-x-hidden">
             <Hero/>
@@ -220,7 +224,7 @@ const Home = () => {
                         <div className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
                             <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
                             <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>  
-                            <a href={"/search/"+e.title} className="text-2xl left-0 bottom-0 text-xl text-__brown text-[3rem] no-underline ">search </a>
+                            <a href={"/search/"+e.title} className="text-xl text-__brown text-[3rem] no-underline bg-white w-fit duration-300 px-2 rounded-md hover:scale-105 ">{SearchByCategory} </a>
                         </div>
                     </div>)}
                 </Slider>
@@ -231,7 +235,7 @@ const Home = () => {
                         <div className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
                             <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
                             <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>
-                            <a href={"/search/"+e.title} className="text-2xl left-0 bottom-0 text-xl text-__brown text-[3rem] no-underline ">search </a>
+                            <a href={"/search/"+e.title} className="text-xl text-__brown text-[3rem] no-underline bg-white w-fit duration-300 px-2 rounded-md hover:scale-105 ">{SearchByCategory} </a>
                         </div>
                     </div>)}
                 </Slider>
@@ -242,7 +246,7 @@ const Home = () => {
                         <div className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
                             <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
                             <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>  
-                            <a href={"/search/"+e.title} className="text-2xl left-0 bottom-0 text-xl text-__brown text-[3rem] no-underline ">search </a>  
+                            <a href={"/search/"+e.title} className="text-xl text-__brown text-[3rem] no-underline bg-white w-fit duration-300 px-2 rounded-md hover:scale-105 ">{SearchByCategory} </a>  
                         </div>
                     </div>)}
                 </Slider>
@@ -251,7 +255,7 @@ const Home = () => {
             <div ref={elementRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] ${isVisible && 'animate-left'}`}>
                 {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer ${brand === e.name? 'scale-95': 'scale-100'}`} onClick={() => setBrand(e.name)}>
                     <div className="w-[100px] h-[100px]">
-                        <img src={'http://meirentacar.com/'+e.picture} onClick={()=>{navigate('/search/'+e.name)}} alt={e.name+' brand'} className="w-full h-full object-cover"/>
+                        <img src={'http://195.110.58.11:4000/'+e.picture} onClick={()=>{navigate('/search/'+e.name)}} alt={e.name+' brand'} className="w-full h-full object-cover"/>
                     </div>
                     <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
                 </div>)}
@@ -267,11 +271,11 @@ const Home = () => {
             </div>
 
             <MainTitle title={WhyUs}/>
-            <div className="bg-__dark_white py-[65px] px-[100px] flex justify-center w-full gap-[50px] items-center container mx-auto max-[991px]:flex-col">
-                <div className={`h-[687px] w-[524px] max-[600px]:w-full ${isVisible1 && 'animate-left'}`} ref={elementRef1}>
+            <div className="bg-__dark_white py-[65px] px-[100px] flex justify-center w-full gap-[50px] items-center container mx-auto max-[991px]:flex-col" dir={language === 'AR' ? 'rtl' : 'ltr'}>
+                <div className={`h-[687px] w-[524px] max-[600px]:w-full ${isVisible1 && (language === 'AR'? 'animate-right':'animate-left')}`} ref={elementRef1}>
                     <img src={Img5} alt={'Sport car with orange color'} className="w-full h-full object-fit"/>
                 </div>
-                <div ref={elementRef2} className={`${isVisible2 && 'animate-right'}`}>
+                <div ref={elementRef2} className={`${isVisible2 && (language === 'EN'? 'animate-right':'animate-left')}`}>
                     <h1 className="text-__brown text-[2.5rem] leading-[55px] font-medium min-[992px]:w-[300px] max-[500px]:text-center">{FeelHome}</h1>
                     <div className="flex flex-col gap-[20px] mt-[62px]">
                         {arr.map((e, i) => <div key={i} className="flex gap-[30px] max-[991px]:flex-col max-[500px]:text-center">

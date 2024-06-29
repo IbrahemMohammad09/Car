@@ -32,8 +32,6 @@ const cars = [
 const   Hero = () => {
     const navigate = useNavigate();
     const [t , il8n] = useTranslation();
-
-    
     
     return (
         <section className="h-screen relative">

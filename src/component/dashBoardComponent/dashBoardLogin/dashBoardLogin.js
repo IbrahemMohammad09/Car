@@ -50,12 +50,12 @@ function DashboardLogin(){
             <form onSubmit={handleLogin}>
                 <div className='input-container'>
                     <label className='login-label'>Email</label><br></br>
-                    <img className="email-icon" src={emailicon}/>
+                    <img className="email-icon" src={emailicon} alt={'email icon'}/>
                     <input className='input-dash' value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder='Email@Exampel.com' required/>
                 </div>
                 <div className='input-container'>
                     <label className='login-label'>Password</label><br></br>
-                    <img className="email-icon" src={passicon}/>
+                    <img className="email-icon" src={passicon} alt={'password icon'}/>
                     <input className='input-dash' value={password} onChange={(e) => setPassword(e.target.value)} type="password" required/>
                 </div>
                 <Err err={error}/>
