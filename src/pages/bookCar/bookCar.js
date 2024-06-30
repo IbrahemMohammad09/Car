@@ -21,6 +21,8 @@ import { useTranslation } from 'react-i18next';
 function BookCar (){
     const [t ,il8n] = useTranslation();
     const carDetail = t("carDetail");
+    const Book = t("BookYourCar");
+    const See = t("See");
     const [isVisible, setIsVisible] = useState();
     const [name, setName] = useState();
     const [phone, setPhone] = useState();
@@ -145,7 +147,7 @@ function BookCar (){
                             </Col>
                             <Col>
                                 <p><span>Seats</span>{car.seatNumber}</p>
-                                <p><span>Gear Box</span>{car.gear}</p>
+                                {/* <p><span>Gear Box</span>{car.gear}</p> */}
                                 <p><span>Speed</span>{car.topSpeed}</p>
                                 <p><span>Engine cylinders</span>{car.horse}</p>
                             </Col>
@@ -162,34 +164,34 @@ function BookCar (){
                     </Col>
                 </Row>
                 <ScrollAnimation animateIn="slideInUp" animateOnce={false}>
-                    <MainTitle title={"Book your car now"} />
+                    <MainTitle title={Book} />
                     <Container>
                         <form>
                             <Row>
                                 <Col className='book-form' >
                                     <div>
-                                        <label htmlFor="name">Name</label>
+                                        <label htmlFor="name">{t("Name")}</label>
                                         <input className="ps-3 py-3" id="name" type='text' placeholder='Your name' value={name} onChange={(e) => setName(e.target.value)}/>
                                     </div>
                                     <div>
-                                        <label htmlFor="startdate">Start Date</label>
+                                        <label htmlFor="startdate">{t("StartDate")}</label>
                                         <input className="ps-3 py-3" id="startdate" type='date' value={startDate} onChange={(e) => setStartDate(e.target.value)}/>
                                     </div>
                                 </Col>
                                 <Col className='book-form'>
                                     <div>
-                                        <label htmlFor="phonenumber">Phone Number</label>
+                                        <label htmlFor="phonenumber">{t("Phone")}</label>
                                         <input className="ps-3 py-3" id="phonenumber" type='text' placeholder='Your phone number' value={phone} onChange={(e) => setPhone(e.target.value)}/>
                                     </div>
                                     <div>
-                                        <label htmlFor="enddate">End Date</label>
+                                        <label htmlFor="enddate">{t("EndDate")}</label>
                                         <input className="ps-3 py-3" id="enddate" type='date' value={endDate} onChange={(e) => setEndDate(e.target.value)}/>
                                     </div>
                                 </Col>
                             </Row>
                             <Row>
                             <div className='book-button' onClick={handleBook}>
-                                <MainButton name="Book Your Car Now"/>
+                                <MainButton name={Book}/>
                             </div>
                             </Row>
                         </form>
@@ -199,7 +201,7 @@ function BookCar (){
             }
             </Container>
                 <div ref={elementRef} className={`${isVisible && 'animate-right'} ${loading1? 'mb-[200px]':'mt-5'}`}>
-                    {!loading1 && <><MainTitle title={'See other cars'}/>
+                    {!loading1 && <><MainTitle title={See}/>
                     <div className={`container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px]`}>
                         {other && other?.map((e, i) => <MainCard key={i} daylyPrice={e.price.dayly} monthlyPrice={e.price.monthly} weeklyPrice={e.price.weekly} name={e.name} pictures={e.pictures} id={e._id}/>)}
                     </div>

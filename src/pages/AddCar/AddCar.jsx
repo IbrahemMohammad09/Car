@@ -45,6 +45,7 @@ const AddCar = () => {
         setImgs(imgs.filter(i => i !== e))
         setUpdateImgs(updateImgs.filter(i => i !== e))
         setPictures(pictures.filter(i => i !== e))
+        console.log (imgs)
     };
 
     const handleAddPics = () => {
@@ -350,16 +351,16 @@ const AddCar = () => {
                         <hr/>
                         <Row className="mb-3">
                             <Form.Group as={Col} >
-                                <Form.Label>Daily in $/الايجار اليومي</Form.Label>
-                                <Form.Control defaultValue={dayly} type="number" placeholder="$" onChange={(e) => setDayly(e.target.value)} required/>
+                                <Form.Label>Daily in AUD/الايجار اليومي</Form.Label>
+                                <Form.Control defaultValue={dayly} type="number" placeholder="AUD" onChange={(e) => setDayly(e.target.value)} required/>
                             </Form.Group>
                             <Form.Group as={Col} >
-                                <Form.Label>Weekly in $/الايجار الاسبوعي</Form.Label>
-                                <Form.Control defaultValue={weekly} type="number" placeholder="$" onChange={(e) => setWeekly(e.target.value)}  required/>
+                                <Form.Label>Weekly in AUD/الايجار الاسبوعي</Form.Label>
+                                <Form.Control defaultValue={weekly} type="number" placeholder="AUD" onChange={(e) => setWeekly(e.target.value)}  required/>
                             </Form.Group>
                             <Form.Group as={Col} >
-                                <Form.Label>Monthly in $/الايجار الشهري</Form.Label>
-                                <Form.Control defaultValue={monthly} type="number" onChange={(e) => setMonthly(e.target.value)} placeholder="$"  required/>
+                                <Form.Label>Monthly in AUD/الايجار الشهري</Form.Label>
+                                <Form.Control defaultValue={monthly} type="number" onChange={(e) => setMonthly(e.target.value)} placeholder="AUD"  required/>
                             </Form.Group>
                         </Row>
                     </Form>

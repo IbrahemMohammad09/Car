@@ -33,5 +33,11 @@
     "seeAllCar":"عرض جميع السيارات",
     "CallUs":"للاتصال",
     "WhatsApp":"الواتس اب",
-    "SearchByCategory": "بحث"
+    "SearchByCategory": "بحث",
+    "BookYourCar":"اطلب سيارتك الآن",
+    "Name":"الاسم",
+    "Phone":"رقم الهاتف",
+    "StartDate":"موعد البدأ",
+    "EndDate":"موعد الانتهاء",
+    "See":"يمكنك رؤية سيارة أخرى"
 }

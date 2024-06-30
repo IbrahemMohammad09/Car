@@ -108,10 +108,9 @@ function SearchPage (){
         return cars.filter(car => car.category === category);
 
       };
-    const filterCars = (cars, name, category) => {
+    const filterCars = (cars, name) => {
       return cars.filter(car => 
-        car.name === name && 
-        car.category === category
+        car.name === name
        );
     };
 
@@ -123,13 +122,13 @@ function SearchPage (){
         setSearchType(lastWord);
 
         if (category.includes(lastWord)){
-            console.log(lastWord);
             SetRes(filterCarsByCategory(cars,lastWord));
-        }
+        } 
         if(brands.includes(lastWord)){
             SetRes(filterCarsByBrand(cars,lastWord))
-        }else {
-            // navigate("/search/:name");
+        }
+        if(!brands.includes(lastWord) && !category.includes(lastWord)) {
+            SetRes(filterCars(cars,lastWord))
         }
 
 
@@ -142,13 +141,7 @@ function SearchPage (){
     return (
         <div className='relative w-full'>
             <Hero />
-                <Loading loading={loading} style={'absloute left-[50%] translate-x-[-50%]'}/>
-            <div className={`container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px] relative mt-10`}>
-                {Res?.length > 0 && Res?.map((e, i) => <MainCard key={i} daylyPrice={e.price.dayly} monthlyPrice={e.price.monthly} weeklyPrice={e.price.weekly} name={e.name} pictures={e.pictures} id={e._id}/>)}
-            </div>
-            {Res && Res?.length === 0 && <h2 className='text-center mt-10 mx-auto'>{notFound}</h2>}
-            {Res?.length !== 0 && <div onClick={() => setPage(page+=1)}><MainButton name={LoadMore}/></div>}
-            <ChangeTitle title={"MEI | Search Page"}/>
+            <Loading loading={loading} style={'absloute left-[50%] translate-x-[-50%]'}/>
             <div className="mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] animate-left">
                 {brands && brands?.map((e, i) => <div key={i} className="border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer scale-100" >
                         <div className="w-[100px] h-[100px]">
@@ -157,9 +150,18 @@ function SearchPage (){
                         <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
                     </div>)}
             </div>
-            <div className={`container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px] relative pt-20`}>
-                {Res && !loading && Res?.map((e, i) => <MainCard key={i} daylyPrice={e.price.dayly} monthlyPrice={e.price.monthly} weeklyPrice={e.price.weekly} name={e.name} pictures={e.pictures} id={e._id}/>)}
+
+
+            <div className={`container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px] relative mt-10`}>
+                {Res?.length > 0 && Res?.map((e, i) => <MainCard key={i} daylyPrice={e.price.dayly} monthlyPrice={e.price.monthly} weeklyPrice={e.price.weekly} name={e.name} pictures={e.pictures} id={e._id}/>)}
             </div>
+            {/* <div className={`container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px] relative pt-20`}>
+                {Res && !loading && Res?.map((e, i) => <MainCard key={i} daylyPrice={e.price.dayly} monthlyPrice={e.price.monthly} weeklyPrice={e.price.weekly} name={e.name} pictures={e.pictures} id={e._id}/>)}
+            </div> */}
+            {/* {Res?.length !== 0 && <div onClick={() => setPage(page+=1)}><MainButton name={LoadMore}/></div>} */}
+            <ChangeTitle title={"MEI | Search Page"}/>
+            
+            {Res && Res?.length === 0 && <h2 className='text-center mt-10 mx-auto'>{notFound}</h2>}
             <div className="flex justify-center items-center pt-20">
                 <button onClick={showAllCars}  className="cursor-pointer border-[1px] border-solid border-__brown bg-__brown text-white text-[1rem] font-bold leading-[25.8px] rounded-sm block no-underline duration-300 opacity-90 hover:opacity-100 w-fit py-[10px] px-[30px]">
                     {seeButton}
