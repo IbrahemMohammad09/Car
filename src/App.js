@@ -16,8 +16,6 @@ import Bookings from './pages/Bookings/Bookings';
 import AddBrand from './pages/AddBrand/AddBrand';
 import SearchPage from './pages/searchPage/searchPage';
 
-
-
 function App() {
   const token = localStorage.getItem('token');
 

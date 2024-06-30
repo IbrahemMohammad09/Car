@@ -19,8 +19,8 @@ const ShowCars = () => {
             'Contet-Type': 'application/json',
         })
             .then(res => {
-                console.log(res);
                 if(res?.data?.state === 'success') {
+                    console.log(res.data.cars);
                     setLoading(false);
                     setCars(res?.data?.cars);
                     setTotal(res?.data?.total);

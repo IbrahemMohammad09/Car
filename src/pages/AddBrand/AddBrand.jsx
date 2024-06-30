@@ -46,15 +46,15 @@ const AddBrand = () => {
         })
             .then(res => {
                 if(res?.data?.state === 'success') {
-                    setPicture(res.data.files);
-                    toast.success('upload images successfully');
+                    setPicture(res.data.paths);
+                    return toast.success('upload images successfully');
                 }
             })
             .catch(err => {
                 if(err?.response?.data?.message) {
-                    toast.error(err?.response?.data?.message);
+                    return toast.error(err?.response?.data?.message);
                 } else {
-                    toast.error(err.message);
+                    return toast.error(err.message);
                 }
             })
     }
@@ -92,6 +92,7 @@ const AddBrand = () => {
             .then(res => {
                 toast.success(res?.data?.message);
                 setDelete(id);
+                setPicture("");
                 setShowAlert(false)
             })
             .catch(err => {
@@ -106,10 +107,7 @@ const AddBrand = () => {
             picture: picture[0]
         }
 
-        // console.log(id, !id);
-
         // if(!id) {
-        console.log(data);
             axios.post(API.POST.BRAND, data,{
                 headers: {
                     Authorization: 'Bearer '+ token
@@ -154,7 +152,6 @@ const AddBrand = () => {
         <DashBoard>
             <h1 className="mb-5 underline">Brands</h1>
             <div className="mb-5">
-            <ToastContainer/>
                 <div className="flex items-center gap-3">
                     <div className={`p-2 px-3 border-[1px] ${section !== 'See'?'border-__brown': 'border-none'} rounded-md cursor-pointer border-solid font-bold`} onClick={() => setSection('Add')}>{'Add'}</div>
                     <div className={`p-2 px-3 border-[1px] ${section === 'See'?'border-__brown': 'border-none'} rounded-md cursor-pointer border-solid font-bold`} onClick={() => setSection('See')}>See</div>
@@ -193,7 +190,7 @@ const AddBrand = () => {
                                     <p>click here to add picture</p>
                                 </div>
                             </div>
-                            {selectedImage && (
+                                {selectedImage && (
                                     <div className="text-center mt-3 flex justify-center items-center flex-col">
                                         <div className="w-[120px] h-[120px] overflow-hidden">
                                             <img src={selectedImage} className='w-full h-full object-cover'/>
@@ -230,6 +227,7 @@ const AddBrand = () => {
                     <div className='cursor-pointer duration-300 hover:scale-95 rounded-sm p-2 px-4 border-[1px] border-solid border-__brown' onClick={() => setShowAlert(false)}>No</div>
                 </div>
             </div>}
+        <ToastContainer />
         </DashBoard>
     )
 }

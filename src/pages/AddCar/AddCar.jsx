@@ -24,6 +24,8 @@ const AddCar = () => {
     const [gear, setGear] = useState();
     const [color, setColor] = useState();
 
+    const [updateImgs, setUpdateImgs] = useState([]);
+
     const [selectedImage, setSelectedImage] = useState([]);
     const [imgs, setImgs] = useState([]);
 
@@ -41,6 +43,7 @@ const AddCar = () => {
     const removeImage = (e) => {
         setSelectedImage(selectedImage.filter(i => i !== e));
         setImgs(imgs.filter(i => i !== e))
+        setUpdateImgs(updateImgs.filter(i => i !== e))
         setPictures(pictures.filter(i => i !== e))
     };
 
@@ -57,19 +60,16 @@ const AddCar = () => {
             }
         })
             .then(res => {
-                console.log(1, res);
                 if(res?.data?.state === 'success') {
                     if(id) {
-                        setPictures(prev => [...prev, ...res.data.files]);
+                        setPictures([...updateImgs, res.data.paths]);
                     } else {
-                        setPictures(res.data.files);
+                        setPictures(res.data.paths);
                     }
-                    setSection("details")
                     toast.success('upload images successfully');
                 }
             })
             .catch(err => {
-                console.log(2, err);
                 if(err?.response?.data?.message) {
                     toast.error(err?.response?.data?.message);
                 } else {
@@ -104,7 +104,8 @@ const AddCar = () => {
                     setName(res?.data?.car.name);
                     setSeatNumber(+res?.data?.car.seatNumber);
                     setWeekly(res?.data?.car.price.weekly);
-                    setPictures(res.data.car.pictures);
+                    setSelectedImage(res.data.car.pictures.map(e => 'http://195.110.58.11/'+e));
+                    setUpdateImgs(res?.data?.car.pictures);
                 })
                 .catch(err => {
                     if(err?.response?.state === 'failed') {
@@ -135,6 +136,8 @@ const AddCar = () => {
             color
         }
 
+        console.log(pictures);
+
         if(!id) {
             axios.post(API.POST.CAR, data,  {
                 headers: {
@@ -163,13 +166,11 @@ const AddCar = () => {
                     }
                 })
                 .catch(err => {
-                    console.log(err);
                     if(err?.response?.data?.state === 'failed') {
                         toast.error(err?.response?.data?.message);
                     }
                 })
         } else {
-            console.log(data);
             axios.put(API.PUT.CAR+id, data,  {
                 headers: {
                     'Authorization': 'Bearer ' + token,
@@ -182,7 +183,6 @@ const AddCar = () => {
                     }
                 })
                 .catch(err => {
-                    console.log(err);
                     if(err?.response?.data?.state === 'failed') {
                         toast.error(err?.response?.data?.message);
                     }
@@ -199,7 +199,6 @@ const AddCar = () => {
     const [Brands , setBrands] = useState([
         { id: 1, name: 'BMW' },
         { id: 2, name: 'Audi' },
-        
     ]);
     const [selectedFile, setSelectedFile] = useState(null);
 
@@ -243,9 +242,6 @@ const AddCar = () => {
             })
     }, []);
 
-    useEffect(() => {
-        console.log('p',pictures, 's',selectedImage,'i',imgs);
-    }, [pictures, selectedImage, imgs]);
     return (
         <DashBoard>
             <ToastContainer/>
@@ -254,6 +250,9 @@ const AddCar = () => {
                 <div className="flex items-center gap-3">
                     <div className={`p-2 px-3 border-[1px] ${section === 'details'?'border-__brown': 'border-none'} rounded-md cursor-pointer border-solid font-bold`} onClick={() => setSection('details')}>Details</div>
                     <div className={`p-2 px-3 border-[1px] ${section !== 'details'?'border-__brown': 'border-none'} rounded-md cursor-pointer border-solid font-bold`} onClick={() => setSection('pics')}>Pictures</div>
+                    <div onClick={handleCreate}>
+                        <MainButton name={(id? 'Update': 'Add') + ' car'}/>
+                    </div>
                 </div>
             </div>
             <div className="mt-5">
@@ -341,10 +340,9 @@ const AddCar = () => {
                                     id="dropdown-basic-button"
                                     title={gearr}
                                     onSelect={gearSelect}
-                                    defaultValue={gear}
                                     >
-                                    <Dropdown.Item eventKey="Manual">Manual</Dropdown.Item>
-                                    <Dropdown.Item eventKey="Automatic">Automatic</Dropdown.Item>
+                                    <Dropdown.Item eventKey="Manual" selected={gear === 'Manual'}>Manual</Dropdown.Item>
+                                    <Dropdown.Item eventKey="Automatic" selected={gear === 'Automatic'}>Automatic</Dropdown.Item>
                                 </DropdownButton>
                             </Form.Group>    
                         </Row>      
@@ -364,54 +362,51 @@ const AddCar = () => {
                                 <Form.Control defaultValue={monthly} type="number" onChange={(e) => setMonthly(e.target.value)} placeholder="$"  required/>
                             </Form.Group>
                         </Row>
-                        <div className="mt-4" onClick={handleCreate}>
-                            <MainButton name={(id? 'Update': 'Add') + ' car'}/>
-                        </div>
                     </Form>
                 </div>
                 <div className={`${section === 'details'? 'hidden':'block'}`}>
                     <h2>Pictures</h2>
                     <p>Add the pictures here</p>
                     <hr/>       
-                            <Row className='drop-pic'>
-                                <Col md="3">
-                                    <Card>
-                                        <Card.Body>
-                                        <div
-                                            className="border border-primary rounded p-4 text-center flex justify-center items-center flex-col"
-                                            style={{ cursor: 'pointer' }}
-                                            onClick={openFiles}
-                                        >
-                                            <input
-                                                ref={imgRef}
-                                                type="file"
-                                                name="img"
-                                                id="inputImg"
-                                                onChange={handleImgChange}
-                                                style={{ display: "none" }}
-                                            />
-                                            <p>drop the picture here </p>
-                                            <p>click here to add picture</p>
-                                        </div>
-                                        </Card.Body>
-                                    </Card>
-                                        <div className='flex gap-3 w-screen mt-3'>
-                                        {selectedImage && (
-                                            selectedImage.map((e, i) => 
-                                            <div className="text-center" key={i}>
-                                                <div className="w-full w-full overflow-hidden">
-                                                    <Image src={e} thumbnail className='w-[450px] h-[300px]  object-cover'/>
-                                                </div>
-                                                <Button variant="danger" className="mt-2" onClick={() => removeImage(e)}>Delete</Button>
+                        <Row className='drop-pic'>
+                            <Col md="3">
+                                <Card>
+                                    <Card.Body>
+                                    <div
+                                        className="border border-primary rounded p-4 text-center flex justify-center items-center flex-col"
+                                        style={{ cursor: 'pointer' }}
+                                        onClick={openFiles}
+                                    >
+                                        <input
+                                            ref={imgRef}
+                                            type="file"
+                                            name="img"
+                                            id="inputImg"
+                                            onChange={handleImgChange}
+                                            style={{ display: "none" }}
+                                        />
+                                        <p>drop the picture here </p>
+                                        <p>click here to add picture</p>
+                                    </div>
+                                    </Card.Body>
+                                </Card>
+                                    <div className='flex gap-3 w-screen mt-3'>
+                                    {selectedImage && (
+                                        selectedImage.map((e, i) => 
+                                        <div className="text-center" key={i}>
+                                            <div className="w-[200px] h-[200px] overflow-hidden">
+                                                <Image src={e} thumbnail className='w-full h-full object-cover'/>
                                             </div>
-                                            )
-                                        )}
+                                            <Button variant="danger" className="mt-2" onClick={() => removeImage(e)}>Delete</Button>
                                         </div>
-                                </Col>
-                            </Row>
-                            <div className='mt-4' onClick={handleAddPics}>
-                                <MainButton name={(id? 'Update': 'Add') + ' the Pictures'}/>
-                            </div>
+                                        )
+                                    )}
+                                    </div>
+                            </Col>
+                        </Row>
+                        <div className='mt-4' onClick={handleAddPics}>
+                            <MainButton name={(id? 'Update': 'Add') + ' the Pictures'}/>
+                        </div>
                     </div>
             </div>
         </DashBoard>

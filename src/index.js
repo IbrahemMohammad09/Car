@@ -7,17 +7,17 @@ import { I18nextProvider } from 'react-i18next';
 import './i18n';
 import { LanguageContextProvider } from './context/LanguageContext';
 import { BrowserRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-bootstrap';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <I18nextProvider i18n={i18n}> */}
+      <ToastContainer/>
       <LanguageContextProvider>
         <BrowserRouter>
           <App />
         </BrowserRouter>
       </LanguageContextProvider>
-    {/* </I18nextProvider> */}
   </React.StrictMode>
 );
 
