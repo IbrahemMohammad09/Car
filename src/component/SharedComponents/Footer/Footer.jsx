@@ -97,12 +97,11 @@ const Footer = () => {
                 </div>
             </div>
             <div className="border-t-[1px] border-solid border-[#ccc] mt-[55px] max-[500px]:text-center">
-            <p className="my-[36px] text-[15px] leading-[27.75px] font-normal container mx-auto">
+            <p className="my-[36px] text-[15px] leading-[27.75px] font-normal container mx-auto text-center" dir="ltr">
                 <a target="_blank" href="https://sparkengdev.com/" className="no-underline text-black">
                     © 2024 Powered by SPARK. All rights reserved.
                 </a>
             </p>
-
             </div>
         </footer>
     )

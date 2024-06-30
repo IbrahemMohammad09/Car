@@ -2,7 +2,9 @@ import { FaSearch } from "react-icons/fa"
 
 const HeaderDash = () => {
     return (
-        <div className="fixed top-0 left-[50%] translate-x-[-50%] mt-5 flex justify-center gap-[400px] container mx-auto items-center z-50">
+        <div className="fixed top-0 left-[100px] flex justify-between mx-auto items-center z-50 bg-white shadow-md px-[40px] py-2 pt-5" style={{
+            width: "calc(100% - 100px)"
+        }}>
             <h1 className="text-[2rem]">Dashboard</h1>
             <div className="flex rounded-md justify-center items-center gap-2 ps-2 bg-neutral-200">
                 <FaSearch className="cursor-pointer"/>
