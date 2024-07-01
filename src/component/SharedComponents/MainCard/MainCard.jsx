@@ -38,7 +38,7 @@ const MainCard = ( { pictures, name, daylyPrice, monthlyPrice, weeklyPrice, id }
                 <div className="w-full relative border-b-[1px] border-__brown border-solid">
                     <Slider ref={sliderRef} {...settings} className="p-1">
                         {pictures?.map((e, i) => <div key={i} className="h-[300px]">
-                            <img src={'http://195.110.58.11:4000/'+e} alt={name + '-slide-' + (i+1)} className="w-full h-full"/>
+                            <img src={e} alt={name + '-slide-' + (i+1)} className="w-full h-full"/>
                         </div>)}
                     </Slider>
                     <div className="flex justify-center items-center gap-[2px] absloute bottom-[0] z-[10] mb-1">
@@ -63,7 +63,7 @@ const MainCard = ( { pictures, name, daylyPrice, monthlyPrice, weeklyPrice, id }
                 <div className="flex flex-wrap justify-center items-start gap-[2px]">
                     <a href={`https://wa.me/${phone}`}  className="flex flex-[30%] py-[5px] justify-center items-center gap-[4px] text-white bg-__brown no-underline duration-300 hover:translate-y-[10%] "><FaWhatsapp/>Whats app</a>
                     <a href={`tel:${phone}`} className="flex flex-[30%] py-[5px] justify-center items-center gap-[4px] text-white bg-__brown no-underline duration-300 hover:translate-y-[10%] "><FaPhone/>Call us</a>
-                    <a href={`/book-car/${id}`} className="flex flex-[30%] py-[5px] justify-center items-center gap-[4px] text-white bg-__brown no-underline duration-300 hover:translate-y-[10%] "><FaPhone/>Book the car</a>
+                    <a href={`/book-car/${id}`} className="flex flex-[30%] py-[5px] justify-center items-center gap-[4px] text-white bg-__brown no-underline duration-300 hover:translate-y-[10%] "><FaPhone/>Book</a>
                 </div>
             </div>
         </div>

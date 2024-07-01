@@ -124,11 +124,11 @@ function BookCar (){
                 <Row>
                     <Col>
                         <ScrollAnimation animateIn="slideInLeft" animateOnce={false}>
-                        <img src={'http://195.110.58.11:4000/'+car.pictures[0]} className='main-img' alt={car.name} />
+                        <img src={car.pictures[0]} className='main-img' alt={car.name} />
                         <div className="image-gallery">
                             {car.pictures.map((car, i) => ( i !== 0 &&
                                 <div key={i} className="image-container">
-                                    <img src={'http://195.110.58.11:4000/'+car} alt={`Car ${car.id}`} className="gallery-image" />
+                                    <img src={car} alt={`Car ${car.id}`} className="gallery-image" />
                                 </div>
                             ))}
                         </div>
@@ -140,7 +140,7 @@ function BookCar (){
                         <h2>{car && car?.description[language]}</h2>
                         <Row >
                             <Col className='row-details' >
-                                <p><span>Category</span>{car.category.language}</p>
+                                <p><span>Category</span>{car.category}</p>
                                 <p><span>Gear Box</span>{car.gear}</p>
                                 <p><span>Brand</span>{car.brand}</p>
                                 <p><span>Model</span>{car.model}</p>
@@ -163,6 +163,10 @@ function BookCar (){
                     </ScrollAnimation>
                     </Col>
                 </Row>
+                <div className='car-details'>
+                    <span>Description</span>
+                    <p>{car.description[language]}</p>
+                </div>
                 <ScrollAnimation animateIn="slideInUp" animateOnce={false}>
                     <MainTitle title={Book} />
                     <Container>

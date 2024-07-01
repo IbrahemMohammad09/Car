@@ -35,6 +35,7 @@ const ShowCars = () => {
         <DashBoard>
             <h1 className="mb-5 underline">Cars</h1>
             <Loading loading={loading} style={'absolute left-[50%] top-[50%] translate-x-[-50%]'}/>
+            {!loading && cars && cars?.length==0 && <h2>No Cars Yet</h2>}
             <div className="grid grid-cols-2 min-[1200px]:grid-cols-3 gap-5">
                 {!loading && cars && cars?.map((car, i) => <CarCard key={i} car={car} setDelete={setDelete}/>)}
             </div>

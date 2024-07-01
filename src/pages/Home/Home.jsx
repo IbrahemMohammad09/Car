@@ -255,7 +255,7 @@ const Home = () => {
             <div ref={elementRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] ${isVisible && 'animate-left'}`}>
                 {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer ${brand === e.name? 'scale-95': 'scale-100'}`} onClick={() => setBrand(e.name)}>
                     <div className="w-[100px] h-[100px]">
-                        <img src={'http://195.110.58.11:4000/'+e.picture} onClick={()=>{navigate('/search/'+e.name)}} alt={e.name+' brand'} className="w-full h-full object-cover"/>
+                        <img src={e.picture} onClick={()=>{navigate('/search/'+e.name)}} alt={e.name+' brand'} className="w-full h-full object-cover"/>
                     </div>
                     <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
                 </div>)}

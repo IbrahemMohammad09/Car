@@ -27,7 +27,6 @@ const AddCar = () => {
     const [updateImgs, setUpdateImgs] = useState([]);
 
     const [selectedImage, setSelectedImage] = useState([]);
-    const [imgs, setImgs] = useState([]);
 
     const imgRef = useRef(null);
 
@@ -35,23 +34,20 @@ const AddCar = () => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
             const imageUrl = URL.createObjectURL(file);
-            setSelectedImage(prev => [...prev, imageUrl]);
-            setImgs(prev => [...prev, file])
+            setSelectedImage(prev => [...prev, {file, imageUrl}]);
         }
     };
 
     const removeImage = (e) => {
-        setSelectedImage(selectedImage.filter(i => i !== e));
-        setImgs(imgs.filter(i => i !== e))
+        setSelectedImage(selectedImage.filter(i => i.imageUrl !== e));
         setUpdateImgs(updateImgs.filter(i => i !== e))
         setPictures(pictures.filter(i => i !== e))
-        console.log (imgs)
     };
 
     const handleAddPics = () => {
         const form = new FormData();
 
-        imgs.forEach((file) => {
+        selectedImage.forEach(({file}) => {
             form.append('pictures', file);
         });
 
@@ -63,7 +59,7 @@ const AddCar = () => {
             .then(res => {
                 if(res?.data?.state === 'success') {
                     if(id) {
-                        setPictures([...updateImgs, res.data.paths]);
+                        setUpdateImgs(prev => [...prev, ...res.data.paths]);
                     } else {
                         setPictures(res.data.paths);
                     }
@@ -105,7 +101,6 @@ const AddCar = () => {
                     setName(res?.data?.car.name);
                     setSeatNumber(+res?.data?.car.seatNumber);
                     setWeekly(res?.data?.car.price.weekly);
-                    setSelectedImage(res.data.car.pictures.map(e => 'http://195.110.58.11/'+e));
                     setUpdateImgs(res?.data?.car.pictures);
                 })
                 .catch(err => {
@@ -123,7 +118,7 @@ const AddCar = () => {
             name, 
             brand, 
             category,
-            pictures,
+            pictures: id? updateImgs: pictures,
             price_monthly: monthly, 
             price_dayly: dayly,
             price_weekly: weekly, 
@@ -137,9 +132,11 @@ const AddCar = () => {
             color
         }
 
-        console.log(pictures);
-
         if(!id) {
+            if(pictures.length == 0) {
+                return toast.error("You must insert one picture at least");
+            }
+
             axios.post(API.POST.CAR, data,  {
                 headers: {
                     'Authorization': 'Bearer ' + token,
@@ -197,15 +194,6 @@ const AddCar = () => {
     const [brandd , setBrandd] = useState("select a brand")
     const [categoryy,setCategoryy] = useState("select a category")
     const [gearr,setGearr] = useState("select a gear")
-    const [Brands , setBrands] = useState([
-        { id: 1, name: 'BMW' },
-        { id: 2, name: 'Audi' },
-    ]);
-    const [selectedFile, setSelectedFile] = useState(null);
-
-    const handleDelete = (id) => {
-        setBrands(Brands.filter(Brand => Brand.id !== id));
-    };
 
     const gearSelect = (eventKey) => {
         setGearr(eventKey);
@@ -220,13 +208,6 @@ const AddCar = () => {
     const brandSelect = (eventKey) => {
         setBrandd(eventKey);
         setBrand(eventKey);
-    };
-
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            setSelectedFile(file);      
-        }
     };
 
     const [allBrands, setAllBrands] = useState([]);
@@ -371,6 +352,18 @@ const AddCar = () => {
                     <hr/>       
                         <Row className='drop-pic'>
                             <Col md="3">
+                            <div className='flex gap-3 w-screen mb-3'>
+                                    {updateImgs && (
+                                        updateImgs.map((e, i) => 
+                                        <div className="text-center" key={i}>
+                                            <div className="w-[170px] h-[170px] overflow-hidden">
+                                                <img src={e} thumbnail className='w-full h-full object-cover'/>
+                                            </div>
+                                            <Button variant="danger" className="mt-2" onClick={() => removeImage(e)}>Delete</Button>
+                                        </div>
+                                        )
+                                    )}
+                                    </div>
                                 <Card>
                                     <Card.Body>
                                     <div
@@ -395,10 +388,10 @@ const AddCar = () => {
                                     {selectedImage && (
                                         selectedImage.map((e, i) => 
                                         <div className="text-center" key={i}>
-                                            <div className="w-[200px] h-[200px] overflow-hidden">
-                                                <Image src={e} thumbnail className='w-full h-full object-cover'/>
+                                            <div className="w-[170px] h-[170px] overflow-hidden">
+                                                <img src={e.imageUrl} thumbnail className='w-full h-full object-cover'/>
                                             </div>
-                                            <Button variant="danger" className="mt-2" onClick={() => removeImage(e)}>Delete</Button>
+                                            <Button variant="danger" className="mt-2" onClick={() => removeImage(e.imageUrl)}>Delete</Button>
                                         </div>
                                         )
                                     )}

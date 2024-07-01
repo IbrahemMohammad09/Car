@@ -15,6 +15,9 @@ const AddBrand = () => {
     const [img, setImg] = useState();
 
     const imgRef = useRef();
+    
+    const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
 
     const openFiles = () => {
         return imgRef.current.click();;
@@ -32,32 +35,10 @@ const AddBrand = () => {
     const removeImage = (e) => {
         setSelectedImage('');
         setImg('')
+        setPicture("")
+        setSuccess("")
+        setError("")
     };
-
-    const handleAddPics = () => {
-        const form = new FormData();
-
-        form.append('pictures', img);
-
-        axios.post(API.POST.UPLOAD, form, {
-            headers: {
-                "Content-Type": 'multipart/form-data'
-            }
-        })
-            .then(res => {
-                if(res?.data?.state === 'success') {
-                    setPicture(res.data.paths);
-                    return toast.success('upload images successfully');
-                }
-            })
-            .catch(err => {
-                if(err?.response?.data?.message) {
-                    return toast.error(err?.response?.data?.message);
-                } else {
-                    return toast.error(err.message);
-                }
-            })
-    }
 
     const [section, setSection] = useState('Add');
 
@@ -83,6 +64,37 @@ const AddBrand = () => {
 
     const token = localStorage.getItem('token')
 
+
+    const handleAddPics = () => {
+        const form = new FormData();
+
+        form.append('pictures', img);
+
+        axios.post(API.POST.UPLOAD, form, {
+            headers: {
+                "Content-Type": 'multipart/form-data'
+            }
+        })
+            .then(res => {
+                if(res?.data?.state === 'success') {
+                    setSuccess(res.data.message)
+                    setError("")
+                    setPicture(res.data.paths);
+                    return toast.success('upload images successfully');
+                }
+            })
+            .catch(err => {
+                setSuccess("")
+                setError("")
+                if(err?.response?.data?.message) {
+                    setError(err?.response?.data?.message)
+                    return toast.error(err?.response?.data?.message);
+                } else {
+                    return toast.error(err.message);
+                }
+            })
+    }
+
     const deleteItem = async (id) => {
         axios.delete(API.DELETE.BRAND+id, {
             headers: {
@@ -96,7 +108,7 @@ const AddBrand = () => {
                 setShowAlert(false)
             })
             .catch(err => {
-                toast.error(err?.responser?.data?.message);
+                toast.error(err?.response?.data?.message);
                 setShowAlert(false)
             })
     }
@@ -107,25 +119,28 @@ const AddBrand = () => {
             picture: picture[0]
         }
 
-        // if(!id) {
             axios.post(API.POST.BRAND, data,{
                 headers: {
                     Authorization: 'Bearer '+ token
                 }
             })
                 .then(res => {
-                    console.log(res);
                     if(res.data.state === 'success') {
                         toast.success(res?.data?.message);
+                        setError("")
                         setName("")
                         setPicture("")
+                        setSuccess(res?.data?.message)
                         setSection('See')
                     }
                 })
                 .catch(err => {
-                    console.log(err);
+                    setError("")
+                    setSuccess("")
                     if(err.response.data.state === 'failed') {
-                        toast.error(err?.responser?.data?.message);
+                        console.log(1);
+                        setError(err?.response?.data?.message);
+                        toast.error(err?.response?.data?.message);
                     }
                 })
         // } else {
@@ -206,6 +221,8 @@ const AddBrand = () => {
                     <div className="mt-4" onClick={createBrand}>
                         <MainButton name={('Add') +' brand'}/>
                     </div>
+                    {error && <div className="p-2 px-3 mt-3 rounded-md bg-red-300 text-red-900">{error}</div>}
+                    {success && <div className="p-2 px-3 mt-3 rounded-md bg-green-300 text-green-900">{success}</div>}
             </div>
             <div className={section !== 'See'? 'hidden':'block'}>
                 <h2>All brands</h2>
@@ -213,13 +230,13 @@ const AddBrand = () => {
                 {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer relative`}>
                     <FaTrash className="text-white w-[30px] h-[30px] rounded-md absolute right-[-10px] top-[-10px] z-50 bg-red-600 text-[1rem] p-2" onClick={() => setShowAlert(e)}/>
                     <div className="w-[100px] h-[100px]">
-                        <img src={'http://195.110.58.11:4000/cars/'+e.picture} alt={e.name+' brand'} className="w-full h-full object-cover"/>
+                        <img src={e.picture} alt={e.name+' brand'} className="w-full h-full object-cover"/>
                     </div>
                     <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
                 </div>)}
                 </div>
             </div>
-            {showAlert && <div className='w-[400px] bg-white rounded-md absolute left-[50%] top-[20%] translate-x-[-50%] translate-y-[-50%] text-center px-3 py-5 z-40 border-[1px] border-__brown border-solid shadow-md shadow-[#ccc]'>
+            {showAlert && <div className='w-[400px] bg-white rounded-md absolute left-[50%] top-[20%] translate-x-[-50%] translate-y-[-50%] text-center px-3 py-5 z-50 border-[1px] border-__brown border-solid shadow-md shadow-[#ccc]'>
                 <p>Are you sure you want delete this brand:</p>
                 <p className='mt-[-10px] font-bold'>{showAlert.name}</p>
                 <div className='flex justify-center items-center gap-3'>
