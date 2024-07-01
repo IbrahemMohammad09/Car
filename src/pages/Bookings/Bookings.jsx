@@ -26,8 +26,7 @@ function Bookings() {
     })
       .then(res => {
         if(res?.data?.state === 'success') {
-          const sortedBookings = res?.data?.messages.sort((a, b) => new Date(b.start) - new Date(a.start));
-          setBookings(sortedBookings.reverse()); 
+          setBookings(res.data.messages);
         }
         setLoading(false);
       })
@@ -105,7 +104,7 @@ function Bookings() {
     <DashBoard>
     <ToastContainer/>
     <div className='dash-customer'>
-    <h1 className={'mb-5 underline'}>All Bookings</h1>
+      <h1 className={'mb-5 underline'}>All Bookings</h1>
       <Loading loading={loading} style={'absolute left-[50%] translate-x-[-50%]'}/>
       {!loading && bookings && <div className='customer-table'>
         <Table striped hover>
