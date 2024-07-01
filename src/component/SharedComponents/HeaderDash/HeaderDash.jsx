@@ -6,10 +6,10 @@ const HeaderDash = () => {
             width: "calc(100% - 100px)"
         }}>
             <h1 className="text-[2rem]">Dashboard</h1>
-            <div className="flex rounded-md justify-center items-center gap-2 ps-2 bg-neutral-200">
+            {/* <div className="flex rounded-md justify-center items-center gap-2 ps-2 bg-neutral-200">
                 <FaSearch className="cursor-pointer"/>
                 <input type="text" className="p-2 ps-1 px-3 bg-neutral-200 rounded-md accent-__brown placeholder:text-black" style={{all: 'unset'}} placeholder="Search on type"/>
-            </div>
+            </div> */}
         </div>
     )
 }
