@@ -18,7 +18,7 @@ import SideLink from "../../component/SharedComponents/sideLink/sideLink"
 import axios from "axios"
 import API from "../../constant/api"
 import ChangeTitle from "../../component/SharedComponents/ChangeTitle"
-import { Link, Navigate, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { MdDashboardCustomize } from "react-icons/md"
 import { useLanguageContext } from "../../hooks/useLanguageContext"
 

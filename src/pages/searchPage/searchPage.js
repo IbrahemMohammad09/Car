@@ -121,17 +121,8 @@ function SearchPage (){
 
     useEffect(()=>{
         setSearchType(lastWord);
-        console.log (brandsName);
-        console.log(category)
-        // if(brandsName.includes(lastWord)){
-        //     SetRes(filterCarsByBrand(cars,lastWord));
-        // }
-        // else
-        //  if (category.includes(lastWord)){
-        //     SetRes(filterCarsByCategory(cars,lastWord));
-        // }else{
-        //     SetRes(filterCars(cars,lastWord))
-        // }
+        // console.log (brandsName);
+        // console.log(category)
         if (brandsName.includes(lastWord)){
             SetRes(filterCarsByBrand(cars,lastWord));
         }else if(category.includes(lastWord)){
