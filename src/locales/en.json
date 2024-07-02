@@ -39,5 +39,9 @@
     "Phone":"Phone Nummber",
     "StartDate":"Start Date",
     "EndDate":"End Date",
-    "See":"See other cars"
+    "See":"See other cars",
+    "Category":"Category",
+    "Gearbox":"Gear Box",
+    "Brand":"Brand",
+    "Model":"Model"
 }

@@ -139,7 +139,7 @@ const Home = () => {
                 // setAgain(!again)
             })
     }, []);
-
+    const [allcars ,setAllcars] = useState([])
     const [cars, setCars] = useState([]);
 
     useEffect(() => {
@@ -151,11 +151,13 @@ const Home = () => {
                 if(res?.data.state === 'success') {
                     setLoading(false);
                     setCars(res?.data?.cars);
+                    setAllcars(cars.length > 3 ? cars.slice(0, 3) : cars);
                 }
             })
             .catch(err => {
                 setLoading(false);
             })
+    
     }, []);
 
     useEffect(() => {
@@ -264,10 +266,10 @@ const Home = () => {
             <MainTitle title={PopularCar}/>
             <div ref={elementRef3} className={`container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px] relative ${isVisible3 && 'animate-right'}`}>
                 <Loading loading={loading} style={'absolute left-[50%] translate-x-[-50%]'}/>
-                {cars && !loading && cars?.map((e, i) => <MainCard key={i} daylyPrice={e.price.dayly} monthlyPrice={e.price.monthly} weeklyPrice={e.price.weekly} name={e.name} pictures={e.pictures} id={e._id}/>)}
+                {allcars && !loading && allcars?.map((e, i) => <MainCard key={i} daylyPrice={e.price.dayly} monthlyPrice={e.price.monthly} weeklyPrice={e.price.weekly} name={e.name} pictures={e.pictures} id={e._id}/>)}
             </div>
             <div className={`mx-auto text-center w-fit ${loading? 'mt-[200px]': 'mt-[40px]'}`}>
-                <MainButton name={LoadMore}/>
+                <MainButton name={LoadMore} url={"/search/:name"}/>
             </div>
 
             <MainTitle title={WhyUs}/>

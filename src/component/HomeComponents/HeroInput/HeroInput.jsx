@@ -30,12 +30,12 @@ const HeroInput = ( { setCars } ) => {
 
     // };
     const handleSearch = () => {
-        console.log(textInput === '');
+
         if (!textInput){
-            console.log(1);
+
             navigate("/")
         }else{
-            console.log(2);
+
             navigate("/search/"+textInput);
         }
         

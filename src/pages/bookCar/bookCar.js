@@ -140,20 +140,23 @@ function BookCar (){
                         <h2>{car && car?.description[language]}</h2>
                         <Row >
                             <Col className='row-details' >
-                                <p><span>Category</span>{car.category}</p>
-                                <p><span>Gear Box</span>{car.gear}</p>
-                                <p><span>Brand</span>{car.brand}</p>
-                                <p><span>Model</span>{car.model}</p>
+                                <p><span>{t("Category")}</span>{car.category}</p>
+                                <p><span>{t("Gearbox")}</span>{car.gear}</p>
+                                <p><span>{t("Brand")}</span>{car.brand}</p>
+                                <p><span>{t("Model")}</span>{car.model}</p>
+                                
                             </Col>
                             <Col>
                                 <p><span>Seats</span>{car.seatNumber}</p>
-                                {/* <p><span>Gear Box</span>{car.gear}</p> */}
+
                                 <p><span>Speed</span>{car.topSpeed}</p>
                                 <p><span>Engine cylinders</span>{car.horse}</p>
+                                
                             </Col>
-                            <hr/>  
+                            
                         </Row>
                         <Row>
+                        {/* <hr/>  */}
                             <Col className='row-details'>
                                 <p><span>Daily</span>{car.price.dayly} AUD</p>
                                 <p><span>Monthly</span>{car.price.monthly} AUD</p>
@@ -163,10 +166,10 @@ function BookCar (){
                     </ScrollAnimation>
                     </Col>
                 </Row>
-                <div className='car-details'>
+                {/* <div className='car-details'>
                     <span>Description</span>
                     <p>{car.description[language]}</p>
-                </div>
+                </div> */}
                 <ScrollAnimation animateIn="slideInUp" animateOnce={false}>
                     <MainTitle title={Book} />
                     <Container>
