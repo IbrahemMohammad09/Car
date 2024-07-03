@@ -20,14 +20,12 @@ const ShowCars = () => {
         })
             .then(res => {
                 if(res?.data?.state === 'success') {
-                    console.log(res.data.cars);
                     setLoading(false);
                     setCars(res?.data?.cars);
                     setTotal(res?.data?.total);
                 }
             })
             .catch(err => {
-                console.log(err);
                 setLoading(false);
             })
     }, [isDelete, page]);

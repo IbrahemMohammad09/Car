@@ -43,12 +43,17 @@ function CarCard ({car, setDelete}){
                     <h1 className='text-[1rem]'>{car.name}</h1>
                     <h2 className='text-[.8rem]'>{car.category}</h2>
                 </div>
-                <Link to={'/dashboard/edit/'+car._id}>
-                    <BiEditAlt className='duration-300 hover:scale-110 cursor-pointer text-[1.5rem] text-green-700'/>
-                </Link>
+                <div className='flex justify-center items-center gap-3'>
+                    <div className='flex justify-center items-center gap-2 duration-300 hover:scale-110 cursor-pointer' onClick={() => handleDelete(car)}>
+                        <FaTrash className='text-red-600'/>
+                    </div>
+                    <Link to={'/dashboard/edit/'+car._id}>
+                        <BiEditAlt className='duration-300 hover:scale-110 cursor-pointer text-[1.5rem] text-green-700'/>
+                    </Link>
+                </div>
             </div>
             <div className='w-full  rounded-md overflow-hidden hover:opacity-80 duration-500'>
-                <Link className='cursor-pointer no-underline text-black' to={'/book-car/'+car._id}>
+                <Link className='cursor-pointer no-underline text-black flex justify-center items-center' to={'/book-car/'+car._id}>
                     <img className='w-[450px] h-[300px] object-cover' src={car.pictures[0]} alt={car.name}/>
                 </Link>
             </div>
@@ -68,9 +73,6 @@ function CarCard ({car, setDelete}){
                 <div className='flex justify-center items-center gap-2'>
                     <FaDollarSign className='text-purple-600'/>
                     <span>{car.price.dayly} /d</span>
-                </div>
-                <div className='flex justify-center items-center gap-2 duration-300 hover:scale-110 cursor-pointer' onClick={() => handleDelete(car)}>
-                    <FaTrash className='text-red-600'/>
                 </div>
             </div>
             

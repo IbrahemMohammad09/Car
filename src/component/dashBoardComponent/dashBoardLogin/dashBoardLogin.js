@@ -45,7 +45,7 @@ function DashboardLogin(){
 
     return(
         <div className='dashboard-login relative' >
-            <Loading loading={loading}/>
+            <Loading loading={loading} style={'absolute left-[50%] translate-x-[-50%]'}/>
             <h1 className='welcome'>Welcome</h1>
             <form onSubmit={handleLogin}>
                 <div className='input-container'>
