@@ -1,5 +1,5 @@
 // export const url = 'http://meirentacar.com/api';
-export const url = 'https://superquizgame.com:4000/api';
+export const url = 'https://superquizgame.com/api';
 // export const url = 'http://localhost:4000/api'
 
 const API = {
