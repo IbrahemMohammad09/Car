@@ -8,9 +8,6 @@ import axios from "axios"
 import API from "../../constant/api"
 import MainCard from '../../component/SharedComponents/MainCard/MainCard';
 import SideLink from '../../component/SharedComponents/sideLink/sideLink';
-import MainButton from '../../component/SharedComponents/MainButton/MainButton';
-import { t } from 'i18next';
-import Loading from '../../component/SharedComponents/Loading/Loading';
 import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
 
 function SearchPage (){
@@ -97,16 +94,16 @@ function SearchPage (){
 
     const filterCarsByBrand = (cars, brand) => {
         return cars?.filter(car => car.brand === brand);
-
     };
+
     const handleClick=(barndName)=>{
         SetRes(filterCarsByBrand(cars,barndName));
     }
 
     const filterCarsByCategory = (cars, category) => {
         return cars.filter(car => car.category === category);
-
       };
+    
     const filterCars = (cars, name) => {
       return cars.filter(car => 
         car.name === name
@@ -123,13 +120,43 @@ function SearchPage (){
         setSearchType(lastWord);
         // console.log (brandsName);
         // console.log(category)
-        if (brandsName.includes(lastWord)){
-            SetRes(filterCarsByBrand(cars,lastWord));
-        }else if(category.includes(lastWord)){
-            SetRes(filterCarsByCategory(cars,lastWord));
-        }else{
-            SetRes(filterCars(cars,lastWord))
+
+        // axios.get(API.GET.ALLBRANDS, {
+        //     'Contet-Type': 'application/json',
+        // })
+        //     .then(res => {
+        //         if(res?.data.state === 'success') {
+        //             setBrands(res?.data?.brands);
+        //             brands.forEach(e => setBrandsId(prev => [...prev, e._id]))
+        //             const names = brands.map(brand => brand.name);
+        //             setBrandsName (names);
+        //         }
+        //     })
+        //     .catch(err => {
+        //         // setAgain(!again)
+        //     })
+
+        switch (true) {
+            case brands.includes(lastWord):
+                SetRes(filterCarsByBrand(cars, lastWord));
+                break;
+            case category.includes(lastWord):
+                SetRes(filterCarsByCategory(cars, lastWord));
+                break;
+            case !brands.includes(lastWord) && !category.includes(lastWord):
+                SetRes(filterCars(cars, lastWord));
+                break;
         }
+        
+
+        // if (category.includes(lastWord)){
+        //     SetRes(filterCarsByCategory(cars,lastWord));
+        // }
+        //  if(brandsName.includes(lastWord)){
+        //     SetRes(filterCarsByBrand(cars,lastWord));
+        // }else{
+        //     SetRes(filterCars(cars,lastWord))
+        // }
 
     },[pathname])
 
