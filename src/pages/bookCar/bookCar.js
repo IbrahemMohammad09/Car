@@ -174,8 +174,8 @@ function BookCar (){
                     <MainTitle title={Book} />
                     <Container>
                         <form>
-                            <Row>
-                                <Col className='book-form' >
+                            <Row dir={language === "AR"? 'rtl':'ltr'}>
+                                <Col className='book-form flex items-center flex-col'>
                                     <div>
                                         <label htmlFor="name">{t("Name")}</label>
                                         <input className="ps-3 py-3" id="name" type='text' placeholder='Your name' value={name} onChange={(e) => setName(e.target.value)}/>
@@ -185,7 +185,7 @@ function BookCar (){
                                         <input className="ps-3 py-3" id="startdate" type='date' value={startDate} onChange={(e) => setStartDate(e.target.value)}/>
                                     </div>
                                 </Col>
-                                <Col className='book-form'>
+                                <Col className='book-form flex items-center flex-col'>
                                     <div>
                                         <label htmlFor="phonenumber">{t("Phone")}</label>
                                         <input className="ps-3 py-3" id="phonenumber" type='text' placeholder='Your phone number' value={phone} onChange={(e) => setPhone(e.target.value)}/>

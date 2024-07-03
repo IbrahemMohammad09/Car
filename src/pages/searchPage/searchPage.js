@@ -167,7 +167,7 @@ function SearchPage (){
     return (
         <div className='relative w-full'>
             <Hero />
-            <div className="mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] animate-left">
+            <div className="mx-auto mb-[7rem] container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] animate-left">
                 {brands && brands?.map((e, i) => <div key={i} className="border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer scale-100" >
                         <div className="w-[100px] h-[100px]">
                             <img src={e.picture} onClick={()=>{handleClick(e.name)}} alt={e.name+' brand'} className="w-full h-full object-cover"/>

@@ -28,7 +28,7 @@ const Header = () => {
     return (
         <div 
             dir={language === 'AR'? 'rtl': 'ltr'}
-            className="bg-__opacity_white flex justify-center rounded-[44px] absolute top-[20px] min-[991px]:top-[98px] left-[50%] translate-x-[-50%] overflow-hidden shadow-sm shadow-[#ccc]">
+            className="bg-__opacity_white flex justify-center rounded-[44px] absolute top-[1rem] min-[1900px]:top-[4rem] left-[50%] translate-x-[-50%] overflow-hidden shadow-sm shadow-[#ccc]">
             <Link className={`text-white text-nowrap no-underline duration-300 hover:bg-__brown py-[13px] ps-[32px] pe-[16px] ${!pathname?.includes('about-us')? 'bg-__brown': ''}`} to={'/'}>{t("NavHome")}</Link>
             <Link className={`text-white text-nowrap no-underline duration-300 hover:bg-__brown py-[13px] pe-[16px] ps-[16px] ${pathname?.includes('about-us')? 'bg-__brown': ''}`} to={'/about-us'}>{t("NavAboutUS")}</Link>
             <Link className="text-white text-nowrap no-underline duration-300 hover:bg-__brown py-[13px] pe-[32px] ps-[16px]" onClick={handleLanguageChange}>{language === 'EN'? 'AR':'أجنبي'}</Link>

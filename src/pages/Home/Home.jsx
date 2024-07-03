@@ -151,7 +151,7 @@ const Home = () => {
                 if(res?.data.state === 'success') {
                     setLoading(false);
                     setCars(res?.data?.cars);
-                    setAllcars(cars.length > 3 ? cars.slice(0, 3) : cars);
+                    setAllcars(res?.data?.cars.length > 5? res?.data?.cars.slice(0, 5) : res?.data?.cars);
                 }
             })
             .catch(err => {
