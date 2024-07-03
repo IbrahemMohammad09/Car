@@ -44,10 +44,10 @@ function DashboardLogin(){
     }
 
     return(
-        <div className='dashboard-login relative' >
-            <Loading loading={loading} style={'absolute left-[50%] translate-x-[-50%]'}/>
+        <div className='dashboard-login relative'>
             <h1 className='welcome'>Welcome</h1>
             <form onSubmit={handleLogin}>
+            <Loading loading={loading} style={'absolute left-[50%] translate-x-[-50%] top-[50%]'}/>
                 <div className='input-container'>
                     <label className='login-label'>Email</label><br></br>
                     <img className="email-icon" src={emailicon} alt={'email icon'}/>
