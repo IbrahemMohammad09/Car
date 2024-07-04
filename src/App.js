@@ -41,7 +41,6 @@ function App() {
           <Route path='/dashboard/edit/:id' element={token? <AddCar />: <Navigate to="/"/>} />
           <Route path='*' element={<Navigate to={'/error'} />} />
           <Route path='/error' element={<ErrorPage />} />    
-          {/* <Route path='/search' element={<SearchPage />} /> */}
           <Route path='/search/:name' element={<SearchPage />} />
           <Route path='/search' element={<SearchPage />} />
         </Routes>

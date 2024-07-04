@@ -17,8 +17,37 @@ import Loading from '../../component/SharedComponents/Loading/Loading';
 import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
 import { ToastContainer, toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { FaCar } from 'react-icons/fa'
 
 function BookCar (){
+    const carsHero = [
+        {
+            title: 'Sport',
+            icon: <FaCar/>,
+            url:"/search"
+        },
+        {
+            title: 'Luxury',
+            icon: <FaCar/>,
+            url:"/search"
+        },
+        {
+            title: 'Family',
+            icon: <FaCar/>,
+            url:"/search"
+        },
+        {
+            title: 'Economy',
+            icon: <FaCar/>,
+            url:"/search"
+        },
+        {
+            title: 'Convertible',
+            icon: <FaCar/>,
+            url:"/search"
+        }
+      ]
+
     const [t ,il8n] = useTranslation();
     const carDetail = t("carDetail");
     const Book = t("BookYourCar");
@@ -114,7 +143,7 @@ function BookCar (){
         <div className='overflow-x-hidden'>
             <ToastContainer/>
             <ChangeTitle title={"MEI | Book Your Car"} />
-            <Hero/>
+            <Hero carsHero={carsHero}/>
             <MainTitle title={carDetail} />
             <Container>
                 <Loading loading={loading1} style={'absolute left-[50%] translate-x-[-50%]'}/>

@@ -296,7 +296,7 @@ const AddCar = () => {
                                     <Dropdown.Item eventKey="Luxury">Luxury</Dropdown.Item>
                                     <Dropdown.Item eventKey="Family">Family</Dropdown.Item>
                                     <Dropdown.Item eventKey="Economy">Economy </Dropdown.Item>
-                                    <Dropdown.Item eventKey="Economy">Convertible </Dropdown.Item>
+                                    <Dropdown.Item eventKey="Convertible">Convertible </Dropdown.Item>
                                 </DropdownButton>
                             </Form.Group>
                         </Row>
