@@ -12,8 +12,35 @@ import SideLink from '../../component/SharedComponents/sideLink/sideLink';
 import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
 import { useTranslation } from 'react-i18next';
 import { useLanguageContext } from '../../hooks/useLanguageContext';
+import { FaCar } from 'react-icons/fa'
 
-
+const carsHero = [
+  {
+      title: 'Sport',
+      icon: <FaCar/>,
+      url:"/search"
+  },
+  {
+      title: 'Luxury',
+      icon: <FaCar/>,
+      url:"/search"
+  },
+  {
+      title: 'Family',
+      icon: <FaCar/>,
+      url:"/search"
+  },
+  {
+      title: 'Economy',
+      icon: <FaCar/>,
+      url:"/search"
+  },
+  {
+      title: 'Convertible',
+      icon: <FaCar/>,
+      url:"/search"
+  }
+]
 
 function AboutUs() {
   const [t,il8n]=useTranslation();
@@ -23,7 +50,7 @@ function AboutUs() {
     return (
       <div>
         <ChangeTitle title={"MEI | About Us"} />
-        <Hero />
+        <Hero carsHero={carsHero}/>
         <Container className='about-info' dir={language === 'AR'? 'rtl':'ltr'}>
           <Row className='max-[600px]:text-center'>
             <Col lg={6}>
