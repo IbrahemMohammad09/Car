@@ -9,8 +9,41 @@ import API from "../../constant/api"
 import MainCard from '../../component/SharedComponents/MainCard/MainCard';
 import SideLink from '../../component/SharedComponents/sideLink/sideLink';
 import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
+import { FaCar } from 'react-icons/fa'
+
+
 
 function SearchPage (){
+    
+const carsHero = [
+    {
+        title: 'Sport',
+        icon: <FaCar/>,
+        url:"/search/Sport"
+    },
+    {
+        title: 'Luxury',
+        icon: <FaCar/>,
+        url:"/search/Luxury"
+    },
+    {
+        title: 'Family',
+        icon: <FaCar/>,
+        url:"/search/Family"
+    },
+    {
+        title: 'Economy',
+        icon: <FaCar/>,
+        url:"/search/Economy"
+    },
+    {
+        title: 'Convertible',
+        icon: <FaCar/>,
+        url:"/search/Convertible"
+    }
+]
+
+
     const [t , il8n] = useTranslation();
     const seeButton = t("seeAllCar");
     const [searchType ,setSearchType] = useState ();
@@ -62,34 +95,6 @@ function SearchPage (){
                 // setAgain(!again)
             })
     }, []);
-
-    // useEffect(() => {
-    //     setLoading(true);
-    //     axios.get(API.GET.ALLACTIVECARS+page, {
-    //         'Contet-Type': 'application/json',
-    //     })
-    //         .then(res => {
-    //             console.log(res);
-    //             if(res?.data.state === 'success') {
-                    // setCars(res?.data?.cars);
-                    // if (category.includes(searchType)){
-                    //     console.log(1);
-                    //     SetRes(filterCarsByCategory(cars,searchType));
-                    // }else if(brandsId.includes(searchType)){
-                    //     console.log(2);
-                    //     SetRes(filterCarsByBrand(cars,searchType))
-                    // }else {
-                    //     console.log(3);
-                    //     SetRes(filterCarsByName(cars, searchType))
-                    // }
-                    // SetRes(filterCars(cars, searchType));
-                    // setLoading(false);
-    //             }
-    //         })
-    //         .catch(err => {
-    //             setLoading(false);
-    //         })
-    // }, [page, pathname, searchType]);
     
 
     const filterCarsByBrand = (cars, brand) => {
@@ -149,15 +154,6 @@ function SearchPage (){
         }
         
 
-        // if (category.includes(lastWord)){
-        //     SetRes(filterCarsByCategory(cars,lastWord));
-        // }
-        //  if(brandsName.includes(lastWord)){
-        //     SetRes(filterCarsByBrand(cars,lastWord));
-        // }else{
-        //     SetRes(filterCars(cars,lastWord))
-        // }
-
     },[pathname])
 
     const showAllCars =()=>{
@@ -166,7 +162,7 @@ function SearchPage (){
 
     return (
         <div className='relative w-full'>
-            <Hero />
+            <Hero carsHero={carsHero}/>
             <div className="mx-auto mb-[7rem] container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] animate-left">
                 {brands && brands?.map((e, i) => <div key={i} className="border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer scale-100" >
                         <div className="w-[100px] h-[100px]">

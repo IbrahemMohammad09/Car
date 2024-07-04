@@ -43,6 +43,7 @@ function App() {
           <Route path='/error' element={<ErrorPage />} />    
           {/* <Route path='/search' element={<SearchPage />} /> */}
           <Route path='/search/:name' element={<SearchPage />} />
+          <Route path='/search' element={<SearchPage />} />
         </Routes>
   );
 }

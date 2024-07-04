@@ -7,29 +7,35 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const cars = [
-    {
-        title: 'Sport',
-        icon: <FaCar/>
-    },
-    {
-        title: 'Luxury',
-        icon: <FaCar/>
-    },
-    {
-        title: 'Family',
-        icon: <FaCar/>
-    },
-    {
-        title: 'Economy',
-        icon: <FaCar/>
-    },
-    {
-        title: 'Convertible',
-        icon: <FaCar/>
-    }
-]
-const   Hero = () => {
+// const cars = [
+//     {
+//         title: 'Sport',
+//         icon: <FaCar/>,
+//         url:"/search"
+//     },
+//     {
+//         title: 'Luxury',
+//         icon: <FaCar/>,
+//         url:"/search"
+//     },
+//     {
+//         title: 'Family',
+//         icon: <FaCar/>,
+//         url:"/search"
+//     },
+//     {
+//         title: 'Economy',
+//         icon: <FaCar/>,
+//         url:"/search"
+//     },
+//     {
+//         title: 'Convertible',
+//         icon: <FaCar/>,
+//         url:"/search"
+//     }
+// ]
+const   Hero = (props) => {
+    const cars =props.carsHero
     const navigate = useNavigate();
     const [t , il8n] = useTranslation();
     
@@ -43,7 +49,7 @@ const   Hero = () => {
                 <HeroInput/>
                 <h3 className='text-[15px] text-white font-normal mt-[20px]'>{t("HeroH3")}</h3>
                 <div className='flex justify-center items-center gap-[10px] flex-wrap'>
-                    {cars.map((e, i) => <div onClick={()=>{navigate('/search/'+e.title)}} key={i} className='bg-__opacity_white rounded-[44px] py-[13px] px-[31px] flex items-center gap-[8px] text-white duration-300 hover:bg-__brown cursor-pointer shadow-sm shadow-[#ccc] max-[600px]:py-2'>{e.icon} {e.title}</div>)}
+                    {props.carsHero.map((e, i) => <div onClick={()=>{navigate(e.url)}} key={i} className='bg-__opacity_white rounded-[44px] py-[13px] px-[31px] flex items-center gap-[8px] text-white duration-300 hover:bg-__brown cursor-pointer shadow-sm shadow-[#ccc] max-[600px]:py-2'>{e.icon} {e.title}</div>)}
                 </div>
             </div>
         </section>

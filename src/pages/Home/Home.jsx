@@ -21,7 +21,35 @@ import ChangeTitle from "../../component/SharedComponents/ChangeTitle"
 import { Link, useNavigate } from "react-router-dom"
 import { MdDashboardCustomize } from "react-icons/md"
 import { useLanguageContext } from "../../hooks/useLanguageContext"
+import { FaCar } from 'react-icons/fa'
 
+const carsHero = [
+    {
+        title: 'Sport',
+        icon: <FaCar/>,
+        url:"/search"
+    },
+    {
+        title: 'Luxury',
+        icon: <FaCar/>,
+        url:"/search"
+    },
+    {
+        title: 'Family',
+        icon: <FaCar/>,
+        url:"/search"
+    },
+    {
+        title: 'Economy',
+        icon: <FaCar/>,
+        url:"/search"
+    },
+    {
+        title: 'Convertible',
+        icon: <FaCar/>,
+        url:"/search"
+    }
+]
 
 const cards = [
     {
@@ -212,7 +240,7 @@ const Home = () => {
 
     return (
         <section className="min-h-screen w-full bg-white overflow-x-hidden">
-            <Hero/>
+            <Hero carsHero={carsHero}/>
             <ChangeTitle title={"MEI | Home"}/>
             {token && <Link to={'/dashboard'} className="fixed z-50 top-[20px] left-[20px] flex flex-[30%] py-[5px] justify-center items-center gap-[4px] border-[1px] border-solid border-__brown bg-white text-__brown no-underline shadow-[#ccc] duration-300 w-[120px] rounded-md hover:rounded-[30px]">
                 <MdDashboardCustomize/>

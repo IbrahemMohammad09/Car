@@ -13,22 +13,16 @@ const HeroInput = ( { setCars } ) => {
     const [t , il8n] = useTranslation();
 
     const make = t("HeroMakes");
-    // const model =t("HeroModel");
+
     const placeHolder = t("HeroPlaceHolder");
     const searchButton =t("HeroSearchButton");
 
     const [makeInput, setMakeInput] = useState('');
-    // const [modelInput, setModelInput] = useState('');
+
     const [textInput, setTextInput] = useState('');
     const navigate = useNavigate();    
     const [selectedValue, setSelectedValue] = useState('');
 
-    // const MakeInput = (value) => {
-    //     setMakeInput(value);
-    //     setSelectedValue(value)
-    //     setShow(false); 
-
-    // };
     const handleSearch = () => {
 
         if (!textInput){
