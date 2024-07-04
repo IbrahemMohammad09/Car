@@ -17,36 +17,39 @@ import Loading from '../../component/SharedComponents/Loading/Loading';
 import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
 import { ToastContainer, toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import { FaCar } from 'react-icons/fa'
+import { FaCar } from 'react-icons/fa';
+
+const carsHero = [
+    {
+        title: 'Sport',
+        icon: <FaCar/>,
+        url:"/search"
+    },
+    {
+        title: 'Luxury',
+        icon: <FaCar/>,
+        url:"/search"
+    },
+    {
+        title: 'Family',
+        icon: <FaCar/>,
+        url:"/search"
+    },
+    {
+        title: 'Economy',
+        icon: <FaCar/>,
+        url:"/search"
+    },
+    {
+        title: 'Convertible',
+        icon: <FaCar/>,
+        url:"/search"
+    }
+  ]
 
 function BookCar (){
-    const carsHero = [
-        {
-            title: 'Sport',
-            icon: <FaCar/>,
-            url:"/search"
-        },
-        {
-            title: 'Luxury',
-            icon: <FaCar/>,
-            url:"/search"
-        },
-        {
-            title: 'Family',
-            icon: <FaCar/>,
-            url:"/search"
-        },
-        {
-            title: 'Economy',
-            icon: <FaCar/>,
-            url:"/search"
-        },
-        {
-            title: 'Convertible',
-            icon: <FaCar/>,
-            url:"/search"
-        }
-      ]
+
+    
 
     const [t ,il8n] = useTranslation();
     const carDetail = t("carDetail");
