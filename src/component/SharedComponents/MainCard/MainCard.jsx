@@ -82,26 +82,26 @@ const MainCard = ( { pictures, name, daylyPrice, monthlyPrice, weeklyPrice, id }
                     </div>
                 </div> */}
 
-<div className="flex justify-center items-center gap-[8px] flex-wrap mb-2">
-    <div>
-        <div className="text-center text-[14px] md:text-[16px]"></div>
-        <div className="p-[4px] md:p-[6px] border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center text-[14px] md:text-[16px]">
-        Dayly  {daylyPrice} AED
-        </div>
-    </div>
-    <div>
-        <div className="text-center text-[14px] md:text-[16px]"></div>
-        <div className="p-[4px] md:p-[6px] border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center text-[14px] md:text-[16px]">
-        Monthly  {monthlyPrice} AED
-        </div>    
-    </div>
-    <div>
-        <div className="text-center text-[14px] md:text-[16px]"></div>
-        <div className="p-[4px] md:p-[6px] border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center text-[14px] md:text-[16px]">
-        Weekly {weeklyPrice} AED
-        </div>
-    </div>
-</div>
+                <div className="flex justify-center items-center gap-[8px] flex-wrap mb-2">
+                    <div>
+                        <div className="text-center text-[14px] md:text-[16px]"></div>
+                        <div className="p-[4px] md:p-[6px] border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center text-[14px] md:text-[16px]">
+                        Daily  {daylyPrice} AED
+                        </div>
+                    </div>
+                    <div>
+                        <div className="text-center text-[14px] md:text-[16px]"></div>
+                        <div className="p-[4px] md:p-[6px] border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center text-[14px] md:text-[16px]">
+                        Monthly  {monthlyPrice} AED
+                        </div>    
+                    </div>
+                    <div>
+                        <div className="text-center text-[14px] md:text-[16px]"></div>
+                        <div className="p-[4px] md:p-[6px] border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center text-[14px] md:text-[16px]">
+                        Weekly {weeklyPrice} AED
+                        </div>
+                    </div>
+                </div>
 
                 <div className="flex flex-wrap justify-center items-start gap-[2px]">
                     <a href={`https://wa.me/${phone}`}  className="flex flex-[30%] py-[5px] justify-center items-center gap-[4px] text-white bg-__brown no-underline duration-300 hover:translate-y-[10%] "><FaWhatsapp/>Whats app</a>
