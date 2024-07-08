@@ -7,7 +7,7 @@ import SideLink from '../../component/SharedComponents/sideLink/sideLink';
 import MainButton from '../../component/SharedComponents/MainButton/MainButton';
 import ScrollAnimation from 'react-animate-on-scroll';
 import '../../animate.css';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams,useLocation } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import API from '../../constant/api';
@@ -69,6 +69,9 @@ function BookCar (){
 
     const { id } = useParams();
 
+    const { pathname } = useLocation();
+
+
     const [car, setCar] = useState();
     const [other, setOther] = useState([]);
 
@@ -90,7 +93,7 @@ function BookCar (){
                     to('/error');
                 }
             })
-    }, []);
+    }, [pathname]);
 
     useEffect(() => {
         const handleScroll = () => {
