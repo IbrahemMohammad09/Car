@@ -3,7 +3,7 @@ import {createContext, useReducer} from "react";
 export const LanguageContext = createContext();
 
 const LanguageReducer = (state, action) => {
-    console.log(action.type);
+    // console.log(action.type);
     switch(action.type) {
         case "AR": 
             localStorage.setItem('language', 'AR');

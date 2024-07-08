@@ -48,13 +48,7 @@ const Footer = () => {
     const FooterTitle =t("FooterTitle");
 
     const work1=t("WorkTime1");
-    const work2=t("WorkTime2");
-    const work3=t("WorkTime3");
-    const arr3 = [
-        work1,
-        work2,
-        work3,
-    ]
+    
     const arr1 = [
         {
             title: home,
@@ -86,7 +80,10 @@ const Footer = () => {
                 <div className="flex flex-col gap-[33px] max-[500px]:items-center">
                     <div className="flex flex-col gap-[11px] max-[500px]:items-center">
                         <h1 className="text-__brown text-[1.6rem] font-medium leading-[24px]">{FooterTitle}</h1>
-                        {arr3.map((e, i) => <h2 key={i} className="font-normal leading-[27.75px] text-black text-[15px]">{e}</h2>)}
+                        {/* {arr3.map((e, i) => <h2 key={i} className="font-normal leading-[27.75px] text-black text-[15px]">{e}</h2>)} */}
+                        <h2 className="font-normal leading-[27.75px] text-black text-[15px]">
+                            {work1}
+                        </h2>
                     </div>
                     <div className="flex flex-col gap-[11px]">
                         <h1 className="text-__brown text-[1.6rem] font-medium leading-[24px]">{t("Contact")}</h1>
