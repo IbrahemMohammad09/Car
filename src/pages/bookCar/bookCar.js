@@ -76,6 +76,8 @@ function BookCar (){
     const [other, setOther] = useState([]);
 
     const elementRef = useRef(null)
+    
+    const [mainimg,setMainimg]= useState();
 
     useEffect(() => {
         setLoading1(true);
@@ -84,6 +86,7 @@ function BookCar (){
                 if(res?.data.state === 'success') {
                     setCar(res?.data?.car);
                     setOther(res?.data?.other?.otherCars);
+                    setMainimg(res?.data?.car.pictures[0]);
                     setLoading1(false);
                 }
             })
@@ -93,9 +96,14 @@ function BookCar (){
                     to('/error');
                 }
             })
+            
     }, [pathname]);
+    
 
     useEffect(() => {
+        
+
+
         const handleScroll = () => {
         const e1 = elementRef?.current?.getBoundingClientRect();
 
@@ -144,6 +152,11 @@ function BookCar (){
                 }
             })
     }
+    const handleImage = (image)=>{
+        setMainimg(image);
+    }
+    
+    
     
     return(
         <div className='overflow-x-hidden'>
@@ -159,20 +172,24 @@ function BookCar (){
                 <Row>
                     <Col>
                         <ScrollAnimation animateIn="slideInLeft" animateOnce={false}>
-                        <img src={car.pictures[0]} className='main-img' alt={car.name} />
+                        <img src={mainimg} className='main-img' alt={car.name} />
                         <div className="image-gallery">
-                            {car.pictures.map((car, i) => ( i !== 0 &&
+                            {car.pictures.map((car, i) => ( 
                                 <div key={i} className="image-container">
-                                    <img src={car} alt={`Car ${car.id}`} className="gallery-image" />
+                                    <img src={car} onClick={()=>{handleImage(car)}} alt={`Car ${car.id}`} className="gallery-image" />
                                 </div>
                             ))}
                         </div>
+                        <div className='car-details'>
+                            
+                        </div>
+                        
                         </ScrollAnimation>
                     </Col>
                     <Col className='car-details'>
                     <ScrollAnimation animateIn="slideInRight" animateOnce={false}>
                         <h1>{car && car?.name}</h1>
-                        <h2>{car && car?.description[language]}</h2>
+                        
                         <Row >
                             <Col className='row-details' >
                                 <p><span>{t("Category")}</span>{car.category}</p>
@@ -198,6 +215,7 @@ function BookCar (){
                             </Col>
                             <Col><p><span>Weekly</span>{car.price.weekly} AUD</p></Col>
                         </Row>
+                        <h2>{car && car?.description[language]}</h2>
                     </ScrollAnimation>
                     </Col>
                 </Row>

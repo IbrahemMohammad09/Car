@@ -52,7 +52,7 @@
 }
 .car-details h2{
     width: 444px;
-    height: 120px;
+    /* height: 120px; */
     left: 24px;
     top: 128px;
     font-family: 'Plus Jakarta Sans';
