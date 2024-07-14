@@ -229,50 +229,50 @@ const Home = () => {
     
     }, []);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const e1 = elementRef?.current?.getBoundingClientRect();
-            const e2 = elementRef1?.current?.getBoundingClientRect();
-            const e3 = elementRef2?.current?.getBoundingClientRect();
-            const e4 = elementRef3?.current?.getBoundingClientRect();
-            const e5 = elementRef4?.current?.getBoundingClientRect();
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //         const e1 = elementRef?.current?.getBoundingClientRect();
+    //         const e2 = elementRef1?.current?.getBoundingClientRect();
+    //         const e3 = elementRef2?.current?.getBoundingClientRect();
+    //         const e4 = elementRef3?.current?.getBoundingClientRect();
+    //         const e5 = elementRef4?.current?.getBoundingClientRect();
 
-        const viewportHeight = window?.innerHeight;
-        if (e1.top <= viewportHeight / 1.1) {
-            setIsVisible(true);
-        } else {
-            setIsVisible(false);
-        }
+    //     const viewportHeight = window?.innerHeight;
+    //     if (e1.top <= viewportHeight / 1.1) {
+    //         setIsVisible(true);
+    //     } else {
+    //         setIsVisible(false);
+    //     }
 
-        if (e2.top <= viewportHeight / 1.1) {
-            setIsVisible1(true);
-        } else {
-            setIsVisible1(false);
-        }
+    //     if (e2.top <= viewportHeight / 1.1) {
+    //         setIsVisible1(true);
+    //     } else {
+    //         setIsVisible1(false);
+    //     }
 
-        if (e3.top <= viewportHeight / 1.1) {
-            setIsVisible2(true);
-        } else {
-            setIsVisible2(false);
-        }
+    //     if (e3.top <= viewportHeight / 1.1) {
+    //         setIsVisible2(true);
+    //     } else {
+    //         setIsVisible2(false);
+    //     }
 
-        if (e4.top <= viewportHeight / 1.1 && !loading) {
-            setIsVisible3(true);
-        } else {
-            setIsVisible3(false);
-        }
-        if (e5.top <= viewportHeight / 1.1) {
-            setIsVisible4(true);
-        } else {
-            setIsVisible4(false);
-        }
-    };
+    //     if (e4.top <= viewportHeight / 1.1 && !loading) {
+    //         setIsVisible3(true);
+    //     } else {
+    //         setIsVisible3(false);
+    //     }
+    //     if (e5.top <= viewportHeight / 1.1) {
+    //         setIsVisible4(true);
+    //     } else {
+    //         setIsVisible4(false);
+    //     }
+    // };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-        window.removeEventListener('scroll', handleScroll);
-    };
-    }, []);
+    // window.addEventListener('scroll', handleScroll);
+    // return () => {
+    //     window.removeEventListener('scroll', handleScroll);
+    // };
+    // }, []);
     
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
