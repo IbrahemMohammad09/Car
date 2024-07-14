@@ -10,6 +10,7 @@ import MainCard from '../../component/SharedComponents/MainCard/MainCard';
 import SideLink from '../../component/SharedComponents/sideLink/sideLink';
 import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
 import { FaCar } from 'react-icons/fa'
+import Slider from 'react-slick';
 
 
 
@@ -160,19 +161,86 @@ const carsHero = [
         SetRes (cars);
     }
 
-    return (
-        <div className='relative w-full'>
-            <Hero carsHero={carsHero}/>
-            <div className="mx-auto mb-[7rem] container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] animate-left">
-                {brands && brands?.map((e, i) => <div key={i} className="border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer scale-100" >
-                        <div className="w-[100px] h-[100px]">
-                            <img src={e.picture} onClick={()=>{handleClick(e.name)}} alt={e.name+' brand'} className="w-full h-full object-cover"/>
-                        </div>
-                        <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
-                    </div>)}
-            </div>
+    let settings4 = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 2,
+        // autoplay: true,
+        autoplaySpeed: 5000,
+        pauseOnHover: true,
+    }
 
-            <div className={`container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px] relative mt-10`}>
+    let settings5 = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 2,
+        // autoplay: true,
+        autoplaySpeed: 5000,
+        pauseOnHover: true,
+    }
+
+    let settings6 = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        // autoplay: true,
+        autoplaySpeed: 5000,
+        pauseOnHover: true,
+    }
+
+    let settings7 = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        // autoplay: true,
+        autoplaySpeed: 5000,
+        pauseOnHover: true,
+    }
+
+    return (
+        <div className='relative w-full overflow-hidden'>
+            <Hero carsHero={carsHero}/>
+            <Slider {...settings4} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider1`}>
+                {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer brands-slider-brand `}>
+                    <div onClick={()=>{navigate('/search')}} className="w-[100px] h-[100px]">
+                        <img src={e.picture}  alt={e.name+' brand'} className="w-full h-full object-cover"/>
+                    </div>
+                    <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
+                </div>)}
+            </Slider>
+
+            <Slider {...settings5} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider2`}>
+                {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer brands-slider-brand `}>
+                    <div onClick={()=>{navigate('/search')}} className="w-[100px] h-[100px]">
+                        <img src={e.picture}  alt={e.name+' brand'} className="w-full h-full object-cover"/>
+                    </div>
+                    <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
+                </div>)}
+            </Slider>
+
+            <Slider {...settings6} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider3`}>
+                {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer brands-slider-brand `}>
+                    <div onClick={()=>{navigate('/search')}} className="w-[100px] h-[100px]">
+                        <img src={e.picture}  alt={e.name+' brand'} className="w-full h-full object-cover"/>
+                    </div>
+                    <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
+                </div>)}
+            </Slider>
+
+            <Slider {...settings7} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider4`}>
+                {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer brands-slider-brand `}>
+                    <div onClick={()=>{navigate('/search')}} className="w-[100px] h-[100px]">
+                        <img src={e.picture}  alt={e.name+' brand'} className="w-full h-full object-cover"/>
+                    </div>
+                    <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
+                </div>)}
+            </Slider>
+
+            <div className={`container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px] relative mt-[100px]`}>
                 {Res?.length > 0 && Res?.map((e, i) => <MainCard key={i} daylyPrice={e.price.dayly} monthlyPrice={e.price.monthly} weeklyPrice={e.price.weekly} name={e.name} pictures={e.pictures} id={e._id}/>)}
             </div>
             <ChangeTitle title={"MEI | Search Page"}/>
