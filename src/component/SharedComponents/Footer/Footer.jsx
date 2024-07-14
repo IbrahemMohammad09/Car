@@ -19,11 +19,11 @@ const arr3 = [
 
 const arr4 = [
     {
-        icon: <FaWhatsapp className="text-__brown text-[1.4rem]"/>,
+        icon: <FaWhatsapp className="text-__brown text-[2rem]"/>,
         url: 'https://wa.me/'+phone,
     },
     {
-        icon: <FaPhone className="text-__brown text-[1.4rem]"/>,
+        icon: <FaPhone className="text-__brown text-[2rem]"/>,
         url: 'tel:'+phone,
     },
 ]

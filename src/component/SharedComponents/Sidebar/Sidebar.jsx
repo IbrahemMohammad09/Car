@@ -23,10 +23,10 @@ const Sidebar = () => {
                 <img src={img4} alt={img4} className="w-full h-full"/>
             </Link>
             <Link className="no-underline mx-auto mb-4 overflow-hidden block text-black font-bold duration-300 hover:scale-105" to={'/dashboard/brands'}>
-                <SiToyota className="text-[2.5rem] mx-auto"/>
+                <SiToyota className="text-[3.5rem] mx-auto"/>
             </Link>
             <Link className="no-underline mx-auto mb-4 overflow-hidden block text-black font-bold duration-300 hover:scale-105" to={'/'}>
-                <BsEye className="text-[2.5rem] mx-auto"/>
+                <BsEye className="text-[3.5rem] mx-auto"/>
             </Link>
         </div>
     )

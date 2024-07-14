@@ -226,7 +226,7 @@ const AddBrand = () => {
             </div>
             <div className={section !== 'See'? 'hidden':'block'}>
                 <h2>All brands</h2>
-                <div className="mt-4 flex gap-5">
+                <div className="mt-4 flex flex-wrap gap-5">
                 {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer relative`}>
                     <FaTrash className="text-white w-[30px] h-[30px] rounded-md absolute right-[-10px] top-[-10px] z-50 bg-red-600 text-[1rem] p-2" onClick={() => setShowAlert(e)}/>
                     <div className="w-[100px] h-[100px]">
