@@ -22,6 +22,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { MdDashboardCustomize } from "react-icons/md"
 import { useLanguageContext } from "../../hooks/useLanguageContext"
 import { FaCar } from 'react-icons/fa'
+import './Home.css'
 
 const carsHero = [
     {
@@ -140,7 +141,47 @@ const Home = () => {
         infinite: true,
         speed: 500,
         slidesToShow: 1,
+        slidesToScroll: 1,
+        // autoplay: true,
+        autoplaySpeed: 5000,
+        pauseOnHover: true,
+    }
+
+    let settings4 = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
         slidesToScroll: 2,
+        // autoplay: true,
+        autoplaySpeed: 5000,
+        pauseOnHover: true,
+    }
+
+    let settings5 = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 2,
+        // autoplay: true,
+        autoplaySpeed: 5000,
+        pauseOnHover: true,
+    }
+
+    let settings6 = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        // autoplay: true,
+        autoplaySpeed: 5000,
+        pauseOnHover: true,
+    }
+
+    let settings7 = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
         // autoplay: true,
         autoplaySpeed: 5000,
         pauseOnHover: true,
@@ -190,11 +231,11 @@ const Home = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-        const e1 = elementRef.current?.getBoundingClientRect();
-        const e2 = elementRef1.current?.getBoundingClientRect();
-        const e3 = elementRef2.current?.getBoundingClientRect();
-        const e4 = elementRef3.current?.getBoundingClientRect();
-        const e5 = elementRef4.current?.getBoundingClientRect();
+            const e1 = elementRef?.current?.getBoundingClientRect();
+            const e2 = elementRef1?.current?.getBoundingClientRect();
+            const e3 = elementRef2?.current?.getBoundingClientRect();
+            const e4 = elementRef3?.current?.getBoundingClientRect();
+            const e5 = elementRef4?.current?.getBoundingClientRect();
 
         const viewportHeight = window?.innerHeight;
         if (e1.top <= viewportHeight / 1.1) {
@@ -237,6 +278,19 @@ const Home = () => {
     const navigate = useNavigate();
 
     const { language } = useLanguageContext();
+
+    const sliderRef = useRef();
+
+    const [index, setIndex] = useState(0);
+
+    const handleButtonClick = (i) => {
+        setIndex(i);
+        sliderRef.current.slickGoTo(i);
+    };
+
+    const handleAfterChange = (currentSlide) => {
+        setIndex(currentSlide);
+    };
 
     return (
         <section className="min-h-screen w-full bg-white overflow-x-hidden">
@@ -282,14 +336,41 @@ const Home = () => {
                 </Slider>
             </div>
 
-            <div ref={elementRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] ${isVisible && 'animate-left'}`}>
-                {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer ${brand === e.name? 'scale-95': 'scale-100'}`} onClick={() => setBrand(e.name)}>
+            <Slider {...settings4} ref={sliderRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider1 ${isVisible && 'animate-left'}`}>
+                {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer${brand === e.name? 'scale-95': 'scale-100'} brands-slider-brand `} onClick={() => setBrand(e.name)}>
                     <div onClick={()=>{navigate('/search')}} className="w-[100px] h-[100px]">
                         <img src={e.picture}  alt={e.name+' brand'} className="w-full h-full object-cover"/>
                     </div>
                     <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
                 </div>)}
-            </div>
+            </Slider>
+
+            <Slider {...settings5} ref={sliderRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider2 ${isVisible && 'animate-left'}`}>
+                {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer${brand === e.name? 'scale-95': 'scale-100'} brands-slider-brand `} onClick={() => setBrand(e.name)}>
+                    <div onClick={()=>{navigate('/search')}} className="w-[100px] h-[100px]">
+                        <img src={e.picture}  alt={e.name+' brand'} className="w-full h-full object-cover"/>
+                    </div>
+                    <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
+                </div>)}
+            </Slider>
+
+            <Slider {...settings6} ref={sliderRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider3 ${isVisible && 'animate-left'}`}>
+                {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer${brand === e.name? 'scale-95': 'scale-100'} brands-slider-brand `} onClick={() => setBrand(e.name)}>
+                    <div onClick={()=>{navigate('/search')}} className="w-[100px] h-[100px]">
+                        <img src={e.picture}  alt={e.name+' brand'} className="w-full h-full object-cover"/>
+                    </div>
+                    <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
+                </div>)}
+            </Slider>
+
+            <Slider {...settings7} ref={sliderRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider4 ${isVisible && 'animate-left'}`}>
+                {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer${brand === e.name? 'scale-95': 'scale-100'} brands-slider-brand `} onClick={() => setBrand(e.name)}>
+                    <div onClick={()=>{navigate('/search')}} className="w-[100px] h-[100px]">
+                        <img src={e.picture}  alt={e.name+' brand'} className="w-full h-full object-cover"/>
+                    </div>
+                    <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
+                </div>)}
+            </Slider>
 
             <MainTitle title={PopularCar}/>
             <div ref={elementRef3} className={`container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px] relative ${isVisible3 && 'animate-right'}`}>
