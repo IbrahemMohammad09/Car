@@ -26,7 +26,7 @@ const carsHero = [
         icon: <FaCar/>,
         url:"/search/Sport"
     },
-    {
+    {   
         title: 'Luxury',
         icon: <FaCar/>,
         url:"/search/Luxury"

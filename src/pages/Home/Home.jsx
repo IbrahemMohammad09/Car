@@ -4,15 +4,15 @@ import MainTitle from "../../component/SharedComponents/MainTitle/MainTitle"
 import MainCard from '../../component/SharedComponents/MainCard/MainCard'
 import Slider from "react-slick"
 import { useEffect, useRef, useState } from "react"
-import Img from '../../images/Home/sport.png'
-import Img1 from '../../images/Home/43c5bd76-c3e4-40ee-98eb-ecc2c6dddbc3.jpeg'
-import Img3 from '../../images/Home/2014 Honda Accord.jpeg'
+import Img from '../../images/Home/sport.jpg'
+import Img1 from '../../images/Home/luxury.png'
+import Img3 from '../../images/Home/economy.jpg'
 import { useTranslation } from 'react-i18next';
 import Footer from "../../component/SharedComponents/Footer/Footer"
 import { FaMessage } from "react-icons/fa6"
 import Img5 from '../../images/Home/unsplash_UF2nwAcD8Mo.png'
-import Img4 from '../../images/Home/Best small SUVs and crossovers for 2024 - Which_.jpeg'
-import Img6 from '../../images/Home/Chevrolet Corvette C7 Z06 Convertible painted in Arctic White  Photo taken by_ @autoblog on Instagram.jpeg'
+import Img4 from '../../images/Home/family.jpg'
+import Img6 from '../../images/Home/convertible.jpg'
 import Loading from '../../component/SharedComponents/Loading/Loading'
 import SideLink from "../../component/SharedComponents/sideLink/sideLink"
 import axios from "axios"

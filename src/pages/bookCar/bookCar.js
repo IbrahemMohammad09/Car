@@ -188,8 +188,6 @@ function BookCar (){
                     </Col>
                     <Col className='car-details'>
                     <ScrollAnimation animateIn="slideInRight" animateOnce={false}>
-                        <h1>{car && car?.name}</h1>
-                        
                         <Row >
                             <Col className='row-details' >
                                 <p><span>{t("Category")}</span>{car.category}</p>
@@ -198,27 +196,31 @@ function BookCar (){
                                 <p><span>{t("Model")}</span>{car.model}</p>
                                 
                             </Col>
-                            <Col>
-                                <p><span>Seats</span>{car.seatNumber}</p>
-
-                                <p><span>Speed</span>{car.topSpeed}</p>
-                                <p><span>Engine cylinders</span>{car.horse}</p>
+                            <Col className='row-details'>
+                                <p><span>{t("Seats")}</span>{car.seatNumber}</p>
+                                <p><span>{t("Speed")}</span>{car.topSpeed}</p>
+                                <p><span>{t("Engine cylinders")}</span>{car.horse}</p>
                                 
                             </Col>
                             
                         </Row>
-                        <Row>
-                        {/* <hr/>  */}
-                            <Col className='row-details'>
-                                <p><span>Daily</span>{car.price.dayly} AUD</p>
-                                <p><span>Monthly</span>{car.price.monthly} AUD</p>
+                        <Row className='price-details'>
+
+                            <h1>{t("Rental Prices")}</h1>
+                            <Col className='row-details '>
+                                <p><span>Daily</span>{car.price.dayly} AED</p>
+                                <p><span>Monthly</span>{car.price.monthly} AED</p>
                             </Col>
-                            <Col><p><span>Weekly</span>{car.price.weekly} AUD</p></Col>
+                            <Col><p><span>Weekly</span>{car.price.weekly} AED</p></Col>
                         </Row>
-                        <h2>{car && car?.description[language]}</h2>
+                        
                     </ScrollAnimation>
                     </Col>
                 </Row>
+                <div className='car-details'>
+                    <h1>{car && car?.name}</h1>
+                    <h2>{car && car?.description[language]}</h2>
+                </div>
                 {/* <div className='car-details'>
                     <span>Description</span>
                     <p>{car.description[language]}</p>

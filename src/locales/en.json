@@ -44,5 +44,12 @@
     "Category":"Category",
     "Gearbox":"Gear Box",
     "Brand":"Brand",
-    "Model":"Model"
+    "Model":"Model",
+    "Seats":"Seats",
+    "Speed":"Speed",
+    "Engine cylinders":"Engine cylinders",
+    "Rental Prices":"Rental Prices",
+    "Daily":"Daily",
+    "Monthly":"Monthly",
+    "Weekly":"Weekly"
 }
