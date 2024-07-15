@@ -11,10 +11,14 @@ import SideLink from '../../component/SharedComponents/sideLink/sideLink';
 import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
 import { FaCar } from 'react-icons/fa'
 import Slider from 'react-slick';
+import React, { useContext } from 'react';
+import { StorageContext } from '../../context/SearchContext';
 
 
 
 function SearchPage (){
+const { searchbrands, setSearchBrands, searchcategory, setSearchCategory, searchname, setSearchName,clearStorage } = useContext(StorageContext);
+
     
 const carsHero = [
     {
@@ -52,7 +56,7 @@ const carsHero = [
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [cars, setCars] = useState([]);
-    const category = ["Sport", "Luxury", "Family", "Economy", "Convertible"];
+    const category1 = ["Sport", "Luxury", "Family", "Economy", "Convertible"];
     const [brands, setBrands] = useState([]);
     const [brandsName , setBrandsName] = useState();
     const [brandsId, setBrandsId] = useState([]);
@@ -78,7 +82,25 @@ const carsHero = [
             .catch(err => {
                 setLoading(false);
             })
+            
     }, []);
+
+    useEffect(()=>{
+        console.log(searchname);
+        clearStorage();
+        console.log(searchname+" clear")
+    },[searchname])
+    useEffect(()=>{
+        console.log(searchbrands);
+        clearStorage();
+        console.log(searchbrands+" clear")
+    },[searchbrands])
+    useEffect(()=>{
+        console.log(searchcategory);
+        clearStorage();
+        console.log(searchcategory+" clear")
+    },[searchcategory])
+
     
     useEffect(() => {
         axios.get(API.GET.ALLBRANDS, {
@@ -98,23 +120,23 @@ const carsHero = [
     }, []);
     
 
-    const filterCarsByBrand = (cars, brand) => {
-        return cars?.filter(car => car.brand === brand);
-    };
+    // const filterCarsByBrand = (cars, brand) => {
+    //     return cars?.filter(car => car.brand === brand);
+    // };
 
-    const handleClick=(barndName)=>{
-        SetRes(filterCarsByBrand(cars,barndName));
-    }
+    // const handleClick=(barndName)=>{
+    //     SetRes(filterCarsByBrand(cars,barndName));
+    // }
 
-    const filterCarsByCategory = (cars, category) => {
-        return cars.filter(car => car.category === category);
-      };
+    // const filterCarsByCategory = (cars, category) => {
+    //     return cars.filter(car => car.category === category);
+    //   };
     
-    const filterCars = (cars, name) => {
-      return cars.filter(car => 
-        car.name === name
-       );
-    };
+    // const filterCars = (cars, name) => {
+    //   return cars.filter(car => 
+    //     car.name === name
+    //    );
+    // };
 
     const pathParts = pathname.split('/');
     const lastWord = pathParts[pathParts.length - 1];
@@ -123,7 +145,7 @@ const carsHero = [
 
 
     useEffect(()=>{
-        setSearchType(lastWord);
+        // setSearchType(lastWord);
         // console.log (brandsName);
         // console.log(category)
 
@@ -142,17 +164,17 @@ const carsHero = [
         //         // setAgain(!again)
         //     })
 
-        switch (true) {
-            case brands.includes(lastWord):
-                SetRes(filterCarsByBrand(cars, lastWord));
-                break;
-            case category.includes(lastWord):
-                SetRes(filterCarsByCategory(cars, lastWord));
-                break;
-            case !brands.includes(lastWord) && !category.includes(lastWord):
-                SetRes(filterCars(cars, lastWord));
-                break;
-        }
+        // switch (true) {
+        //     case brands.includes(lastWord):
+        //         SetRes(filterCarsByBrand(cars, lastWord));
+        //         break;
+        //     case category.includes(lastWord):
+        //         SetRes(filterCarsByCategory(cars, lastWord));
+        //         break;
+        //     case !brands.includes(lastWord) && !category.includes(lastWord):
+        //         SetRes(filterCars(cars, lastWord));
+        //         break;
+        // }
         
 
     },[pathname])

@@ -1,12 +1,16 @@
 import { FaSearch } from "react-icons/fa"
+import React, { useContext } from 'react';
 import MainSelect from "../MainSelect/MainSelect"
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaAngleDown } from "react-icons/fa"
 import { useLanguageContext } from "../../../hooks/useLanguageContext";
+import { StorageContext } from "../../../context/SearchContext";
 
 const HeroInput = ( { setCars } ) => {
+    const { searchname, setSearchName,clearStorage } = useContext(StorageContext);
+
     const [show, setShow] = useState(false);
 
     const category = ["Sport", "Luxury", "Family", "Economy", "Convertible"];
@@ -26,11 +30,10 @@ const HeroInput = ( { setCars } ) => {
     const handleSearch = () => {
 
         if (!textInput){
-
             navigate("/")
         }else{
-
-            navigate("/search/"+textInput);
+            setSearchName(textInput)
+            navigate("/search/"+searchname);
         }
         
     };

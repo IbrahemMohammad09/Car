@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { I18nextProvider } from 'react-i18next';
 import './i18n';
 import { LanguageContextProvider } from './context/LanguageContext';
+import {StorageProvider } from './context/SearchContext'
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-bootstrap';
 
@@ -14,9 +15,11 @@ root.render(
   <React.StrictMode>
       <ToastContainer/>
       <LanguageContextProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <StorageProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </StorageProvider>
       </LanguageContextProvider>
   </React.StrictMode>
 );

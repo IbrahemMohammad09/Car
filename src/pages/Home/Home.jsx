@@ -23,6 +23,8 @@ import { MdDashboardCustomize } from "react-icons/md"
 import { useLanguageContext } from "../../hooks/useLanguageContext"
 import { FaCar } from 'react-icons/fa'
 import './Home.css'
+import React, { useContext } from 'react';
+import { StorageContext } from "../../context/SearchContext"
 
 const carsHero = [
     {
@@ -76,11 +78,14 @@ const cards = [
 ];
 
 const Home = () => {
+    const { searchbrands, setSearchBrands, searchcategory, setSearchCategory, searchname, setSearchName,clearStorage } = useContext(StorageContext);
 
     const [t,il8n]=useTranslation();
     const HomeTitle = t("HomeTitle");
     const PopularCar = t("PopularCar");
-    const LoadMore =t("LoadMore");
+    let [LoadMore , setLoadMore] = useState(t("LoadMore"))
+
+    
     const WhyUs =t("WhyUs");
     const FeelHome =t("FeelHome");
 
@@ -229,50 +234,17 @@ const Home = () => {
     
     }, []);
 
-    // useEffect(() => {
-    //     const handleScroll = () => {
-    //         const e1 = elementRef?.current?.getBoundingClientRect();
-    //         const e2 = elementRef1?.current?.getBoundingClientRect();
-    //         const e3 = elementRef2?.current?.getBoundingClientRect();
-    //         const e4 = elementRef3?.current?.getBoundingClientRect();
-    //         const e5 = elementRef4?.current?.getBoundingClientRect();
 
-    //     const viewportHeight = window?.innerHeight;
-    //     if (e1.top <= viewportHeight / 1.1) {
-    //         setIsVisible(true);
-    //     } else {
-    //         setIsVisible(false);
-    //     }
-
-    //     if (e2.top <= viewportHeight / 1.1) {
-    //         setIsVisible1(true);
-    //     } else {
-    //         setIsVisible1(false);
-    //     }
-
-    //     if (e3.top <= viewportHeight / 1.1) {
-    //         setIsVisible2(true);
-    //     } else {
-    //         setIsVisible2(false);
-    //     }
-
-    //     if (e4.top <= viewportHeight / 1.1 && !loading) {
-    //         setIsVisible3(true);
-    //     } else {
-    //         setIsVisible3(false);
-    //     }
-    //     if (e5.top <= viewportHeight / 1.1) {
-    //         setIsVisible4(true);
-    //     } else {
-    //         setIsVisible4(false);
-    //     }
-    // };
-
-    // window.addEventListener('scroll', handleScroll);
-    // return () => {
-    //     window.removeEventListener('scroll', handleScroll);
-    // };
-    // }, []);
+    const handleShowAllCar =()=>{
+        if(LoadMore=="Load More"||LoadMore == "عرض المزيد" ){
+            setAllcars(cars)
+            setLoadMore(t("showLess"));
+        }else {
+            setAllcars(cars.length > 6? cars.slice(0, 6) : cars)
+            setLoadMore(t("LoadMore"))
+        }
+        
+    }
     
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
@@ -304,33 +276,33 @@ const Home = () => {
             <div className={`w-full ${isVisible4 && 'animate-right'}`} ref={elementRef4}>
                 <Slider {...settings} className="p-1 slide1">
                     {cards.map((e, i) => <div key={i} className="h-[441px] relative overflow-hidden">
-                        <img src={e.img} alt={e.title + 'slide' + i} onClick={() => setType(prev => [...prev, e.title])} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
+                        <img src={e.img} alt={e.title + 'slide' + i} onClick={() => {setType(prev => [...prev, e.title]);}} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
                         <div className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
                             <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
                             <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>  
-                            <a href={"/search/"+e.title} className="text-xl text-__brown text-[3rem] no-underline bg-white w-fit duration-300 px-2 rounded-md hover:scale-105 ">{SearchByCategory} </a>
+                            <a onClick={()=>{setSearchCategory(e.title)} } href={"/search/"+e.title} className="text-xl text-__brown text-[3rem] no-underline bg-white w-fit duration-300 px-2 rounded-md hover:scale-105 ">{SearchByCategory} </a>
                         </div>
                     </div>)}
                 </Slider>
 
                 <Slider {...settings2} className="p-1 slide2">
                     {cards.map((e, i) => <div key={i} className="h-[441px] relative overflow-hidden">
-                        <img src={e.img} alt={e.title + 'slide' + i} onClick={() => setType(prev => [...prev, e.title])} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
+                        <img src={e.img} alt={e.title + 'slide' + i} onClick={() => {setType(prev => [...prev, e.title]); }} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
                         <div className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
                             <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
                             <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>
-                            <a href={"/search/"+e.title} className="text-xl text-__brown text-[3rem] no-underline bg-white w-fit duration-300 px-2 rounded-md hover:scale-105 ">{SearchByCategory} </a>
+                            <a onClick={()=>{setSearchCategory(e.title)} } href={"/search/"+e.title} className="text-xl text-__brown text-[3rem] no-underline bg-white w-fit duration-300 px-2 rounded-md hover:scale-105 ">{SearchByCategory} </a>
                         </div>
                     </div>)}
                 </Slider>
 
                 <Slider {...settings3} className="p-1 slide3">
                     {cards.map((e, i) => <div key={i} className="h-[441px] relative overflow-hidden">
-                        <img src={e.img} alt={e.title + 'slide' + i} onClick={() => setType(prev => [...prev, e.title])} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
+                        <img src={e.img} alt={e.title + 'slide' + i} onClick={() => {setType(prev => [...prev, e.title]);}} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
                         <div className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
                             <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
                             <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>  
-                            <a href={"/search/"+e.title} className="text-xl text-__brown text-[3rem] no-underline bg-white w-fit duration-300 px-2 rounded-md hover:scale-105 ">{SearchByCategory} </a>  
+                            <a onClick={()=>{setSearchCategory(e.title)} } href={"/search/"+e.title} className="text-xl text-__brown text-[3rem] no-underline bg-white w-fit duration-300 px-2 rounded-md hover:scale-105 ">{SearchByCategory} </a>  
                         </div>
                     </div>)}
                 </Slider>
@@ -338,7 +310,7 @@ const Home = () => {
 
             <Slider {...settings4} ref={sliderRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider1 ${isVisible && 'animate-left'}`}>
                 {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer${brand === e.name? 'scale-95': 'scale-100'} brands-slider-brand `} onClick={() => setBrand(e.name)}>
-                    <div onClick={()=>{navigate('/search')}} className="w-[100px] h-[100px]">
+                    <div onClick={()=>{setSearchBrands(e.name); navigate('/search/'+e.name); }}className="w-[100px] h-[100px]">
                         <img src={e.picture}  alt={e.name+' brand'} className="w-full h-full object-cover"/>
                     </div>
                     <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
@@ -347,7 +319,7 @@ const Home = () => {
 
             <Slider {...settings5} ref={sliderRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider2 ${isVisible && 'animate-left'}`}>
                 {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer${brand === e.name? 'scale-95': 'scale-100'} brands-slider-brand `} onClick={() => setBrand(e.name)}>
-                    <div onClick={()=>{navigate('/search')}} className="w-[100px] h-[100px]">
+                    <div onClick={()=>{setSearchBrands(e.name); navigate('/search/'+e.name); }}  className="w-[100px] h-[100px]">
                         <img src={e.picture}  alt={e.name+' brand'} className="w-full h-full object-cover"/>
                     </div>
                     <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
@@ -356,7 +328,7 @@ const Home = () => {
 
             <Slider {...settings6} ref={sliderRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider3 ${isVisible && 'animate-left'}`}>
                 {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer${brand === e.name? 'scale-95': 'scale-100'} brands-slider-brand `} onClick={() => setBrand(e.name)}>
-                    <div onClick={()=>{navigate('/search')}} className="w-[100px] h-[100px]">
+                    <div onClick={()=>{setSearchBrands(e.name); navigate('/search/'+e.name); }}  className="w-[100px] h-[100px]">
                         <img src={e.picture}  alt={e.name+' brand'} className="w-full h-full object-cover"/>
                     </div>
                     <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
@@ -365,7 +337,7 @@ const Home = () => {
 
             <Slider {...settings7} ref={sliderRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider4 ${isVisible && 'animate-left'}`}>
                 {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer${brand === e.name? 'scale-95': 'scale-100'} brands-slider-brand `} onClick={() => setBrand(e.name)}>
-                    <div onClick={()=>{navigate('/search')}} className="w-[100px] h-[100px]">
+                    <div onClick={()=>{setSearchBrands(e.name); navigate('/search/'+e.name); }}  className="w-[100px] h-[100px]">
                         <img src={e.picture}  alt={e.name+' brand'} className="w-full h-full object-cover"/>
                     </div>
                     <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
@@ -378,7 +350,10 @@ const Home = () => {
                 {allcars && !loading && allcars?.map((e, i) => <MainCard key={i} daylyPrice={e.price.dayly} monthlyPrice={e.price.monthly} weeklyPrice={e.price.weekly} name={e.name} pictures={e.pictures} id={e._id}/>)}
             </div>
             <div className={`mx-auto text-center w-fit ${loading? 'mt-[200px]': 'mt-[40px]'}`}>
-                <MainButton name={LoadMore} url={"/search"}/>
+                {/* <MainButton name={LoadMore} url={"/search"}/> */}
+                <Link to={'#'} onClick={()=>{handleShowAllCar()}} className="cursor-pointer border-[1px] border-solid border-__brown bg-__brown text-white text-[1rem] font-bold leading-[25.8px] rounded-sm block no-underline duration-300 opacity-90 hover:opacity-100 w-fit py-[10px] px-[30px]">
+                    {LoadMore}
+                </Link>
             </div>
 
             <MainTitle title={WhyUs}/>

@@ -4,37 +4,13 @@ import Header from '../Header/Header'
 import HeroInput from '../HeroInput/HeroInput'
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { StorageContext } from '../../../context/SearchContext';
 
 
-
-// const cars = [
-//     {
-//         title: 'Sport',
-//         icon: <FaCar/>,
-//         url:"/search"
-//     },
-//     {
-//         title: 'Luxury',
-//         icon: <FaCar/>,
-//         url:"/search"
-//     },
-//     {
-//         title: 'Family',
-//         icon: <FaCar/>,
-//         url:"/search"
-//     },
-//     {
-//         title: 'Economy',
-//         icon: <FaCar/>,
-//         url:"/search"
-//     },
-//     {
-//         title: 'Convertible',
-//         icon: <FaCar/>,
-//         url:"/search"
-//     }
-// ]
 const   Hero = (props) => {
+    const {searchcategory, setSearchCategory} = useContext(StorageContext);
+
     const cars =props.carsHero
     const navigate = useNavigate();
     const [t , il8n] = useTranslation();
@@ -48,7 +24,7 @@ const   Hero = (props) => {
                 <HeroInput/>
                 <h3 className='text-[20px] md:text-[25px] lg:text-[30px] text-white font-normal mt-[20px]'>{t("HeroH3")}</h3>
                 <div className='flex justify-center items-center gap-[10px] flex-wrap'>
-                    {props.carsHero.map((e, i) => <div onClick={()=>{navigate(e.url)}} key={i} className='bg-__opacity_white rounded-[44px] py-[13px] px-[31px] flex items-center gap-[8px] text-white duration-300 hover:bg-__brown cursor-pointer shadow-sm shadow-[#ccc] max-[600px]:py-2'>{e.icon} {e.title}</div>)}
+                    {props.carsHero.map((e, i) => <div onClick={()=>{navigate(e.url); setSearchCategory(e.title)}} key={i} className='bg-__opacity_white rounded-[44px] py-[13px] px-[31px] flex items-center gap-[8px] text-white duration-300 hover:bg-__brown cursor-pointer shadow-sm shadow-[#ccc] max-[600px]:py-2'>{e.icon} {e.title}</div>)}
                 </div>
             </div>
         </section>
