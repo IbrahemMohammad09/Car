@@ -136,7 +136,7 @@ const Home = () => {
         infinite: true,
         speed: 500,
         slidesToShow: 2,
-        slidesToScroll: 2,
+        slidesToScroll: 1,
         // autoplay: true,
         autoplaySpeed: 5000,
         pauseOnHover: true,
@@ -211,14 +211,14 @@ const Home = () => {
 
     useEffect(() => {
         setLoading(true);
-        axios.get(API.GET.ALLACTIVECARS+1, {
+        axios.get(API.GET.ALLCARSWITHOUTPAGE, {
             'Contet-Type': 'application/json',
         })
             .then(res => {
                 if(res?.data.state === 'success') {
                     setLoading(false);
-                    setCars(res?.data?.cars);
-                    setAllcars(res?.data?.cars.length > 6? res?.data?.cars.slice(0, 6) : res?.data?.cars);
+                    setCars(res?.data?.cars.filter(e => e.available !== false));
+                    setAllcars(res?.data?.cars.filter(e => e.available !== false).length > 9? res?.data?.cars.filter(e => e.available !== false).slice(0, 9) : res?.data?.cars.filter(e => e.available !== false));
                 }
             })
             .catch(err => {
