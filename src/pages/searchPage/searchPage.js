@@ -13,6 +13,7 @@ import { FaCar } from 'react-icons/fa'
 import Slider from 'react-slick';
 import React, { useContext } from 'react';
 import { StorageContext } from '../../context/SearchContext';
+import ScrollAnimation from 'react-animate-on-scroll';
 
 
 
@@ -183,13 +184,16 @@ const carsHero = [
 
     useEffect(() => {
         setTimeout(() => {
-            window.scrollTo(0, 950)
+            window.scrollTo(0, 900)
         }, 1000)
     }, [pathname]);
 
     return (
         <div className='relative w-full overflow-hidden'>
             <Hero carsHero={carsHero}/>
+
+            <ScrollAnimation animateIn="animate-right" animateOnce={false}>
+
             <Slider {...settings4} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider1`}>
                 {brands && brands?.map((e, i) => <div onClick={()=>{navigate('/search/brand/'+e.name)}} key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer brands-slider-brand `}>
                     <div className="w-[100px] h-[100px]">
@@ -226,9 +230,16 @@ const carsHero = [
                 </div>)}
             </Slider>
 
+            </ScrollAnimation>
+
+            <ScrollAnimation animateIn="animate-left" animateOnce={false}>
+
             <div className={`container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px] relative mt-[100px]`}>
                 {Res && filterCars(Res, type, name)?.length > 0 && filterCars(Res, type, name)?.map((e, i) => <MainCard key={i} daylyPrice={e.price.dayly} monthlyPrice={e.price.monthly} weeklyPrice={e.price.weekly} name={e.name} pictures={e.pictures} id={e._id}/>)}
             </div>
+
+            </ScrollAnimation>
+
             <ChangeTitle title={"MEI | Search Page"}/>
             {Res && filterCars(Res, type, name)?.length === 0 && <h2 className='text-center mt-10 mx-auto'>{notFound}</h2>}
             {total >= total + 50 && <div className="flex justify-center items-center pt-20">

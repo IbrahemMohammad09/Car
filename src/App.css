@@ -36,6 +36,9 @@
     cursor: pointer !important;
 }
 
+.brands-slider4 .brands-slider-brand {
+    width: 100% !important;
+}
 
 .brands-slider3 {
     margin-left: 1% !important;
