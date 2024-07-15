@@ -40,13 +40,13 @@ const ShowCars = () => {
             {!loading && total > 0 && <div className="mx-auto mt-5 w-fit flex gap-2">
                 {
                     page != 1 &&
-                    <div onClick={() => setPage(page!=1?page-=1: 1)}>
+                    <div onClick={() => setPage(page!=1?page-1: 1)}>
                         <MainButton name={'Prev '+ (page-1)}/>
                     </div>
                 }
                 {
                     page != Math.ceil(total / 50) &&
-                <div onClick={() => setPage(page != Math.ceil(total / 50)?page+=1: page)}>
+                <div onClick={() => setPage(page != Math.ceil(total / 50)?page+1: page)}>
                     <MainButton name={'Next '+ (page+1)}/>
                 </div>
                 }

@@ -28,12 +28,25 @@ const HeroInput = ( { setCars } ) => {
     const [selectedValue, setSelectedValue] = useState('');
 
     const handleSearch = () => {
-
         if (!textInput){
             navigate("/")
         }else{
-            setSearchName(textInput)
-            navigate("/search/"+searchname);
+            // setSearchName(textInput)
+            setTextInput("")
+            navigate("/search/name/"+textInput);
+        }
+        
+    };
+
+    const handleSearchByPress = (e) => {
+        if(e.key === 'Enter') {
+            if (!textInput){
+                navigate("/")
+            }else{
+                // setSearchName(textInput)
+                setTextInput("")
+                navigate("/search/name/"+textInput);
+            }
         }
         
     };
@@ -57,7 +70,7 @@ const HeroInput = ( { setCars } ) => {
             </div>  */}
             {/* <MainSelect name={make} />
             <MainSelect name={model}/> */}
-            <input type="text" className={`bg-white border-none outline-none min-[671px]:w-full`} dir={language === 'AR' ? 'rtl': 'ltr'} placeholder={placeHolder} onChange={(e) => setTextInput(e.target.value)} />
+            <input type="text" onKeyDown={(e) => handleSearchByPress(e)} value={textInput} className={`bg-white border-none outline-none min-[671px]:w-full`} dir={language === 'AR' ? 'rtl': 'ltr'} placeholder={placeHolder} onChange={(e) => setTextInput(e.target.value)} />
             <div onClick={handleSearch} className="flex items-center justify-center gap-[9px] py-[16px] px-[30px] lg:px-[52px] rounded-[60px] bg-__brown text-white cursor-pointer text-nowrap opacity-90 hover:opacity-100 duration-300 max-[600px]:py-2">
                 <FaSearch />
                 {searchButton}

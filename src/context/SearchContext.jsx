@@ -3,7 +3,6 @@ import React, { createContext, useState, useEffect } from 'react';
 export const StorageContext = createContext();
 
 export const StorageProvider = ({ children }) => {
-    
   const [searchbrands, setSearchBrands] = useState(() => localStorage.getItem('searchbrands') || '');
   const [searchcategory, setSearchCategory] = useState(() => localStorage.getItem('searchcategory') || '');
   const [searchname, setSearchName] = useState(() => localStorage.getItem('searchname') || '');

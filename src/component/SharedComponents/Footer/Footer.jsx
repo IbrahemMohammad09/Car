@@ -11,8 +11,6 @@ import { useLanguageContext } from "../../../hooks/useLanguageContext";
 import { useContext } from "react";
 import { StorageContext } from "../../../context/SearchContext";
 
-
-
 const arr3 = [
     "Monday – Friday: 09:00AM – 09:00 PM",
     "Saturday: 09:00AM – 07:00PM",
@@ -78,7 +76,7 @@ const Footer = () => {
                     </div>
                     {brands?.length > 0 && <div className="flex flex-col gap-[11px] max-[500px]:items-center">
                         <h1 className="text-__brown text-[1.6rem] font-medium leading-[24px]">{t("Brands")}</h1>
-                        {brands && brands?.map((e, i) => i <= 7 && <span onClick={()=>{setSearchBrands(e.name);navigate("/search/"+e.name)}} className="font-normal no-underline duration-300 md:hover:translate-x-[10px] leading-[27.75px] text-black text-[15px] cursor-pointer" key={i}>{e.name}</span>)}
+                        {brands && brands?.map((e, i) => i <= 8 && <span onClick={()=>{setSearchBrands(e.name); navigate("/search/brand/"+e.name)}} className="font-normal no-underline duration-300 md:hover:translate-x-[10px] leading-[27.75px] text-black text-[15px] cursor-pointer" key={i}>{e.name}</span>)}
                     </div>}
                 </div>
                 <div className="flex flex-col gap-[33px] max-[500px]:items-center">

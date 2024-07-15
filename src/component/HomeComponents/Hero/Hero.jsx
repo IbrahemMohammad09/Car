@@ -24,7 +24,7 @@ const   Hero = (props) => {
                 <HeroInput/>
                 <h3 className='text-[20px] md:text-[25px] lg:text-[30px] text-white font-normal mt-[20px]'>{t("HeroH3")}</h3>
                 <div className='flex justify-center items-center gap-[10px] flex-wrap'>
-                    {props.carsHero.map((e, i) => <div onClick={()=>{navigate(e.url); setSearchCategory(e.title)}} key={i} className='bg-__opacity_white rounded-[44px] py-[13px] px-[31px] flex items-center gap-[8px] text-white duration-300 hover:bg-__brown cursor-pointer shadow-sm shadow-[#ccc] max-[600px]:py-2'>{e.icon} {e.title}</div>)}
+                    {props.carsHero.map((e, i) => <div onClick={()=>{navigate('/search/category/'+e.title); setSearchCategory(e.title)}} key={i} className='bg-__opacity_white rounded-[44px] py-[13px] px-[31px] flex items-center gap-[8px] text-white duration-300 hover:bg-__brown cursor-pointer shadow-sm shadow-[#ccc] max-[600px]:py-2'>{e.icon} {e.title}</div>)}
                 </div>
             </div>
         </section>

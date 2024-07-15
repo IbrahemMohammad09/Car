@@ -3,7 +3,7 @@ import MainButton from "../../component/SharedComponents/MainButton/MainButton"
 import MainTitle from "../../component/SharedComponents/MainTitle/MainTitle"
 import MainCard from '../../component/SharedComponents/MainCard/MainCard'
 import Slider from "react-slick"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useContext } from "react"
 import Img from '../../images/Home/sport.jpg'
 import Img1 from '../../images/Home/luxury.png'
 import Img3 from '../../images/Home/economy.jpg'
@@ -23,7 +23,6 @@ import { MdDashboardCustomize } from "react-icons/md"
 import { useLanguageContext } from "../../hooks/useLanguageContext"
 import { FaCar } from 'react-icons/fa'
 import './Home.css'
-import React, { useContext } from 'react';
 import { StorageContext } from "../../context/SearchContext"
 
 const carsHero = [
@@ -84,7 +83,6 @@ const Home = () => {
     const HomeTitle = t("HomeTitle");
     const PopularCar = t("PopularCar");
     let [LoadMore , setLoadMore] = useState(t("LoadMore"))
-
     
     const WhyUs =t("WhyUs");
     const FeelHome =t("FeelHome");
@@ -192,12 +190,6 @@ const Home = () => {
         pauseOnHover: true,
     }
 
-    const elementRef = useRef(null)
-    const elementRef1 = useRef(null)
-    const elementRef2 = useRef(null)
-    const elementRef3 = useRef(null)
-    const elementRef4 = useRef(null)
-
     const [brands, setBrands] = useState([]);
 
     useEffect(() => {
@@ -255,14 +247,88 @@ const Home = () => {
 
     const [index, setIndex] = useState(0);
 
-    const handleButtonClick = (i) => {
-        setIndex(i);
-        sliderRef.current.slickGoTo(i);
-    };
+    const elementRef1 = useRef()
+    const elementRef2 = useRef()
+    const elementRef3 = useRef()
+    const elementRef4 = useRef()
+    const sliderRef1 = useRef()
+    const sliderRef2 = useRef()
+    const sliderRef3 = useRef()
+    const sliderRef4 = useRef()
 
-    const handleAfterChange = (currentSlide) => {
-        setIndex(currentSlide);
-    };
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //     if(!elementRef1 || !elementRef2 || !elementRef3 || !elementRef4 || !sliderRef1 || !sliderRef2 || !sliderRef3 || !sliderRef4) {
+    //         return;
+    //     }
+    //     const e1 = elementRef1?.getBoundingClientRect();
+    //     const e2 = elementRef2?.getBoundingClientRect();
+    //     const e3 = elementRef3?.getBoundingClientRect();
+    //     const e4 = elementRef2?.getBoundingClientRect();
+    //     const e5 = sliderRef1?.getBoundingClientRect();
+    //     const e6 = sliderRef2?.getBoundingClientRect();
+    //     const e7 = sliderRef3?.getBoundingClientRect();
+    //     const e8 = sliderRef4?.getBoundingClientRect();
+
+    //     const viewportHeight = window.innerHeight;
+    //       const scrollPosition = window.scrollY;
+    
+    //       if (e1.top + (e1.height / 2) <= scrollPosition + (viewportHeight / 2)) {
+    //         setIsVisible4(true);
+    //       } else {
+    //         setIsVisible4(false);
+    //       }
+
+    //       if (e2.top + (e2.height / 2) <= scrollPosition + (viewportHeight / 2)) {
+    //             setIsVisible2(true);
+    //       } else {
+    //         setIsVisible2(false);
+    //       }
+
+    //       if (e3.top + (e3.height / 2) <= scrollPosition + (viewportHeight / 2)) {
+    //         setIsVisible3(true);
+    //       } else {
+    //         setIsVisible3(false);
+    //       }
+
+          
+    //       if (e4.top + (e4.height / 2) <= scrollPosition + (viewportHeight / 2)) {
+    //         setIsVisible4(true);
+    //       } else {
+    //         setIsVisible4(false);
+    //       }
+
+    //       if (e4.top + (e4.height / 2) <= scrollPosition + (viewportHeight / 2)) {
+    //         setIsVisible(true);
+    //       } else {
+    //         setIsVisible(false);
+    //       }
+
+    //       if (e5.top + (e5.height / 2) <= scrollPosition + (viewportHeight / 2)) {
+    //         setIsVisible(true);
+    //       } else {
+    //         setIsVisible(false);
+    //       }
+
+    //       if (e6.top + (e6.height / 2) <= scrollPosition + (viewportHeight / 2)) {
+    //         setIsVisible(true);
+    //       } else {
+    //         setIsVisible(false);
+    //       }
+
+    //       if (e7.top + (e7.height / 2) <= scrollPosition + (viewportHeight / 2)) {
+    //         setIsVisible(true);
+    //       } else {
+    //         setIsVisible(false);
+    //       }
+    //     };
+    
+    //     window.addEventListener('scroll', handleScroll);
+    
+    //     return () => {
+    //         window.removeEventListener('scroll', handleScroll);
+    //     };
+    //   }, []);
 
     return (
         <section className="min-h-screen w-full bg-white overflow-x-hidden">
@@ -280,7 +346,7 @@ const Home = () => {
                         <div className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
                             <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
                             <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>  
-                            <a onClick={()=>{setSearchCategory(e.title)} } href={"/search/"+e.title} className="text-xl text-__brown text-[3rem] no-underline bg-white w-fit duration-300 px-2 rounded-md hover:scale-105 ">{SearchByCategory} </a>
+                            <Link onClick={()=>{setSearchCategory(e.title)} } to={"/search/category/"+e.title} className="text-xl text-__brown text-[3rem] no-underline bg-white w-fit duration-300 px-2 rounded-md hover:scale-105 ">{SearchByCategory} </Link>
                         </div>
                     </div>)}
                 </Slider>
@@ -291,7 +357,7 @@ const Home = () => {
                         <div className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
                             <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
                             <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>
-                            <a onClick={()=>{setSearchCategory(e.title)} } href={"/search/"+e.title} className="text-xl text-__brown text-[3rem] no-underline bg-white w-fit duration-300 px-2 rounded-md hover:scale-105 ">{SearchByCategory} </a>
+                            <Link onClick={()=>{setSearchCategory(e.title)} } to={"/search/category/"+e.title} className="text-xl text-__brown text-[3rem] no-underline bg-white w-fit duration-300 px-2 rounded-md hover:scale-105 ">{SearchByCategory} </Link>
                         </div>
                     </div>)}
                 </Slider>
@@ -302,42 +368,42 @@ const Home = () => {
                         <div className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
                             <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
                             <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>  
-                            <a onClick={()=>{setSearchCategory(e.title)} } href={"/search/"+e.title} className="text-xl text-__brown text-[3rem] no-underline bg-white w-fit duration-300 px-2 rounded-md hover:scale-105 ">{SearchByCategory} </a>  
+                            <Link onClick={()=>{setSearchCategory(e.title)} } to={"/search/category/"+e.title} className="text-xl text-__brown text-[3rem] no-underline bg-white w-fit duration-300 px-2 rounded-md hover:scale-105 ">{SearchByCategory} </Link>  
                         </div>
                     </div>)}
                 </Slider>
             </div>
 
-            <Slider {...settings4} ref={sliderRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider1 ${isVisible && 'animate-left'}`}>
+            <Slider {...settings4} ref={sliderRef1} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider1 ${isVisible && 'animate-left'}`}>
                 {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer${brand === e.name? 'scale-95': 'scale-100'} brands-slider-brand `} onClick={() => setBrand(e.name)}>
-                    <div onClick={()=>{setSearchBrands(e.name); navigate('/search/'+e.name); }}className="w-[100px] h-[100px]">
+                    <div onClick={()=>{navigate('/search/brand/'+e.name); }} className="w-[100px] h-[100px]">
                         <img src={e.picture}  alt={e.name+' brand'} className="w-full h-full object-cover"/>
                     </div>
                     <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
                 </div>)}
             </Slider>
 
-            <Slider {...settings5} ref={sliderRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider2 ${isVisible && 'animate-left'}`}>
+            <Slider {...settings5} ref={sliderRef2} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider2 ${isVisible && 'animate-left'}`}>
                 {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer${brand === e.name? 'scale-95': 'scale-100'} brands-slider-brand `} onClick={() => setBrand(e.name)}>
-                    <div onClick={()=>{setSearchBrands(e.name); navigate('/search/'+e.name); }}  className="w-[100px] h-[100px]">
+                    <div onClick={()=>{setSearchBrands(e.name); navigate('/search/brand/'+e.name); }}  className="w-[100px] h-[100px]">
                         <img src={e.picture}  alt={e.name+' brand'} className="w-full h-full object-cover"/>
                     </div>
                     <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
                 </div>)}
             </Slider>
 
-            <Slider {...settings6} ref={sliderRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider3 ${isVisible && 'animate-left'}`}>
+            <Slider {...settings6} ref={sliderRef3} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider3 ${isVisible && 'animate-left'}`}>
                 {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer${brand === e.name? 'scale-95': 'scale-100'} brands-slider-brand `} onClick={() => setBrand(e.name)}>
-                    <div onClick={()=>{setSearchBrands(e.name); navigate('/search/'+e.name); }}  className="w-[100px] h-[100px]">
+                    <div onClick={()=>{setSearchBrands(e.name); navigate('/search/brand/'+e.name); }}  className="w-[100px] h-[100px]">
                         <img src={e.picture}  alt={e.name+' brand'} className="w-full h-full object-cover"/>
                     </div>
                     <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
                 </div>)}
             </Slider>
 
-            <Slider {...settings7} ref={sliderRef} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider4 ${isVisible && 'animate-left'}`}>
+            <Slider {...settings7} ref={sliderRef4} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider4 ${isVisible && 'animate-left'}`}>
                 {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer${brand === e.name? 'scale-95': 'scale-100'} brands-slider-brand `} onClick={() => setBrand(e.name)}>
-                    <div onClick={()=>{setSearchBrands(e.name); navigate('/search/'+e.name); }}  className="w-[100px] h-[100px]">
+                    <div onClick={()=>{setSearchBrands(e.name); navigate('/search/brand/'+e.name); }}  className="w-[100px] h-[100px]">
                         <img src={e.picture}  alt={e.name+' brand'} className="w-full h-full object-cover"/>
                     </div>
                     <h1 className="text-[18px] font-normal leading-[20px]">{e.name}</h1>
