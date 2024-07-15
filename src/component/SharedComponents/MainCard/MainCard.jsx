@@ -86,19 +86,25 @@ const MainCard = ( { pictures, name, daylyPrice, monthlyPrice, weeklyPrice, id }
                     <div>
                         <div className="text-center text-[14px] md:text-[16px]"></div>
                         <div className="p-[4px] md:p-[6px] border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center text-[14px] md:text-[16px]">
-                        Daily  {daylyPrice} AED
+                        Daily:  <span className="text-__brown font-bold mx-1">
+                        {daylyPrice}
+                        </span> AED
                         </div>
                     </div>
                     <div>
                         <div className="text-center text-[14px] md:text-[16px]"></div>
                         <div className="p-[4px] md:p-[6px] border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center text-[14px] md:text-[16px]">
-                        Monthly  {monthlyPrice} AED
+                        Monthly:  <span className="text-__brown font-bold mx-1">
+                        {monthlyPrice}
+                        </span> AED
                         </div>    
                     </div>
                     <div>
                         <div className="text-center text-[14px] md:text-[16px]"></div>
                         <div className="p-[4px] md:p-[6px] border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center text-[14px] md:text-[16px]">
-                        Weekly {weeklyPrice} AED
+                        Weekly: <span className="text-__brown font-bold mx-1">
+                        {weeklyPrice}
+                        </span> AED
                         </div>
                     </div>
                 </div>

@@ -22,7 +22,9 @@ function App() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if(!pathname.includes('search')) {
+      window.scrollTo(0, 0);
+    }
   }, [pathname])
 
   return (
@@ -41,8 +43,8 @@ function App() {
           <Route path='/dashboard/edit/:id' element={token? <AddCar />: <Navigate to="/"/>} />
           <Route path='*' element={<Navigate to={'/error'} />} />
           <Route path='/error' element={<ErrorPage />} />    
-          <Route path='/search/:name' element={<SearchPage />} />
-          <Route path='/search' element={<SearchPage />} />
+          <Route path='/search/:type/:name' element={<SearchPage />} />
+          {/* <Route path='/search' element={<SearchPage />} /> */}
         </Routes>
   );
 }

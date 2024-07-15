@@ -53,8 +53,8 @@ function CarCard ({car, setDelete}){
                 </div>
             </div>
             <div className='w-full  rounded-md overflow-hidden hover:opacity-80 duration-500'>
-                <Link className='cursor-pointer no-underline text-black flex justify-center items-center' to={'/book-car/'+car._id}>
-                    <img className='w-[450px] h-[300px] object-cover' src={car.pictures[0]} alt={car.name}/>
+                <Link className='cursor-pointer no-underline text-black flex justify-center items-center h-[300px]' to={'/book-car/'+car._id}>
+                    <img className='w-full h-full object-cover' src={car.pictures[0]} alt={car.name}/>
                 </Link>
             </div>
             <div className='w-full mt-2 flex gap-4 justify-center'>

@@ -155,11 +155,9 @@ function BookCar (){
     const handleImage = (image)=>{
         setMainimg(image);
     }
-    
-    
-    
+        
     return(
-        <div className='overflow-x-hidden'>
+        <div className='overflow-x-hidden' dir={language === 'AR'? 'rtl':'ltr'}>
             <ToastContainer/>
             <ChangeTitle title={"MEI | Book Your Car"} />
             <Hero carsHero={carsHero}/>
@@ -190,16 +188,16 @@ function BookCar (){
                     <ScrollAnimation animateIn="slideInRight" animateOnce={false}>
                         <Row >
                             <Col className='row-details' >
-                                <p><span>{t("Category")}</span>{car.category}</p>
-                                <p><span>{t("Gearbox")}</span>{car.gear}</p>
-                                <p><span>{t("Brand")}</span>{car.brand}</p>
-                                <p><span>{t("Model")}</span>{car.model}</p>
+                                <p className='flex items-center gap-[7px]'><span>{t("Category")}</span>{car.category}</p>
+                                <p className='flex items-center gap-[7px]'><span>{t("Gearbox")}</span>{car.gear}</p>
+                                <p className='flex items-center gap-[7px]'><span>{t("Brand")}</span>{car.brand}</p>
+                                <p className='flex items-center gap-[7px]'><span>{t("Model")}</span>{car.model}</p>
                                 
                             </Col>
                             <Col className='row-details'>
-                                <p><span>{t("Seats")}</span>{car.seatNumber}</p>
-                                <p><span>{t("Speed")}</span>{car.topSpeed}</p>
-                                <p><span>{t("Engine cylinders")}</span>{car.horse}</p>
+                                <p className='flex items-center gap-[7px]'><span>{t("Seats")}</span>{car.seatNumber}</p>
+                                <p className='flex items-center gap-[7px]'><span>{t("Speed")}</span>{car.topSpeed}</p>
+                                <p className='flex items-center gap-[7px]'><span>{t("Engine cylinders")}</span>{car.horse}</p>
                                 
                             </Col>
                             

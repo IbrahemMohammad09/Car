@@ -13,6 +13,7 @@ import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
 import { useTranslation } from 'react-i18next';
 import { useLanguageContext } from '../../hooks/useLanguageContext';
 import { FaCar } from 'react-icons/fa'
+import { phone } from '../../constant/infoData';
 
 const carsHero = [
   {
@@ -66,8 +67,8 @@ function AboutUs() {
                 <h1 >{t("Contact")}</h1>
                 <Row>
                   <Col className='contact max-[600px]:flex-col gap-2'>
-                      <Link to={'#'} className="info-button "><FaWhatsapp />{t("WhatsApp")}</Link>
-                      <Link to={'#'} className="info-button "><FaPhone />{t("CallUs")}</Link>
+                      <a href={'https://wa.me/'+phone} className="info-button "><FaWhatsapp />{t("WhatsApp")}</a>
+                      <a href={'tel:'+phone} className="info-button "><FaPhone />{t("CallUs")}</a>
                   </Col>
                 </Row>
               </ScrollAnimation>
