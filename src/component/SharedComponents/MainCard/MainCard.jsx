@@ -32,6 +32,14 @@ const MainCard = ( { pictures, name, daylyPrice, monthlyPrice, weeklyPrice, id }
         pauseOnHover: true,
         afterChange: handleAfterChange
     }
+
+    const handleNameShow = (name, size) => {
+        if(name.length <= size) {
+            return name;
+        } else {
+            return name.slice(0, size)+'...';
+        }
+    }
     
     return (
         <div>
@@ -46,41 +54,7 @@ const MainCard = ( { pictures, name, daylyPrice, monthlyPrice, weeklyPrice, id }
                         {pictures?.map((e, i) => <div key={i} className={`rounded-full shadow-[#ccc] shadow-md w-[20px] h-[20px] cursor-pointer ${index === i? 'bg-__brown': 'bg-slate-300'} duration-300 hover:bg-__brown`} onClick={() => handleButtonClick(i)}></div>)}
                     </div>
                 </div>
-                <h1 className="text-center mx-auto text-__brown font-semibold leading-[19px] text-[2rem] my-2">{name}</h1>
-                {/* <div className="flex justify-center items-center gap-[8px] flex-wrap mb-2">
-                    <div>
-                        <div className="text-center text-[12px]">Dayly</div>
-                        <div className="hover:bg-__brown duration-300 p-[2px] overflow-hidden border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center cursor-pointer hover:text-white relative">{daylyPrice} AED</div>
-                    </div>
-                    <div>
-                        <div className="text-center text-[12px]">Monthly</div>
-                        <div className="hover:bg-__brown duration-300 p-[2px] overflow-hidden border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center cursor-pointer hover:text-white relative">{monthlyPrice} AED</div>    
-                    </div>
-                    <div>
-                        <div className="text-center text-[12px]">Weekly</div>
-                        <div className="hover:bg-__brown duration-300 p-[2px] overflow-hidden border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center cursor-pointer hover:text-white relative">{weeklyPrice} AED</div>
-                    </div>
-                </div> */}
-                {/* <div className="flex justify-center items-center gap-[8px] flex-wrap mb-2">
-                    <div>
-                        <div className="text-center text-[14px] md:text-[16px]">Dayly</div>
-                        <div className="hover:bg-__brown duration-300 p-[4px] md:p-[6px] overflow-hidden border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center cursor-pointer hover:text-white relative text-[14px] md:text-[16px]">
-                            {daylyPrice} AED
-                        </div>
-                    </div>
-                    <div>
-                        <div className="text-center text-[14px] md:text-[16px]">Monthly</div>
-                        <div className="hover:bg-__brown duration-300 p-[4px] md:p-[6px] overflow-hidden border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center cursor-pointer hover:text-white relative text-[14px] md:text-[16px]">
-                            {monthlyPrice} AED
-                        </div>    
-                    </div>
-                    <div>
-                        <div className="text-center text-[14px] md:text-[16px]">Weekly</div>
-                        <div className="hover:bg-__brown duration-300 p-[4px] md:p-[6px] overflow-hidden border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center cursor-pointer hover:text-white relative text-[14px] md:text-[16px]">
-                            {weeklyPrice} AED
-                        </div>
-                    </div>
-                </div> */}
+                <h1 className="text-center mx-auto text-__brown font-semibold leading-[19px] text-[2rem] my-2">{handleNameShow(name, 18)}</h1>
 
                 <div className="flex justify-center items-center gap-[8px] flex-wrap mb-2">
                     <div>

@@ -127,3 +127,19 @@
         transform: translateX(-50%) rotate(360deg);
     }
 }
+
+.animate-fade {
+    animation: fade 1s linear;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 100%;
+    }
+    50% {
+        opacity: 50%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}

@@ -24,6 +24,7 @@ import { useLanguageContext } from "../../hooks/useLanguageContext"
 import { FaCar } from 'react-icons/fa'
 import './Home.css'
 import { StorageContext } from "../../context/SearchContext"
+import ScrollAnimation from "react-animate-on-scroll"
 
 const carsHero = [
     {
@@ -256,80 +257,6 @@ const Home = () => {
     const sliderRef3 = useRef()
     const sliderRef4 = useRef()
 
-    // useEffect(() => {
-    //     const handleScroll = () => {
-    //     if(!elementRef1 || !elementRef2 || !elementRef3 || !elementRef4 || !sliderRef1 || !sliderRef2 || !sliderRef3 || !sliderRef4) {
-    //         return;
-    //     }
-    //     const e1 = elementRef1?.getBoundingClientRect();
-    //     const e2 = elementRef2?.getBoundingClientRect();
-    //     const e3 = elementRef3?.getBoundingClientRect();
-    //     const e4 = elementRef2?.getBoundingClientRect();
-    //     const e5 = sliderRef1?.getBoundingClientRect();
-    //     const e6 = sliderRef2?.getBoundingClientRect();
-    //     const e7 = sliderRef3?.getBoundingClientRect();
-    //     const e8 = sliderRef4?.getBoundingClientRect();
-
-    //     const viewportHeight = window.innerHeight;
-    //       const scrollPosition = window.scrollY;
-    
-    //       if (e1.top + (e1.height / 2) <= scrollPosition + (viewportHeight / 2)) {
-    //         setIsVisible4(true);
-    //       } else {
-    //         setIsVisible4(false);
-    //       }
-
-    //       if (e2.top + (e2.height / 2) <= scrollPosition + (viewportHeight / 2)) {
-    //             setIsVisible2(true);
-    //       } else {
-    //         setIsVisible2(false);
-    //       }
-
-    //       if (e3.top + (e3.height / 2) <= scrollPosition + (viewportHeight / 2)) {
-    //         setIsVisible3(true);
-    //       } else {
-    //         setIsVisible3(false);
-    //       }
-
-          
-    //       if (e4.top + (e4.height / 2) <= scrollPosition + (viewportHeight / 2)) {
-    //         setIsVisible4(true);
-    //       } else {
-    //         setIsVisible4(false);
-    //       }
-
-    //       if (e4.top + (e4.height / 2) <= scrollPosition + (viewportHeight / 2)) {
-    //         setIsVisible(true);
-    //       } else {
-    //         setIsVisible(false);
-    //       }
-
-    //       if (e5.top + (e5.height / 2) <= scrollPosition + (viewportHeight / 2)) {
-    //         setIsVisible(true);
-    //       } else {
-    //         setIsVisible(false);
-    //       }
-
-    //       if (e6.top + (e6.height / 2) <= scrollPosition + (viewportHeight / 2)) {
-    //         setIsVisible(true);
-    //       } else {
-    //         setIsVisible(false);
-    //       }
-
-    //       if (e7.top + (e7.height / 2) <= scrollPosition + (viewportHeight / 2)) {
-    //         setIsVisible(true);
-    //       } else {
-    //         setIsVisible(false);
-    //       }
-    //     };
-    
-    //     window.addEventListener('scroll', handleScroll);
-    
-    //     return () => {
-    //         window.removeEventListener('scroll', handleScroll);
-    //     };
-    //   }, []);
-
     return (
         <section className="min-h-screen w-full bg-white overflow-x-hidden">
             <Hero carsHero={carsHero}/>
@@ -339,6 +266,9 @@ const Home = () => {
                 Dashboard
             </Link>}
             <MainTitle title={HomeTitle}/>
+
+            <ScrollAnimation animateIn="animate-right" animateOnce={false}>
+
             <div className={`w-full ${isVisible4 && 'animate-right'}`} ref={elementRef4}>
                 <Slider {...settings} className="p-1 slide1">
                     {cards.map((e, i) => <div key={i} className="h-[441px] relative overflow-hidden">
@@ -350,7 +280,6 @@ const Home = () => {
                         </div>
                     </div>)}
                 </Slider>
-
                 <Slider {...settings2} className="p-1 slide2">
                     {cards.map((e, i) => <div key={i} className="h-[441px] relative overflow-hidden">
                         <img src={e.img} alt={e.title + 'slide' + i} onClick={() => {setType(prev => [...prev, e.title]); }} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
@@ -373,6 +302,10 @@ const Home = () => {
                     </div>)}
                 </Slider>
             </div>
+
+            </ScrollAnimation>
+
+            <ScrollAnimation animateIn="animate-left" animateOnce={false}>
 
             <Slider {...settings4} ref={sliderRef1} className={`mx-auto container flex justify-center items-center flex-wrap gap-[30px] mt-[100px] brands-slider1 ${isVisible && 'animate-left'}`}>
                 {brands && brands?.map((e, i) => <div key={i} className={`border-[1px] border-__brown border-solid rounded-[16px] flex justify-center items-center flex-col w-[209px] h-[180px] duration-300 md:hover:scale-95 cursor-pointer${brand === e.name? 'scale-95': 'scale-100'} brands-slider-brand `} onClick={() => setBrand(e.name)}>
@@ -410,11 +343,19 @@ const Home = () => {
                 </div>)}
             </Slider>
 
+            </ScrollAnimation>
+
             <MainTitle title={PopularCar}/>
+
+            <ScrollAnimation animateIn="animate-right" animateOnce={false}>
+
             <div ref={elementRef3} className={`container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px] relative ${isVisible3 && 'animate-right'}`}>
                 <Loading loading={loading} style={'absolute left-[50%] translate-x-[-50%]'}/>
                 {allcars && !loading && allcars?.map((e, i) => <MainCard key={i} daylyPrice={e.price.dayly} monthlyPrice={e.price.monthly} weeklyPrice={e.price.weekly} name={e.name} pictures={e.pictures} id={e._id}/>)}
             </div>
+
+            </ScrollAnimation>
+
             <div className={`mx-auto text-center w-fit ${loading? 'mt-[200px]': 'mt-[40px]'}`}>
                 {/* <MainButton name={LoadMore} url={"/search"}/> */}
                 <Link to={'#'} onClick={()=>{handleShowAllCar()}} className="cursor-pointer border-[1px] border-solid border-__brown bg-__brown text-white text-[1rem] font-bold leading-[25.8px] rounded-sm block no-underline duration-300 opacity-90 hover:opacity-100 w-fit py-[10px] px-[30px]">
@@ -424,9 +365,14 @@ const Home = () => {
 
             <MainTitle title={WhyUs}/>
             <div className="bg-__dark_white py-[65px] px-[100px] flex justify-center w-full gap-[50px] items-center container mx-auto max-[991px]:flex-col" dir={language === 'AR' ? 'rtl' : 'ltr'}>
-                <div className={`h-[687px] w-[524px] max-[600px]:w-full ${isVisible1 && (language === 'AR'? 'animate-right':'animate-left')}`} ref={elementRef1}>
-                    <img src={Img5} alt={'Sport car with orange color'} className="w-full h-full object-fit"/>
-                </div>
+                <ScrollAnimation animateIn={`${language === 'AR'? 'animate-right':'animate-left'}`} animateOnce={false}>
+                    <div className={`h-[687px] w-[524px] max-[600px]:w-full ${isVisible1 && (language === 'AR'? 'animate-right':'animate-left')}`} ref={elementRef1}>
+                        <img src={Img5} alt={'Sport car with orange color'} className="w-full h-full object-fit"/>
+                    </div>
+                </ScrollAnimation>
+
+                <ScrollAnimation animateIn={`${language !== 'AR'? 'animate-right':'animate-left'}`} animateOnce={false}>
+
                 <div ref={elementRef2} className={`${isVisible2 && (language === 'EN'? 'animate-right':'animate-left')}`}>
                     <h1 className="text-__brown text-[2.5rem] leading-[55px] font-medium min-[992px]:w-[300px] max-[500px]:text-center">{FeelHome}</h1>
                     <div className="flex flex-col gap-[20px] mt-[62px]">
@@ -441,6 +387,8 @@ const Home = () => {
                         </div>)}
                     </div>
                 </div>
+
+                </ScrollAnimation>
             </div>
 
             <Footer/>
