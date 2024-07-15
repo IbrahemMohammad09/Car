@@ -69,15 +69,14 @@ const carsHero = [
 
     useEffect(() => {
         setLoading(true)
-        axios.get(API.GET.ALLACTIVECARS+page, {
+        axios.get(API.GET.ALLCARSWITHOUTPAGE, {
             'Contet-Type': 'application/json',
         })
             .then(res => {
                 if(res?.data.state === 'success') {
                     setLoading(false);
-                    setCars(res?.data?.cars);
-                    SetRes(res?.data?.cars);
-                    setTotal(res?.data?.total)
+                    SetRes(res?.data?.cars.filter(e => e.available !== false));
+                    setTotal(res?.data?.count)
                 }
             })
             .catch(err => {
@@ -104,28 +103,13 @@ const carsHero = [
     }, []);
     
 
-    // const filterCarsByBrand = (cars, brand) => {
-    //     return cars?.filter(car => car.brand === brand);
-    // };
-
-    // const handleClick=(barndName)=>{
-    //     SetRes(filterCarsByBrand(cars,barndName));
-    // }
-
-    // const filterCarsByCategory = (cars, category) => {
-    //     return cars.filter(car => car.category === category);
-    //   };
-    
-    // const filterCars = (cars, name) => {
-    //   return cars.filter(car => 
-    //     car.name === name
-    //    );
-    // };
-
     const pathParts = pathname.split('/');
     const lastWord = pathParts[pathParts.length - 1];
 
-    const filterCars = (cars, type, value) => {
+    const filterCars = (cars, type, value, all) => {
+        if(all) {
+            return cars;
+        }
         if(type === 'brand') {
             const newRegex = new RegExp(`.*${value}.*`, 'i');
             return cars.filter(car => newRegex.test(car.brand));
@@ -138,8 +122,10 @@ const carsHero = [
         }
     }
 
+    const [index, setIndex] = useState(false);
+
     const showAllCars =()=>{
-        setPage(page => page+1)
+        setIndex(true)
     }
 
     let settings4 = {
@@ -233,16 +219,15 @@ const carsHero = [
             </ScrollAnimation>
 
             <ScrollAnimation animateIn="animate-left" animateOnce={false}>
-
             <div className={`container mx-auto w-full grid grid-cols-1 md:grid-cols-2 min-[1300px]:grid-cols-3 gap-[47px] relative mt-[100px]`}>
-                {Res && filterCars(Res, type, name)?.length > 0 && filterCars(Res, type, name)?.map((e, i) => <MainCard key={i} daylyPrice={e.price.dayly} monthlyPrice={e.price.monthly} weeklyPrice={e.price.weekly} name={e.name} pictures={e.pictures} id={e._id}/>)}
+                {Res && filterCars(Res, type, name, index)?.length > 0 && filterCars(Res, type, name, index)?.map((e, i) =>  <MainCard key={i} daylyPrice={e.price.dayly} monthlyPrice={e.price.monthly} weeklyPrice={e.price.weekly} name={e.name} pictures={e.pictures} id={e._id}/>)}
             </div>
 
             </ScrollAnimation>
 
             <ChangeTitle title={"MEI | Search Page"}/>
             {Res && filterCars(Res, type, name)?.length === 0 && <h2 className='text-center mt-10 mx-auto'>{notFound}</h2>}
-            {total >= total + 50 && <div className="flex justify-center items-center pt-20">
+            {!index && <div className="flex justify-center items-center pt-20">
                 <button onClick={showAllCars}  className="cursor-pointer border-[1px] border-solid border-__brown bg-__brown text-white text-[1rem] font-bold leading-[25.8px] rounded-sm block no-underline duration-300 opacity-90 hover:opacity-100 w-fit py-[10px] px-[30px]">
                     {seeButton}
                 </button>

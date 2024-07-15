@@ -4,6 +4,7 @@ export const url = 'https://superquizgame.com/api';
 
 const API = {
     GET: {
+        ALLCARSWITHOUTPAGE: url+'/cars/',
         ALLBOOKINGS: url+'/bookings/page/',
         ONEBOOKING: url+'/bookings/',
         ALLCARS: url+'/cars/page/',
