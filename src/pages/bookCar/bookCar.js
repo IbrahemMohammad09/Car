@@ -48,10 +48,10 @@ const carsHero = [
   ]
 
 function BookCar (){
-
-    
-
-    const [t ,il8n] = useTranslation();
+    const [t ,il8n] = useTranslation();    
+    const Daily =t("Daily");
+    const Monthly =t("Monthly");
+    const Weekly =t("Weekly");
     const carDetail = t("carDetail");
     const Book = t("BookYourCar");
     const See = t("See");
@@ -206,10 +206,10 @@ function BookCar (){
 
                             <h1>{t("Rental Prices")}</h1>
                             <Col className='row-details '>
-                                <p><span>Daily</span>{car.price.dayly} AED</p>
-                                <p><span>Monthly</span>{car.price.monthly} AED</p>
+                                <p><span>{Daily}</span>{car.price.dayly} AED</p>
+                                <p><span>{Monthly}</span>{car.price.monthly} AED</p>
                             </Col>
-                            <Col><p><span>Weekly</span>{car.price.weekly} AED</p></Col>
+                            <Col><p><span>{Weekly}</span>{car.price.weekly} AED</p></Col>
                         </Row>
                         
                     </ScrollAnimation>
