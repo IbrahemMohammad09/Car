@@ -234,6 +234,7 @@ const Home = () => {
             setLoadMore(t("showLess"));
         }else {
             setAllcars(cars.length > 6? cars.slice(0, 6) : cars)
+            window.scroll(0,1800)
             setLoadMore(t("LoadMore"))
         }
         
