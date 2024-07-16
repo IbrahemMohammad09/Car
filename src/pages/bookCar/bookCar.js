@@ -155,6 +155,11 @@ function BookCar (){
     const handleImage = (image)=>{
         setMainimg(image);
     }
+    useEffect(() => {
+        setTimeout(() => {
+            window.scrollTo(0, 900)
+        }, 1000)
+    }, [pathname]);
         
     return(
         <div className='overflow-x-hidden' dir={language === 'AR'? 'rtl':'ltr'}>
@@ -203,13 +208,12 @@ function BookCar (){
                             
                         </Row>
                         <Row className='price-details'>
-
                             <h1>{t("Rental Prices")}</h1>
                             <Col className='row-details '>
-                                <p><span>{Daily}</span>{car.price.dayly} AED</p>
-                                <p><span>{Monthly}</span>{car.price.monthly} AED</p>
+                                <p className='flex items-center gap-[7px]'><span>{Daily}</span>{car.price.dayly} AED</p>
+                                <p className='flex items-center gap-[7px]'><span>{Monthly}</span>{car.price.monthly} AED</p>
                             </Col>
-                            <Col><p><span>{Weekly}</span>{car.price.weekly} AED</p></Col>
+                            <Col><p className='flex items-center gap-[7px]'><span>{Weekly}</span>{car.price.weekly} AED</p></Col>
                         </Row>
                         
                     </ScrollAnimation>
@@ -219,10 +223,6 @@ function BookCar (){
                     <h1>{car && car?.name}</h1>
                     <h2>{car && car?.description[language]}</h2>
                 </div>
-                {/* <div className='car-details'>
-                    <span>Description</span>
-                    <p>{car.description[language]}</p>
-                </div> */}
                 <ScrollAnimation animateIn="slideInUp" animateOnce={false}>
                     <MainTitle title={Book} />
                     <Container>
