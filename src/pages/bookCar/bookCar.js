@@ -155,6 +155,11 @@ function BookCar (){
     const handleImage = (image)=>{
         setMainimg(image);
     }
+    useEffect(() => {
+        setTimeout(() => {
+            window.scrollTo(0, 900)
+        }, 1000)
+    }, [pathname]);
         
     return(
         <div className='overflow-x-hidden' dir={language === 'AR'? 'rtl':'ltr'}>
