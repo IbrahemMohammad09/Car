@@ -149,7 +149,7 @@
 @media screen and (max-width:450px) {
     .car-details h2{
         width: 400px;
-        height: 200px;
+        /* height: 200px; */
     }
 }
 @media screen and (max-width:1200px) {
