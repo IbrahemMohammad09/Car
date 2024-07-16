@@ -128,8 +128,8 @@ const Home = () => {
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
-        // autoplay: true,
-        autoplaySpeed: 5000,
+        autoplay: true,
+        autoplaySpeed: 3000,
         pauseOnHover: true,
     }
     let settings2 = {
@@ -137,8 +137,8 @@ const Home = () => {
         speed: 500,
         slidesToShow: 2,
         slidesToScroll: 1,
-        // autoplay: true,
-        autoplaySpeed: 5000,
+        autoplay: true,
+        autoplaySpeed: 3000,
         pauseOnHover: true,
     }
     let settings3 = {
@@ -146,8 +146,8 @@ const Home = () => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        // autoplay: true,
-        autoplaySpeed: 5000,
+        autoplay: true,
+        autoplaySpeed: 3000,
         pauseOnHover: true,
     }
 
@@ -156,7 +156,7 @@ const Home = () => {
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
-        // autoplay: true,
+        autoplay: true,
         autoplaySpeed: 5000,
         pauseOnHover: true,
     }
@@ -166,7 +166,7 @@ const Home = () => {
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
-        // autoplay: true,
+        autoplay: true,
         autoplaySpeed: 5000,
         pauseOnHover: true,
     }
@@ -176,7 +176,7 @@ const Home = () => {
         speed: 500,
         slidesToShow: 2,
         slidesToScroll: 1,
-        // autoplay: true,
+        autoplay: true,
         autoplaySpeed: 5000,
         pauseOnHover: true,
     }
@@ -186,7 +186,7 @@ const Home = () => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        // autoplay: true,
+        autoplay: true,
         autoplaySpeed: 5000,
         pauseOnHover: true,
     }
@@ -272,7 +272,7 @@ const Home = () => {
             <div className={`w-full ${isVisible4 && 'animate-right'}`} ref={elementRef4}>
                 <Slider {...settings} className="p-1 slide1">
                     {cards.map((e, i) => <div key={i} className="h-[441px] relative overflow-hidden">
-                        <img src={e.img} alt={e.title + 'slide' + i} onClick={() => {setType(prev => [...prev, e.title]);}} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
+                        <img src={e.img} alt={e.title + 'slide' + i} onClick={() => {setType(prev => [...prev, e.title]);}} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-100'}`}/>
                         <div className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
                             <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
                             <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>  
@@ -282,7 +282,7 @@ const Home = () => {
                 </Slider>
                 <Slider {...settings2} className="p-1 slide2">
                     {cards.map((e, i) => <div key={i} className="h-[441px] relative overflow-hidden">
-                        <img src={e.img} alt={e.title + 'slide' + i} onClick={() => {setType(prev => [...prev, e.title]); }} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
+                        <img src={e.img} alt={e.title + 'slide' + i} onClick={() => {setType(prev => [...prev, e.title]); }} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-100'}`}/>
                         <div className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
                             <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
                             <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>
@@ -293,7 +293,7 @@ const Home = () => {
 
                 <Slider {...settings3} className="p-1 slide3">
                     {cards.map((e, i) => <div key={i} className="h-[441px] relative overflow-hidden">
-                        <img src={e.img} alt={e.title + 'slide' + i} onClick={() => {setType(prev => [...prev, e.title]);}} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-80'}`}/>
+                        <img src={e.img} alt={e.title + 'slide' + i} onClick={() => {setType(prev => [...prev, e.title]);}} className={`w-full h-full object-cover mx-[20px] duration-300 hover:scale-105 cursor-pointer ${type.includes(e.title)? 'opacity-100':'opacity-100'}`}/>
                         <div className="absolute left-[30px] top-[30px] z-[30] flex flex-col">
                             <h1 className="text-__brown text-[3rem] font-bold">{e.title}</h1>
                             <h2 className="text-white text-[3rem] font-bold mt-[-10px]">cars</h2>  
