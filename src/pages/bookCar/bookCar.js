@@ -48,10 +48,10 @@ const carsHero = [
   ]
 
 function BookCar (){
-
-    
-
-    const [t ,il8n] = useTranslation();
+    const [t ,il8n] = useTranslation();    
+    const Daily =t("Daily");
+    const Monthly =t("Monthly");
+    const Weekly =t("Weekly");
     const carDetail = t("carDetail");
     const Book = t("BookYourCar");
     const See = t("See");
@@ -208,13 +208,12 @@ function BookCar (){
                             
                         </Row>
                         <Row className='price-details'>
-
                             <h1>{t("Rental Prices")}</h1>
                             <Col className='row-details '>
-                                <p className='flex items-center gap-[7px]'><span>Daily</span>{car.price.dayly} AED</p>
-                                <p className='flex items-center gap-[7px]'><span>Monthly</span>{car.price.monthly} AED</p>
+                                <p className='flex items-center gap-[7px]'><span>{Daily}</span>{car.price.dayly} AED</p>
+                                <p className='flex items-center gap-[7px]'><span>{Monthly}</span>{car.price.monthly} AED</p>
                             </Col>
-                            <Col><p className='flex items-center gap-[7px]'><span>Weekly</span>{car.price.weekly} AED</p></Col>
+                            <Col><p className='flex items-center gap-[7px]'><span>{Weekly}</span>{car.price.weekly} AED</p></Col>
                         </Row>
                         
                     </ScrollAnimation>
@@ -224,10 +223,6 @@ function BookCar (){
                     <h1>{car && car?.name}</h1>
                     <h2>{car && car?.description[language]}</h2>
                 </div>
-                {/* <div className='car-details'>
-                    <span>Description</span>
-                    <p>{car.description[language]}</p>
-                </div> */}
                 <ScrollAnimation animateIn="slideInUp" animateOnce={false}>
                     <MainTitle title={Book} />
                     <Container>

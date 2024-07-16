@@ -6,10 +6,14 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import './MainCard.css'
 import { phone } from "../../../constant/infoData";
+import { useTranslation } from "react-i18next";
+import { useLanguageContext } from "../../../hooks/useLanguageContext";
 
 const MainCard = ( { pictures, name, daylyPrice, monthlyPrice, weeklyPrice, id } ) => {    
     const [index, setIndex] = useState(0);
     const navigate = useNavigate();
+
+    const { language } = useLanguageContext();
 
     const sliderRef = useRef();
 
@@ -40,6 +44,12 @@ const MainCard = ( { pictures, name, daylyPrice, monthlyPrice, weeklyPrice, id }
             return name.slice(0, size)+'...';
         }
     }
+
+    const [t,il8n]=useTranslation();
+    
+    const Daily =t("Daily");
+    const Monthly =t("Monthly");
+    const Weekly =t("Weekly");
     
     return (
         <div>
@@ -56,11 +66,11 @@ const MainCard = ( { pictures, name, daylyPrice, monthlyPrice, weeklyPrice, id }
                 </div>
                 <h1 className="text-center mx-auto text-__brown font-semibold leading-[19px] text-[2rem] my-2">{handleNameShow(name, 18)}</h1>
 
-                <div className="flex justify-center items-center gap-[8px] flex-wrap mb-2">
+                <div className="flex justify-center items-center gap-[8px] flex-wrap mb-2" dir={language === 'AR' ? 'rtl' : 'ltr'}>
                     <div>
                         <div className="text-center text-[14px] md:text-[16px]"></div>
                         <div className="p-[4px] md:p-[6px] border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center text-[14px] md:text-[16px]">
-                        Daily:  <span className="text-__brown font-bold mx-1">
+                        {Daily}:  <span className="text-__brown font-bold mx-1">
                         {daylyPrice}
                         </span> AED
                         </div>
@@ -68,7 +78,7 @@ const MainCard = ( { pictures, name, daylyPrice, monthlyPrice, weeklyPrice, id }
                     <div>
                         <div className="text-center text-[14px] md:text-[16px]"></div>
                         <div className="p-[4px] md:p-[6px] border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center text-[14px] md:text-[16px]">
-                        Monthly:  <span className="text-__brown font-bold mx-1">
+                        {Monthly}:  <span className="text-__brown font-bold mx-1">
                         {monthlyPrice}
                         </span> AED
                         </div>    
@@ -76,7 +86,7 @@ const MainCard = ( { pictures, name, daylyPrice, monthlyPrice, weeklyPrice, id }
                     <div>
                         <div className="text-center text-[14px] md:text-[16px]"></div>
                         <div className="p-[4px] md:p-[6px] border-[1px] border-solid border-__brown rounded-[10px] flex justify-center items-center text-[14px] md:text-[16px]">
-                        Weekly: <span className="text-__brown font-bold mx-1">
+                        {Weekly}: <span className="text-__brown font-bold mx-1">
                         {weeklyPrice}
                         </span> AED
                         </div>

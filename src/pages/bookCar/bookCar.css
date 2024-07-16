@@ -41,29 +41,31 @@
 }
 .car-details h1 {
     padding-top: 30px;
-    width: 500px;
     /* height: 40px; */
+    text-align: center;
     font-family: 'Plus Jakarta Sans';
     font-style: normal;
     font-weight: 700;
     font-size: 32px;
     line-height: 150%;
     display: flex;
+    align-items: center;
+    justify-content: center;
     letter-spacing: -0.03em;
     color: #965933;
     word-spacing: 0.3em;
 }
 .price-details h1{
-    width: 500px;
     font-family: 'Plus Jakarta Sans';
     font-style: normal;
     font-weight: 700;
     font-size: 32px;
     line-height: 150%;
-    display: flex;
     letter-spacing: -0.03em;
     color: #965933;
     word-spacing: 0.3em;
+    display: flex;
+    justify-content: start;
 }
 .car-details h2{
     padding-top: 30px;
@@ -148,8 +150,8 @@
 
 @media screen and (max-width:450px) {
     .car-details h2{
-        width: 400px;
-        /* height: 200px; */
+        width: 100%;
+        text-align: center;
     }
 }
 @media screen and (max-width:1200px) {
@@ -157,4 +159,3 @@
         margin: 0px;
     }
 }
-  

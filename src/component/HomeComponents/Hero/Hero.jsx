@@ -18,7 +18,7 @@ const   Hero = (props) => {
     
     return (
         <section className="h-screen relative">
-            <img src={Img} alt={'Sport car in the mountain'} className="w-full h-full z-0 absolute left-0 top-0"/>
+            <img src={Img} alt={'Sport car in the mountain'} className="w-full h-full z-0 absolute left-0 top-0 max-[768px]:object-cover"/>
             <Header/>
             <div className='text-center flex flex-col justify-center items-center gap-[1rem] relative left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-10 animate-fade'>
                 <h2 className='text-white text-[3rem] md:text-[4.4rem] font-bold'>{t("HeroH2")}</h2>

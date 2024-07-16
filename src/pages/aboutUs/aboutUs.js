@@ -64,7 +64,7 @@ function AboutUs() {
                 <h2>{t("FooterTitle")}</h2>
                 <p>{t("About")}</p>
                 <hr />
-                <h1 >{t("Contact")}</h1>
+                <h1 className='max-[600px]:justify-center max-[600px]:items-center '>{t("Contact")}</h1>
                 <Row>
                   <Col className='contact max-[600px]:flex-col gap-2'>
                       <a href={'https://wa.me/'+phone} className="info-button "><FaWhatsapp />{t("WhatsApp")}</a>

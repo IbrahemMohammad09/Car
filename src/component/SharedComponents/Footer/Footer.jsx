@@ -45,6 +45,7 @@ const Footer = () => {
     }, []);
 
     const [t,il8n]=useTranslation();
+    
     const home =t("NavHome");
     const about =t("NavAboutUS");
     const FooterTitle =t("FooterTitle");

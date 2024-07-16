@@ -119,6 +119,8 @@ const carsHero = [
         } else if(type === 'category') {
             const newRegex = new RegExp(`.*${value}.*`, 'i');
             return cars.filter(car => newRegex.test(car.category));
+        } else {
+            navigate('/error')
         }
     }
 
@@ -169,8 +171,11 @@ const carsHero = [
     }
 
     useEffect(() => {
+        if(pathname.includes("find/all")) {
+            return;
+        }
         setTimeout(() => {
-            window.scrollTo(0, 900)
+            window.scrollTo(0, 800)
         }, 1000)
     }, [pathname]);
 
