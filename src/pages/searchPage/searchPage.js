@@ -107,7 +107,7 @@ const carsHero = [
     const lastWord = pathParts[pathParts.length - 1];
 
     const filterCars = (cars, type, value, all) => {
-        if(all) {
+        if(type === 'find' && value === 'all') {
             return cars;
         }
         if(type === 'brand') {
@@ -125,7 +125,7 @@ const carsHero = [
     const [index, setIndex] = useState(false);
 
     const showAllCars =()=>{
-        setIndex(true)
+        navigate('/search/find/all')
     }
 
     let settings4 = {
@@ -227,7 +227,7 @@ const carsHero = [
 
             <ChangeTitle title={"MEI | Search Page"}/>
             {Res && filterCars(Res, type, name)?.length === 0 && <h2 className='text-center mt-10 mx-auto'>{notFound}</h2>}
-            {!index && <div className="flex justify-center items-center pt-20">
+            {name !== 'all' && <div className="flex justify-center items-center pt-20">
                 <button onClick={showAllCars}  className="cursor-pointer border-[1px] border-solid border-__brown bg-__brown text-white text-[1rem] font-bold leading-[25.8px] rounded-sm block no-underline duration-300 opacity-90 hover:opacity-100 w-fit py-[10px] px-[30px]">
                     {seeButton}
                 </button>
