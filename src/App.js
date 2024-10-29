@@ -15,6 +15,7 @@ import AddCar from './pages/AddCar/AddCar';
 import Bookings from './pages/Bookings/Bookings';
 import AddBrand from './pages/AddBrand/AddBrand';
 import SearchPage from './pages/searchPage/searchPage';
+import Blogs from './pages/Blogs/Blogs';
 
 function App() {
   const token = localStorage.getItem('token');
@@ -31,6 +32,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/about-us' element={<AboutUs />}/>
+          <Route path='/blogs' element={<Blogs />} />
           <Route path='/book-car/:id' element={<BookCar />}/>
           <Route path='/dashboard-login' element={!token ?<DashBoardLoginPage/>: <Navigate to="/dashboard"/>}/>
           <Route path='/dashboard' element={token? <HomeDash/>: <Navigate to="/"/>} />
