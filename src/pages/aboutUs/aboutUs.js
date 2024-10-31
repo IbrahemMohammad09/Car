@@ -15,6 +15,8 @@ import { useLanguageContext } from '../../hooks/useLanguageContext';
 import { FaCar } from 'react-icons/fa'
 import { phone } from '../../constant/infoData';
 
+
+
 const carsHero = [
   {
       title: 'Sport',
@@ -44,9 +46,13 @@ const carsHero = [
 ]
 
 function AboutUs() {
+
   const [t,il8n]=useTranslation();
   const HomeTitle = t("HomeTitle");
   const { language } = useLanguageContext();
+
+
+
 
     return (
       <div>

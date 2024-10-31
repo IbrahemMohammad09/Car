@@ -1,111 +1,39 @@
-import {React, useState } from 'react'
-import { FaCar } from 'react-icons/fa'
-import ChangeTitle from '../../component/SharedComponents/ChangeTitle'
-import Hero from '../../component/HomeComponents/Hero/Hero'
-import Footer from '../../component/SharedComponents/Footer/Footer'
-import SideLink from '../../component/SharedComponents/sideLink/sideLink'
-import MainTitle from '../../component/SharedComponents/MainTitle/MainTitle'
-import { useTranslation } from 'react-i18next'
-import img from '../../images/Home/unsplash_UF2nwAcD8Mo.png'
-import img2 from '../../images/Home/background@3x.png'
+import {React, useState, useEffect } from 'react';
+import { FaCar } from 'react-icons/fa';
+import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
+import Hero from '../../component/HomeComponents/Hero/Hero';
+import Footer from '../../component/SharedComponents/Footer/Footer';
+import SideLink from '../../component/SharedComponents/sideLink/sideLink';
+import MainTitle from '../../component/SharedComponents/MainTitle/MainTitle';
+import { useTranslation } from 'react-i18next';
+import img from '../../images/Home/unsplash_UF2nwAcD8Mo.png';
+import img2 from '../../images/Home/background@3x.png';
 import { motion } from "framer-motion";
 import { useLanguageContext } from '../../hooks/useLanguageContext';
+import axios from 'axios';
 
 const carsHero = [
-    {
-        title: 'Sport',
-        icon: <FaCar/>,
-        url:"/search"
-    },
-    {
-        title: 'Luxury',
-        icon: <FaCar/>,
-        url:"/search"
-    },
-    {
-        title: 'Family',
-        icon: <FaCar/>,
-        url:"/search"
-    },
-    {
-        title: 'Economy',
-        icon: <FaCar/>,
-        url:"/search"
-    },
-    {
-        title: 'Convertible',
-        icon: <FaCar/>,
-        url:"/search"
-    }
-  ]
-
-  const articles = [
-    {
-      id: 1,
-      title: "Article One",
-      summary: "This is a summary of the first article.",
-      description: "This is the full description of the first article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.",
-      photo: img,
-    },
-    {
-      id: 2,
-      title: "Article Two",
-      summary: "This is a summary of the second article. This is a summary of the second article.",
-      description: "This is the full description of the second article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.",
-      photo: img2,
-    },
-    {
-        id: 3,
-        title: "Article One",
-        summary: "This is a summary of the first article.",
-        description: "This is the full description of the first article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.",
-        photo: img,
-      },
-      {
-        id: 4,
-        title: "Article Two",
-        summary: "This is a summary of the second article. This is a summary of the second article.",
-        description: "This is the full description of the second article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.",
-        photo: img2,
-      },
-      {
-        id: 5,
-        title: "Article One",
-        summary: "This is a summary of the first article.",
-        description: "This is the full description of the first article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.",
-        photo: img,
-      },
-      {
-        id: 6,
-        title: "Article Two",
-        summary: "This is a summary of the second article. This is a summary of the second article.",
-        description: "This is the full description of the second article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.",
-        photo: img2,
-      },
-      {
-        id: 7,
-        title: "Article One",
-        summary: "This is a summary of the first article.",
-        description: "This is the full description of the first article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.",
-        photo: img,
-      },
-      {
-        id: 8,
-        title: "Article Two",
-        summary: "This is a summary of the second article. This is a summary of the second article.",
-        description: "This is the full description of the second article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.This is the full description of the second article with more details.",
-        photo: img2,
-      },
- 
-  ];
-  
+    { title: 'Sport', icon: <FaCar/>, url:"/search" },
+    { title: 'Luxury', icon: <FaCar/>, url:"/search" },
+    { title: 'Family', icon: <FaCar/>, url:"/search" },
+    { title: 'Economy', icon: <FaCar/>, url:"/search" },
+    { title: 'Convertible', icon: <FaCar/>, url:"/search" }
+];
 
 const Blogs = () => {
   const { language } = useLanguageContext();
-  const [t,il8n]= useTranslation();
-  const BlogTitle = t ("BlogTitle");
+  const [t, i18n] = useTranslation();
+  const BlogTitle = t("BlogTitle");
   const [selectedArticle, setSelectedArticle] = useState(null);
+  const [articles, setArticles] = useState([]);
+  const [articlesAr, setArticlesAr] = useState([]);
+  const [articlesEn, setArticlesEn] = useState([]);
+  const [error, setError] = useState(false);
+  const Error = t("Error");
 
+
+
+  
   const handleShowDetails = (article) => {
     setSelectedArticle(article);
   };
@@ -114,61 +42,137 @@ const Blogs = () => {
     setSelectedArticle(null);
   };
 
+  useEffect(() => {
+    axios.get("https://seomei.pythonanywhere.com/api/articles/")
+      .then((response) => {
+        if (response.data.success) {
+          const data = response.data.data;
 
+          const arArticles = data.map((item) => ({
+            pk: item.pk,
+            header: item.header_ar,
+            summary: item.summary_ar,
+            description: item.description_ar,
+            photo: item.photo,
+            link: item.link,
+            linkTitle: item.link_title_ar,
+          }));
 
-    return (
-        <div  dir={language === 'AR'? 'rtl':'ltr'}>
-            <ChangeTitle title={"MEI | Blogs"} />
-            <Hero carsHero={carsHero} />
-            <MainTitle title={BlogTitle} />
-            <div className="container mx-auto p-4">
-                {selectedArticle ? (
-                    // عرض التفاصيل عند اختيار مقال
-                    <div className="flex flex-col items-center">
-                    <img src={selectedArticle.photo} alt={selectedArticle.title} className="w-full md:w-2/3 h-auto object-cover" />
-                    <h1 className="text-3xl font-bold mt-4">{selectedArticle.title}</h1>
-                    <p className="text-lg mt-2">{selectedArticle.description}</p>
-                    <button
-                        className="mt-4 px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                        onClick={handleBackToList}
+          const enArticles = data.map((item) => ({
+            pk: item.pk,
+            header: item.header_en,
+            summary: item.summary_en,
+            description: item.description_en,
+            photo: item.photo,
+            link: item.link,
+            linkTitle: item.link_title_en,
+          }));
+
+          setArticlesAr(arArticles);
+          setArticlesEn(enArticles);
+          setArticles(enArticles);
+        } else {
+          setError(true);
+        }
+      })
+      .catch((error) => {
+        setError("An error occurred while fetching data.");
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    setArticles(language === 'AR' ? articlesAr : articlesEn);
+
+    // تحديث المقالة المحددة عند تغيير اللغة
+    if (selectedArticle) {
+      const updatedArticle = (language === 'AR' ? articlesAr : articlesEn).find(article => article.pk === selectedArticle.pk);
+      setSelectedArticle(updatedArticle);
+    }
+  }, [language, selectedArticle, articlesAr, articlesEn]);
+
+  return (
+    <div dir={language === 'AR' ? 'rtl' : 'ltr'}>
+      <ChangeTitle title={"MEI | Blogs"} />
+      <Hero carsHero={carsHero} />
+      {!error ? (
+        <div>
+          <MainTitle title={BlogTitle} />
+          <div className="container mx-auto p-4">
+            {selectedArticle ? (
+              <motion.div
+                initial={{ opacity: 0, x: 100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: false, amount: 0.5 }}
+              >
+                <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+                  <img
+                    src={`https://seomei.pythonanywhere.com/${selectedArticle.photo}`}
+                    alt={selectedArticle.header}
+                    className="w-full md:w-[300px] h-auto object-cover rounded-lg"
+                  />
+                  <div className="flex flex-col justify-center">
+                    <h1 className="text-__brown text-3xl font-semibold mb-2">{selectedArticle.header}</h1>
+                    {/* <p className="text-lg mt-2">{selectedArticle.description}</p> */}
+                    <div
+                      dangerouslySetInnerHTML={{__html: selectedArticle.description}}
+                      />
+                    <a
+                      href={selectedArticle.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-[30px] cursor-pointer border-[1px] border-solid border-__brown bg-__brown text-white text-[1rem] font-bold leading-[25.8px] rounded-sm block no-underline duration-300 opacity-90 hover:opacity-100 w-fit py-[10px] px-[30px]"
                     >
-                        Back to Articles
+                      {selectedArticle.linkTitle}
+                    </a>
+                    <button
+                      className="mt-[30px] cursor-pointer border-[1px] border-solid border-__brown bg-__brown text-white text-[1rem] font-bold leading-[25.8px] rounded-sm block no-underline duration-300 opacity-90 hover:opacity-100 w-fit py-[10px] px-[30px]"
+                      onClick={handleBackToList}
+                    >
+                      {t("BacktoArticles")}
+
+                      
+
                     </button>
-                    </div>
-                ) : (
-                    // عرض قائمة المقالات بشكل عمودي
-                    <div className="flex flex-col gap-8">
-                    {articles.map((article, index) => (
-                      <motion.div
-                        key={article.id}
-                        initial={{ opacity: 0, x: 100 }} // بدء العنصر خارج الشاشة من اليمين
-                        whileInView={{ opacity: 1, x: 0 }} // تحريك العنصر من اليمين إلى اليسار عند رؤيته
-                        transition={{ duration: 0.5, delay: index * 0.2 }} // توقيت الحركة وتتابعها
-                        viewport={{ once: false, amount: 0.2 }} // إعادة الحركة في كل مرة يظهر فيها العنصر
-                        className="flex flex-col md:flex-row rounded-lg overflow-hidden shadow-lg"
-                      >
-                        <img src={article.photo} alt={article.title} className="w-[350px] h-[350px] object-cover" />
-                        <div className="p-4 w-full md:w-2/3">
-                          <h2 className="text-__brown text-3xl font-semibold mb-2">{article.title}</h2>
-                          <p className="text-secondary text-xl text-gray-600">{article.summary}</p>
-                          <button
-                            className="mt-[30px] cursor-pointer border-[1px] border-solid border-__brown bg-__brown text-white text-[1rem] font-bold leading-[25.8px] rounded-sm block no-underline duration-300 opacity-90 hover:opacity-100 w-fit py-[10px] px-[30px]"
-                            onClick={() => handleShowDetails(article)}
-                          >
-                            View Details
-                          </button>
-                        </div>
-                      </motion.div>
-                    ))}
                   </div>
-                )}
                 </div>
-            
-
-            <Footer />
-            <SideLink />
+              </motion.div>
+            ) : (
+              <div className="flex flex-col gap-8">
+                {articles.map((article) => (
+                  <motion.div
+                    key={article.pk}
+                    initial={{ opacity: 0, x: 100 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: article.pk * 0.2 }}
+                    viewport={{ once: false, amount: 0.2 }}
+                    className="flex flex-col md:flex-row rounded-lg overflow-hidden shadow-lg"
+                  >
+                    <img src={"https://seomei.pythonanywhere.com/"+article.photo} alt={article.header} className="w-[350px] h-[350px] object-cover" />
+                    <div className="p-4 w-full md:w-2/3">
+                      <h2 className="text-__brown text-3xl font-semibold mb-2">{article.header}</h2>
+                      <p className="text-secondary text-xl text-gray-600">{article.summary}</p>
+                      <button
+                        className="mt-[30px] cursor-pointer border-[1px] border-solid border-__brown bg-__brown text-white text-[1rem] font-bold leading-[25.8px] rounded-sm block no-underline duration-300 opacity-90 hover:opacity-100 w-fit py-[10px] px-[30px]"
+                        onClick={() => handleShowDetails(article)}
+                      >
+                        {t("ViewDetails")}
+                      </button>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-    )
-}
+      ) : (
+        <MainTitle title={Error} />
+      )}
+      <Footer />
+      <SideLink />
+    </div>
+  );
+};
 
-export default Blogs
+export default Blogs;

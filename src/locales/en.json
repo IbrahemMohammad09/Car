@@ -53,5 +53,8 @@
     "Monthly":"Monthly",
     "Weekly":"Weekly",
     "Blogs":"Blogs",
-    "BlogTitle":"Featured Articles"
+    "BlogTitle":"Featured Articles",
+    "Error":"Our Articles will be here soon",
+    "ViewDetails":"See More Details",
+    "BacktoArticles":"Back to Articles"
 }

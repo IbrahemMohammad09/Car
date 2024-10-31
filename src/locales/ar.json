@@ -53,5 +53,8 @@
     "Monthly":"شهريا",
     "Weekly":"اسبوعيا",
     "Blogs":"مقالات",
-    "BlogTitle":"مقالات مميزة"
+    "BlogTitle":"مقالات مميزة",
+    "Error":"لم يتم نشر مقالات بعد",
+    "ViewDetails":"قرأة المزيد",
+    "BacktoArticles":"العودة الى المقالات"
 }
