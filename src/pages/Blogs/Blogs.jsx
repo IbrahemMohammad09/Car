@@ -11,6 +11,7 @@ import img2 from '../../images/Home/background@3x.png';
 import { motion } from "framer-motion";
 import { useLanguageContext } from '../../hooks/useLanguageContext';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const carsHero = [
     { title: 'Sport', icon: <FaCar/>, url:"/search" },
@@ -30,7 +31,7 @@ const Blogs = () => {
   const [articlesEn, setArticlesEn] = useState([]);
   const [error, setError] = useState(false);
   const Error = t("Error");
-
+  const navigate = useNavigate();
 
 
   
@@ -83,8 +84,7 @@ const Blogs = () => {
 
   useEffect(() => {
     setArticles(language === 'AR' ? articlesAr : articlesEn);
-
-    // تحديث المقالة المحددة عند تغيير اللغة
+    
     if (selectedArticle) {
       const updatedArticle = (language === 'AR' ? articlesAr : articlesEn).find(article => article.pk === selectedArticle.pk);
       setSelectedArticle(updatedArticle);
@@ -155,7 +155,7 @@ const Blogs = () => {
                       <p className="text-secondary text-xl text-gray-600">{article.summary}</p>
                       <button
                         className="mt-[30px] cursor-pointer border-[1px] border-solid border-__brown bg-__brown text-white text-[1rem] font-bold leading-[25.8px] rounded-sm block no-underline duration-300 opacity-90 hover:opacity-100 w-fit py-[10px] px-[30px]"
-                        onClick={() => handleShowDetails(article)}
+                        onClick={() => {navigate("/blogs/"+article.pk)}}
                       >
                         {t("ViewDetails")}
                       </button>

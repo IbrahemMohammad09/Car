@@ -49,6 +49,7 @@ const Footer = () => {
     
     const home =t("NavHome");
     const about =t("NavAboutUS");
+    const blogs = t("Blogs");
     const FooterTitle =t("FooterTitle");
 
     const work1=t("WorkTime1");
@@ -62,6 +63,10 @@ const Footer = () => {
             title: about,
             url: '/about-us',
         },
+        {
+            title : blogs,
+            url : '/blogs'
+        }
     ];
     const navigate = useNavigate();
 
