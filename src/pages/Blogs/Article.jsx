@@ -34,15 +34,15 @@ const Article = () => {
             .then((response) => {
                 if (response.data.success) {
                     const data = response.data.data;
-                    // استخراج `id` من `pathname`
+
                     const id = parseInt(pathname.replace("/blogs/", ""), 10);
 
-                    // العثور على المقال الذي يطابق `id`
+
                     const selectedArticle = data.find((item) => item.pk === id);
 
-                    // اختيار الحقول حسب اللغة
+
                     if (selectedArticle){
-                        // اختيار الحقول حسب اللغة للعربية والإنجليزية
+
                         const arArticle = {
                             pk: selectedArticle.pk,
                             summary: selectedArticle.summary_ar,
@@ -84,10 +84,8 @@ const Article = () => {
     useEffect(() => {   
         if (language === "AR") {
             setArticle(articlesAr);
-            console.log("Set to Arabic Articles");
         } else {
             setArticle(articlesEn);
-            console.log("Set to English Articles");
         }
       }, [language, articlesAr, articlesEn]);
 
