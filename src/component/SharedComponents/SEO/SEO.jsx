@@ -1,10 +1,11 @@
 import React from 'react'
-import { Helmet } from 'react-helmet-async'
+import { Helmet,HelmetProvider  } from 'react-helmet-async'
 import { useLanguageContext } from '../../../hooks/useLanguageContext'
 
 const SEO = ({ title, description,state,  keywords, name, type = [] }) => {
     const {language} = useLanguageContext();
   return (
+    
     <Helmet>
         {/* Standard SEO tags */}
         {title && <title>{title}</title>}

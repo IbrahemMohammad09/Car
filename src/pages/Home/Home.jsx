@@ -1,5 +1,4 @@
 import Hero from "../../component/HomeComponents/Hero/Hero"
-import MainButton from "../../component/SharedComponents/MainButton/MainButton"
 import MainTitle from "../../component/SharedComponents/MainTitle/MainTitle"
 import MainCard from '../../component/SharedComponents/MainCard/MainCard'
 import Slider from "react-slick"
@@ -17,7 +16,6 @@ import Loading from '../../component/SharedComponents/Loading/Loading'
 import SideLink from "../../component/SharedComponents/sideLink/sideLink"
 import axios from "axios"
 import API from "../../constant/api"
-import ChangeTitle from "../../component/SharedComponents/ChangeTitle"
 import { Link, useNavigate } from "react-router-dom"
 import { MdDashboardCustomize } from "react-icons/md"
 import { useLanguageContext } from "../../hooks/useLanguageContext"
@@ -25,6 +23,8 @@ import { FaCar } from 'react-icons/fa'
 import './Home.css'
 import { StorageContext } from "../../context/SearchContext"
 import ScrollAnimation from "react-animate-on-scroll"
+import SEO from "../../component/SharedComponents/SEO/SEO"
+import { MetaSEO } from "../../constant/MetaSEO"
 
 const carsHero = [
     {
@@ -260,8 +260,15 @@ const Home = () => {
 
     return (
         <section className="min-h-screen w-full bg-white overflow-x-hidden">
+            <SEO
+             title={"MEI | Home"}
+             description={MetaSEO.home.description}
+             state={"index, follow"}
+             keywords={MetaSEO.home.keywords}
+             name={"MEI Car Rentals Dubai"}
+             type={"website"}
+             />
             <Hero carsHero={carsHero}/>
-            <ChangeTitle title={"MEI | Home"}/>
             {token && <Link to={'/dashboard'} className="fixed z-50 top-[20px] left-[20px] flex flex-[30%] py-[5px] justify-center items-center gap-[4px] border-[1px] border-solid border-__brown bg-white text-__brown no-underline shadow-[#ccc] duration-300 w-[120px] rounded-md hover:rounded-[30px]">
                 <MdDashboardCustomize/>
                 Dashboard

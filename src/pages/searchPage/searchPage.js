@@ -8,12 +8,13 @@ import axios from "axios"
 import API from "../../constant/api"
 import MainCard from '../../component/SharedComponents/MainCard/MainCard';
 import SideLink from '../../component/SharedComponents/sideLink/sideLink';
-import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
 import { FaCar } from 'react-icons/fa'
 import Slider from 'react-slick';
 import React, { useContext } from 'react';
 import { StorageContext } from '../../context/SearchContext';
 import ScrollAnimation from 'react-animate-on-scroll';
+import SEO from '../../component/SharedComponents/SEO/SEO';
+import { MetaSEO } from '../../constant/MetaSEO';
 
 
 
@@ -49,18 +50,14 @@ const carsHero = [
 ]
     const [t , il8n] = useTranslation();
     const seeButton = t("seeAllCar");
-    const [searchType ,setSearchType] = useState ();
     const [Res ,SetRes] = useState();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
-    const [cars, setCars] = useState([]);
-    const category1 = ["Sport", "Luxury", "Family", "Economy", "Convertible"];
     const [brands, setBrands] = useState([]);
     const [brandsName , setBrandsName] = useState();
     const [brandsId, setBrandsId] = useState([]);
     const [page, setPage] = useState(1);
     const [total, setTotal] = useState(0);
-    const LoadMore =t("LoadMore");
     const notFound =t("noResults");
 
     const { pathname } = useLocation();
@@ -181,6 +178,14 @@ const carsHero = [
 
     return (
         <div className='relative w-full overflow-hidden'>
+            <SEO 
+                title={"MEI | Search Page"}
+                description={MetaSEO.search.description}
+                state={"index, follow"}
+                keywords={MetaSEO.search.keywords}
+                name={"MEI Car Rentals Dubai"}
+                type={"website"}
+            />
             <Hero carsHero={carsHero}/>
 
             <ScrollAnimation animateIn="animate-right" animateOnce={false}>
@@ -230,7 +235,7 @@ const carsHero = [
 
             </ScrollAnimation>
 
-            <ChangeTitle title={"MEI | Search Page"}/>
+
             {Res && filterCars(Res, type, name)?.length === 0 && <h2 className='text-center mt-10 mx-auto'>{notFound}</h2>}
             {name !== 'all' && <div className="flex justify-center items-center pt-20">
                 <button onClick={showAllCars}  className="cursor-pointer border-[1px] border-solid border-__brown bg-__brown text-white text-[1rem] font-bold leading-[25.8px] rounded-sm block no-underline duration-300 opacity-90 hover:opacity-100 w-fit py-[10px] px-[30px]">

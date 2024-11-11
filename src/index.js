@@ -9,10 +9,12 @@ import { LanguageContextProvider } from './context/LanguageContext';
 import {StorageProvider } from './context/SearchContext'
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-bootstrap';
+import { HelmetProvider } from 'react-helmet-async';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <HelmetProvider>
       <ToastContainer/>
       <LanguageContextProvider>
         <StorageProvider>
@@ -21,6 +23,7 @@ root.render(
           </BrowserRouter>
         </StorageProvider>
       </LanguageContextProvider>
+    </HelmetProvider>
   </React.StrictMode>
 );
 

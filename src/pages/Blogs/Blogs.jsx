@@ -1,6 +1,5 @@
 import {React, useState, useEffect } from 'react';
 import { FaCar } from 'react-icons/fa';
-import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
 import Hero from '../../component/HomeComponents/Hero/Hero';
 import Footer from '../../component/SharedComponents/Footer/Footer';
 import SideLink from '../../component/SharedComponents/sideLink/sideLink';
@@ -10,6 +9,8 @@ import { motion } from "framer-motion";
 import { useLanguageContext } from '../../hooks/useLanguageContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import SEO from '../../component/SharedComponents/SEO/SEO';
+import { MetaSEO } from '../../constant/MetaSEO';
 
 const carsHero = [
     { title: 'Sport', icon: <FaCar/>, url:"/search" },
@@ -79,7 +80,14 @@ const Blogs = () => {
 
   return (
     <div dir={language === 'AR' ? 'rtl' : 'ltr'}>
-      <ChangeTitle title={"MEI | Blogs"} />
+      <SEO 
+             title={"MEI | Blogs"}
+             description={MetaSEO.blogs.description}
+             state={"index, follow"}
+             keywords={MetaSEO.blogs.keywords}
+             name={"MEI Car Rentals Dubai"}
+             type={"website"}         
+      />
       <Hero carsHero={carsHero} />
       {!error ? (
         <div>

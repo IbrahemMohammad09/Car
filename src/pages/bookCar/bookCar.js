@@ -14,10 +14,11 @@ import API from '../../constant/api';
 import { useLanguageContext } from '../../hooks/useLanguageContext';
 import MainCard from '../../component/SharedComponents/MainCard/MainCard';
 import Loading from '../../component/SharedComponents/Loading/Loading';
-import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
 import { ToastContainer, toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { FaCar } from 'react-icons/fa';
+import SEO from '../../component/SharedComponents/SEO/SEO';
+import { MetaSEO } from '../../constant/MetaSEO';
 
 const carsHero = [
     {
@@ -163,8 +164,15 @@ function BookCar (){
         
     return(
         <div className='overflow-x-hidden' dir={language === 'AR'? 'rtl':'ltr'}>
+            <SEO 
+                title={"MEI | Book Your Car"}
+                description={MetaSEO.bookcar.description+car?.description[language]}
+                state={"index, follow"}
+                keywords={MetaSEO.bookcar.keywords}
+                name={"MEI Car Rentals Dubai"}
+                type={"website"}  
+            />
             <ToastContainer/>
-            <ChangeTitle title={"MEI | Book Your Car"} />
             <Hero carsHero={carsHero}/>
             <MainTitle title={carDetail} />
             <Container>

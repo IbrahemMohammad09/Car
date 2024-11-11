@@ -3,17 +3,17 @@ import Hero from '../../component/HomeComponents/Hero/Hero';
 import './aboutUs.css'
 import aboutCar from '../../images/aboutUs/aboutCar.jpg'
 import { FaPhone, FaWhatsapp } from "react-icons/fa"
-import { Link } from "react-router-dom";
 import Footer from '../../component/SharedComponents/Footer/Footer';
 import MainTitle from '../../component/SharedComponents/MainTitle/MainTitle';
 import ScrollAnimation from 'react-animate-on-scroll';
 import '../../animate.css';
 import SideLink from '../../component/SharedComponents/sideLink/sideLink';
-import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
 import { useTranslation } from 'react-i18next';
 import { useLanguageContext } from '../../hooks/useLanguageContext';
 import { FaCar } from 'react-icons/fa'
 import { phone } from '../../constant/infoData';
+import SEO from '../../component/SharedComponents/SEO/SEO';
+import { MetaSEO } from '../../constant/MetaSEO';
 
 
 
@@ -56,7 +56,14 @@ function AboutUs() {
 
     return (
       <div>
-        <ChangeTitle title={"MEI | About Us"} />
+        <SEO 
+             title={"MEI | About Us"}
+             description={MetaSEO.aboutus.description}
+             state={"index, follow"}
+             keywords={MetaSEO.aboutus.keywords}
+             name={"MEI Car Rentals Dubai"}
+             type={"website"}          
+        />
         <Hero carsHero={carsHero}/>
         <Container className='about-info' dir={language === 'AR'? 'rtl':'ltr'}>
           <Row className='max-[600px]:text-center'>
