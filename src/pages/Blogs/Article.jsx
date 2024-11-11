@@ -1,5 +1,4 @@
 import { FaCar } from 'react-icons/fa';
-import { useLanguageContext } from '../../hooks/useLanguageContext';
 import ChangeTitle from '../../component/SharedComponents/ChangeTitle';
 import Hero from '../../component/HomeComponents/Hero/Hero';
 import Footer from '../../component/SharedComponents/Footer/Footer';
@@ -18,13 +17,11 @@ const carsHero = [
 ];
 
 const Article = () => {
-    const { language } = useLanguageContext();
+
     const [t, i18n] = useTranslation();
 
     const [article, setArticle] = useState();
     
-    const [articlesAr, setArticlesAr] = useState();
-    const [articlesEn, setArticlesEn] = useState();
     const [error, setError] = useState(false);
     const { pathname } = useLocation();
     const navigate = useNavigate();
@@ -43,29 +40,17 @@ const Article = () => {
 
                     if (selectedArticle){
 
-                        const arArticle = {
-                            pk: selectedArticle.pk,
-                            summary: selectedArticle.summary_ar,
-                            description: selectedArticle.description_ar,
-                            photo: selectedArticle.photo,
-                            link: selectedArticle.link,
-                            linkTitle: selectedArticle.link_title_ar,
-                        };
-
 
                         const enArticle = {
                             pk: selectedArticle.pk,
+                            header:selectedArticle.header_en,
                             summary: selectedArticle.summary_en,
                             description: selectedArticle.description_en,
                             photo: selectedArticle.photo,
                             link: selectedArticle.link,
                             linkTitle: selectedArticle.link_title_en,
                         };
-
-
-                        setArticlesAr(arArticle);
-                        setArticlesEn(enArticle);
-                        setArticle(articlesEn);
+                        setArticle(enArticle);
                     }else{
                         navigate("/error");
                     }
@@ -81,16 +66,9 @@ const Article = () => {
             .catch(() => setError(true));
     }, []);
 
-    useEffect(() => {   
-        if (language === "AR") {
-            setArticle(articlesAr);
-        } else {
-            setArticle(articlesEn);
-        }
-      }, [language, articlesAr, articlesEn]);
 
     return (
-        <div dir={language === 'AR' ? 'rtl' : 'ltr'}>
+        <div>
             <ChangeTitle title="MEI | Blogs" />
             <Hero carsHero={carsHero} />
             {error ? (
@@ -99,6 +77,7 @@ const Article = () => {
                 article && (
                     <div className="mt-8 p-4 flex flex-col md:flex-row justify-between items-start rounded-lg overflow-hidden shadow-md">
                         <div className="md:w-1/3 space-y-2">
+                        
                             <img
                                 src={"https://seomei.pythonanywhere.com/" + article.photo}
                                 className="w-full h-auto object-cover shadow-lg rounded-md" // استخدم w-full لجعل الصورة تأخذ عرض الحاوية
@@ -121,7 +100,8 @@ const Article = () => {
                             </div>
                             
                         </div>
-                        <div className="md:w-2/3 flex justify-start">
+                        <div className="md:w-2/3 m-[10px] flex flex-col justify-start">
+                            <h2 className="text-__brown text-5xl font-semibold mb-5">{article.header}</h2>
                             <div dangerouslySetInnerHTML={{ __html: article.description }} className="prose" />
                         </div>
                     </div>
