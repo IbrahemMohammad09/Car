@@ -90,7 +90,11 @@ function BookCar (){
                     setMainimg(res?.data?.car.pictures[0]);
                     setLoading1(false);
                 }
+                setTimeout(() => {
+                    window.scrollTo(0, 700)
+                  }, 800)
             })
+
             .catch(err => {
                 if(err?.response?.data?.state === 'failed') {
                     setLoading1(false);

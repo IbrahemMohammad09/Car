@@ -60,6 +60,10 @@ const Article = () => {
                     navigate("/error");
                 }
 
+                setTimeout(() => {
+                    window.scrollTo(0, 700)
+                  }, 800)   
+
 
             })
             

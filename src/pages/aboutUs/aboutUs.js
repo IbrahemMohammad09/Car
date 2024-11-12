@@ -14,6 +14,7 @@ import { FaCar } from 'react-icons/fa'
 import { phone } from '../../constant/infoData';
 import SEO from '../../component/SharedComponents/SEO/SEO';
 import { MetaSEO } from '../../constant/MetaSEO';
+import { useEffect } from 'react';
 
 
 
@@ -50,6 +51,12 @@ function AboutUs() {
   const [t,il8n]=useTranslation();
   const HomeTitle = t("HomeTitle");
   const { language } = useLanguageContext();
+
+  useEffect(()=>{
+    setTimeout(() => {
+      window.scrollTo(0, 700)
+    }, 800)
+  },[])
 
 
 

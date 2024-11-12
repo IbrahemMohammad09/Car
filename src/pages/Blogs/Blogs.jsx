@@ -54,7 +54,12 @@ const Blogs = () => {
         } else {
           setError(true);
         }
+        setTimeout(() => {
+          window.scrollTo(0, 700)
+        }, 800)
+
       })
+      
       .catch((error) => {
         setError("An error occurred while fetching data.");
       });
