@@ -75,41 +75,42 @@ const Article = () => {
                 <p>Article not found.</p>
             ) : (
                 article && (
-                    <div className="mt-8 p-4 flex flex-col md:flex-row justify-between items-start rounded-lg overflow-hidden shadow-md">
-                        <div className="md:w-1/3 space-y-2">
+                    <div className="mt-8 p-4 flex flex-col md:flex-row justify-center items-start rounded-lg overflow-hidden shadow-md">
+                        {/* <div 
+                        className="md:w-1/3 space-y-2"
+                        > */}
                         
-                            <img
+                            {/* <img
                                 src={"https://seomei.pythonanywhere.com/" + article.photo}
                                 className="w-full h-auto object-cover shadow-lg rounded-md" // استخدم w-full لجعل الصورة تأخذ عرض الحاوية
                                 alt="Article"
-                            />
-                            <div className='flex flex-row'>
+                            /> */}
+                            {/* <div 
+                            className='flex flex-row'
+                            > */}
                                 <a
                                     href='/blogs'
-                                    className="mr-8 mt-4 cursor-pointer border border-solid border-__brown bg-__brown text-white text-[1rem] font-bold leading-[25.8px] rounded-sm block no-underline duration-300 opacity-90 hover:opacity-100 w-fit py-2 px-8"
+                                    className="mr-8 mt-4 cursor-pointer border border-solid border-__brown bg-__brown text-white text-[1rem] font-bold leading-[25.8px] rounded-sm block no-underline duration-300 opacity-90 hover:opacity-100 w-fit py-2 px-8 "
                                 >
                                     {t("backtoart")}
                                 </a>
-                                <a
+                                {/* <a
                                     href={article.link} 
                                     target="_blank"
                                     className="mt-4 cursor-pointer border border-solid border-__brown bg-__brown text-white text-[1rem] font-bold leading-[25.8px] rounded-sm block no-underline duration-300 opacity-90 hover:opacity-100 w-fit py-2 px-8"
                                 >
                                     {article.linkTitle}
-                                </a>
-                            </div>
-                            
-                        </div>
+                                </a> */}
+                            {/* </div> */}
+                        {/* </div> */}
                         <div className="md:w-2/3 m-[10px] flex flex-col justify-start">
                             <h2 className="text-__brown text-5xl font-semibold mb-5">{article.header}</h2>
                             <div dangerouslySetInnerHTML={{ __html: article.description }} className="prose" />
                         </div>
                     </div>
-
-
                 )
             )}
-                    
+            
             <SideLink />
             <Footer />
         </div>
