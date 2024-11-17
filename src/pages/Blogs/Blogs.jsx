@@ -35,6 +35,10 @@ const Blogs = () => {
 
 
   useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 700)
+    }, 800)
+
     axios.get("https://seomei.pythonanywhere.com/api/articles/")
       .then((response) => {
         if (response.data.success) {
@@ -50,13 +54,11 @@ const Blogs = () => {
             linkTitle: item.link_title_en,
           }));
 
-          setArticles(enArticles);
+          setArticles(enArticles.reverse());
         } else {
           setError(true);
         }
-        setTimeout(() => {
-          window.scrollTo(0, 700)
-        }, 800)
+
 
       })
       

@@ -27,6 +27,11 @@ const Article = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+
+        setTimeout(() => {
+            window.scrollTo(0, 700)
+          }, 800)   
+          
         axios.get("https://seomei.pythonanywhere.com/api/articles/")
             .then((response) => {
                 if (response.data.success) {
@@ -60,9 +65,7 @@ const Article = () => {
                     navigate("/error");
                 }
 
-                setTimeout(() => {
-                    window.scrollTo(0, 700)
-                  }, 800)   
+
 
 
             })
