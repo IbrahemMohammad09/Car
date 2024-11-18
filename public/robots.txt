@@ -1,3 +1,20 @@
-# https://www.robotstxt.org/robotstxt.html
+# السماح لكل محركات البحث بالزحف إلى الموقع
 User-agent: *
 Disallow:
+
+# تحديد خريطة الموقع (Sitemap)
+Sitemap: https://www.meirentacar.com/sitemap.xml
+
+# منع محركات البحث من الزحف إلى صفحات حساسة أو خاصة
+Disallow: /dashboard
+Disallow: /dashboard-login
+Disallow: /dashboard/add
+Disallow: /dashboard/show
+Disallow: /dashboard/bookings
+Disallow: /dashboard/edit
+
+# منع الزحف إلى صفحات الخطأ
+Disallow: /error
+
+# السماح بالوصول إلى كل شيء آخر
+Allow: /
