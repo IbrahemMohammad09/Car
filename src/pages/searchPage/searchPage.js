@@ -132,7 +132,6 @@ const carsHero = [
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 2,
-        // autoplay: true,
         autoplaySpeed: 5000,
         pauseOnHover: true,
     }
@@ -142,7 +141,6 @@ const carsHero = [
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 2,
-        // autoplay: true,
         autoplaySpeed: 5000,
         pauseOnHover: true,
     }
@@ -152,7 +150,6 @@ const carsHero = [
         speed: 500,
         slidesToShow: 2,
         slidesToScroll: 1,
-        // autoplay: true,
         autoplaySpeed: 5000,
         pauseOnHover: true,
     }
@@ -162,7 +159,6 @@ const carsHero = [
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        // autoplay: true,
         autoplaySpeed: 5000,
         pauseOnHover: true,
     }

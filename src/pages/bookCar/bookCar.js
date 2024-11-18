@@ -106,9 +106,6 @@ function BookCar (){
     
 
     useEffect(() => {
-        
-
-
         const handleScroll = () => {
         const e1 = elementRef?.current?.getBoundingClientRect();
 
@@ -169,7 +166,7 @@ function BookCar (){
     return(
         <div className='overflow-x-hidden' dir={language === 'AR'? 'rtl':'ltr'}>
             <SEO 
-                title={"MEI | Book Your Car"}
+                title={"MEI | Book "+car?.name}
                 description={MetaSEO.bookcar.description+car?.description[language]}
                 state={"index, follow"}
                 keywords={MetaSEO.bookcar.keywords}

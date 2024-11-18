@@ -29,8 +29,6 @@ const MainCard = ( { pictures, name, daylyPrice, monthlyPrice, weeklyPrice, id }
     const settings = {
         infinite: true,
         speed: 500,
-        // slidesToShow: 0,
-        // slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 5000,
         pauseOnHover: true,

@@ -48,7 +48,6 @@ function App() {
           <Route path='*' element={<Navigate to={'/error'} />} />
           <Route path='/error' element={<ErrorPage />} />    
           <Route path='/search/:type/:name' element={<SearchPage />} />
-          {/* <Route path='/search' element={<SearchPage />} /> */}
         </Routes>
   );
 }
