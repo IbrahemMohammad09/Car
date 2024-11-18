@@ -6,12 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta name="author" content="MEI company">
-    <!-- <meta
-      name="description"
-      content="Car Rental, where we offer the latest cars at competitive prices and excellent customer service. Enjoy a smooth and comfortable rental experience with us. Book now to discover the difference!"
-    /> -->
-    <!-- <meta name="keywords" content="car rental dubai, rent a car in dubai, dubai car hire, luxury car rental dubai, economy car rental dubai, dubai car rental companies"> -->
-
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" /> 
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   </head>
@@ -20,26 +14,74 @@
     <div id="root"></div>
     <script type="application/ld+json">
       {
-        "@context": "https://schema.org/",
+        "@context": "https://schema.org",
         "@type": "CarRental",
-        "name": "MEI company",
+        "name": "MEI Car Rentals Dubai",
+        "url": "https://www.meirentacar.com",
+        "logo": "https://www.meirentacar.com/logo.png",
         "description": "Rent a car in Dubai with MEI Car Rentals Dubai. Get the best deals on luxury and economy cars for hire.",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Al Asayel St",
           "addressLocality": "Dubai",
           "addressRegion": "Dubai",
+          "postalCode": "00000",
           "addressCountry": "United Arab Emirates"
         },
         "telephone": "+971566634661",
-        "email": "[Your Email]",
-        "openingHours": "24 hours 7 days",
+        "email": "",
+        "openingHours": "Mo-Su 00:00-23:59",
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": [25.196795646214905],
-          "longitude": [55.28444765105432]
+          "latitude": 25.196795646214905,
+          "longitude": 55.28444765105432
+        },
+        "sameAs": [
+          "https://www.facebook.com/",
+          "https://www.twitter.com/",
+          "https://www.instagram.com/"
+        ],
+        "priceRange": "$$$",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Car Rental Deals",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "Luxury Car Rental",
+                "description": "Hire luxury cars in Dubai at affordable prices."
+              },
+              "price": "500",
+              "priceCurrency": "AED",
+              "availability": "https://schema.org/InStock",
+              "validFrom": "2024-11-01"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "Economy Car Rental",
+                "description": "Affordable economy cars available for rent in Dubai."
+              },
+              "price": "150",
+              "priceCurrency": "AED",
+              "availability": "https://schema.org/InStock",
+              "validFrom": "2024-11-01"
+            }
+          ]
+        },
+        "serviceArea": {
+          "@type": "Place",
+          "address": {
+            "@type": "00000",
+            "addressLocality": "Dubai",
+            "addressCountry": "United Arab Emirates"
+          }
         }
       }
       </script>
+      
   </body>
 </html>
