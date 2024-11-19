@@ -143,24 +143,6 @@ const AddBrand = () => {
                         toast.error(err?.response?.data?.message);
                     }
                 })
-        // } else {
-        //     axios.put(API.PUT.BRAND+id, data,{
-        //         headers: {
-        //             Authorization: 'Bearer '+ token
-        //         }
-        //     })
-        //         .then(res => {
-        //             if(res.data.state === 'success') {
-        //                 toast.success(res?.data?.message);
-        //                 setSection('See')
-        //             }
-        //         })
-        //         .catch(err => {
-        //             if(err.response.data.state === 'failed') {
-        //                 toast.error(err?.responser?.data?.message);
-        //             }
-        //         })
-        // }
     }
 
     return (

@@ -2,7 +2,6 @@ import { useEffect, useState, useTransition } from 'react';
 import { useTranslation } from 'react-i18next';
 import Hero from '../../component/HomeComponents/Hero/Hero';
 import Footer from '../../component/SharedComponents/Footer/Footer';
-import './searchPage.css'
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import axios from "axios"
 import API from "../../constant/api"

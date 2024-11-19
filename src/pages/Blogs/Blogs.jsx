@@ -10,7 +10,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../../component/SharedComponents/SEO/SEO';
 import { MetaSEO } from '../../constant/MetaSEO';
-import Loading  from '../../component/Loading/Loading.jsx'; // Import Loading component
+import Loading  from '../../component/Loading/Loading.jsx'; 
 
 const carsHero = [
     { title: 'Sport', icon: <FaCar />, url: "/search" },
@@ -64,7 +64,7 @@ const Blogs = () => {
   }, []);
 
   return (
-    <div>
+    <div className="min-h-screen w-full bg-white overflow-x-hidden">
       <SEO
         title={"MEI | Blogs"}
         description={MetaSEO.blogs.description}

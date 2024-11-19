@@ -20,7 +20,6 @@ import { Link, useNavigate } from "react-router-dom"
 import { MdDashboardCustomize } from "react-icons/md"
 import { useLanguageContext } from "../../hooks/useLanguageContext"
 import { FaCar } from 'react-icons/fa'
-import './Home.css'
 import { StorageContext } from "../../context/SearchContext"
 import ScrollAnimation from "react-animate-on-scroll"
 import SEO from "../../component/SharedComponents/SEO/SEO"
@@ -365,7 +364,6 @@ const Home = () => {
             </ScrollAnimation>
 
             <div className={`mx-auto text-center w-fit ${loading? 'mt-[200px]': 'mt-[40px]'}`}>
-                {/* <MainButton name={LoadMore} url={"/search"}/> */}
                 <Link to={'#'} onClick={()=>{handleShowAllCar()}} className="cursor-pointer border-[1px] border-solid border-__brown bg-__brown text-white text-[1rem] font-bold leading-[25.8px] rounded-sm block no-underline duration-300 opacity-90 hover:opacity-100 w-fit py-[10px] px-[30px]">
                     {LoadMore}
                 </Link>

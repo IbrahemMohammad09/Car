@@ -4,7 +4,7 @@ import API from "../../constant/api";
 import Loading from "../../component/SharedComponents/Loading/Loading";
 import axios from "axios";
 import CarCard from "../../component/dashBoardComponent/dashBoardCar/carCard/carCard";
-import MainButton from "../../component/SharedComponents/MainButton/MainButton";
+
 
 const ShowCars = () => {
     const [cars, setCars] = useState([]);
@@ -43,21 +43,6 @@ const ShowCars = () => {
             <div className="grid grid-cols-2 min-[1200px]:grid-cols-3 gap-5 animate-fade">
                 {!loading && cars && cars?.map((car, i) => <CarCard key={i} car={car} setDelete={setDelete}/>)}
             </div>
-            {/* {!loading && total > 0 && <div className="mx-auto mt-5 w-fit flex gap-2">
-                {
-                    page != 1 &&
-                    <div onClick={() => setPage(page!=1?page-1: 1)}>
-                        <MainButton name={'Prev '+ (page-1)}/>
-                    </div>
-                }
-                {
-                    page != Math.ceil(total / 50) &&
-                <div onClick={() => setPage(page != Math.ceil(total / 50)?page+1: page)}>
-                    <MainButton name={'Next '+ (page+1)}/>
-                </div>
-                }
-            </div>
-            } */}
         </DashBoard>
     )
 }
