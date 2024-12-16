@@ -10,7 +10,7 @@ const API = {
         ALLACTIVECARS: url+'/cars/available/page/',
         ONECAR: url+'/cars/',
         ALLBRANDS: url+'/brands',
-        ONEBRAND: url+'/brands/',
+        ONEBRAND: url+' ',
     },
     POST: {
         LOGIN: url+'/users/login',
