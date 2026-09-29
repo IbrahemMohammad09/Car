@@ -29,8 +29,8 @@ const seedCars = [
 ];
 
 export const staticArticles = [
-  { pk: 1, header: 'A guide to renting a car in Dubai', summary: 'What to know before choosing a rental car for your stay.', description: '<p>Choose a vehicle that suits your itinerary, check the rental terms, and keep your driving documents with you. A compact car is handy around the city, while an SUV offers extra room for longer trips.</p>', photo: familyImage, link: '', linkTitle: '' },
-  { pk: 2, header: 'Explore Dubai in comfort', summary: 'Ideas for making every drive around the city easier.', description: '<p>Plan ahead for busy areas, allow extra time for parking, and pick a car that makes your journey comfortable. Dubai has options for every kind of trip, from city streets to open highways.</p>', photo: convertibleImage, link: '', linkTitle: '' },
+  { pk: 1, header: 'A guide to renting a car in Sample City', summary: 'What to know before choosing a demo rental car.', description: '<p>Choose a vehicle that suits your itinerary, check the rental terms, and keep your driving documents with you. A compact car is handy around town, while an SUV offers extra room for longer trips.</p>', photo: familyImage, link: '', linkTitle: '' },
+  { pk: 2, header: 'Explore Sample City in comfort', summary: 'Ideas for making every demo drive easier.', description: '<p>Plan ahead for busy areas, allow extra time for parking, and pick a car that makes your journey comfortable. Sample City has options for every kind of trip, from town streets to open roads.</p>', photo: convertibleImage, link: '', linkTitle: '' },
 ];
 
 function readStored(key, fallback) {
@@ -78,8 +78,8 @@ export const saveBrand = (brand) => {
 export const deleteBrand = (id) => writeStored(STORAGE_KEYS.brands, getBrands().filter((brand) => brand._id !== id));
 
 const seedBookings = [
-  { _id: 'booking-1', name: 'Demo Customer', phone: '+971 50 123 4567', start: '2026-10-05', end: '2026-10-08', car: seedCars[0], status: 'pending' },
-  { _id: 'booking-2', name: 'Sample Guest', phone: '+971 55 987 6543', start: '2026-10-10', end: '2026-10-12', car: seedCars[3], status: 'accepted' },
+  { _id: 'booking-1', name: 'Demo Customer', phone: '+1-202-555-0101', start: '2026-10-05', end: '2026-10-08', car: seedCars[0], status: 'pending' },
+  { _id: 'booking-2', name: 'Sample Guest', phone: '+1-202-555-0102', start: '2026-10-10', end: '2026-10-12', car: seedCars[3], status: 'accepted' },
 ];
 
 export const getBookings = () => readStored(STORAGE_KEYS.bookings, seedBookings);

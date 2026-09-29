@@ -2,7 +2,7 @@
  * Legacy backend endpoint map. It is intentionally inactive while the app
  * uses local static data. Uncomment this map when reconnecting an API client.
  *
- * export const url = 'https://superquizgame.com/api';
+ * export const url = 'https://api.example.invalid';
  * const API = {
  *   GET: {
  *     ALLCARSWITHOUTPAGE: url + '/cars/',

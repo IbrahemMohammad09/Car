@@ -230,11 +230,11 @@ const Home = () => {
     return (
         <section className="min-h-screen w-full bg-white overflow-x-hidden">
             <SEO
-             title={"MEI | Home"}
+             title={"Demo | Home"}
              description={MetaSEO.home.description}
              state={"index, follow"}
              keywords={MetaSEO.home.keywords}
-             name={"MEI Car Rentals Dubai"}
+             name={"Demo Car Rental"}
              type={"website"}
              />
             <Hero carsHero={carsHero}/>

@@ -147,11 +147,11 @@ function BookCar (){
     return(
         <div className='overflow-x-hidden' dir={language === 'AR'? 'rtl':'ltr'}>
             <SEO 
-                title={"MEI | Book "+car?.name}
+                title={"Demo | Book "+car?.name}
                 description={MetaSEO.bookcar.description+car?.description[language]}
                 state={"index, follow"}
                 keywords={MetaSEO.bookcar.keywords}
-                name={"MEI Car Rentals Dubai"}
+                name={"Demo Car Rental"}
                 type={"website"}  
             />
             <ToastContainer/>

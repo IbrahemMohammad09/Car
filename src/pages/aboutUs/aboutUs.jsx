@@ -64,11 +64,11 @@ function AboutUs() {
     return (
       <div>
         <SEO 
-             title={"MEI | About Us"}
+             title={"Demo | About Us"}
              description={MetaSEO.aboutus.description}
              state={"index, follow"}
              keywords={MetaSEO.aboutus.keywords}
-             name={"MEI Car Rentals Dubai"}
+             name={"Demo Car Rental"}
              type={"website"}          
         />
         <Hero carsHero={carsHero}/>
@@ -100,16 +100,9 @@ function AboutUs() {
                 <div className='loaction-title'>
                 <span className='text-center text-white text-[1.8rem] font-bold'>{t("location")}</span>
                 </div>  
-              <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.266808322186!2d55.28676497622934!3d25.19422327771291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69360c85e4a3%3A0x15cdd1b9539998ca!2sMeem%20Rent%20A%20Car%20in%20Dubai%20UAE%20-%20Economy%20Sedan%20Convertible%20SUV%20Commercial%20Pick%20up%20Van%20Bus!5e0!3m2!1sen!2siq!4v1718938272931!5m2!1sen!2siq"
-                    width="100%"
-                    height="450"
-                    style={{ border: 0 }}
-                    allowFullScreen=""
-                    aria-hidden="false"
-                    tabIndex="0"
-                    title="Google Map"
-                ></iframe>
+              <div className="flex h-[280px] items-center justify-center bg-stone-100 text-2xl text-stone-500">
+                Demo location — no real address
+              </div>
             </ScrollAnimation>
           </Row>
         </Container>

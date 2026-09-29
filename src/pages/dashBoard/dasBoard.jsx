@@ -8,7 +8,7 @@ function DashBoard ( { children } ){
     return (
         <div className='w-full min-h-screen overflow-x-hidden bg-white relative'>
             <ToastContainer/>
-            <ChangeTitle title={"MEI | Dashboard"} />
+            <ChangeTitle title={"Demo | Dashboard"} />
             <Sidebar/>
             <HeaderDash/>
             <div className='ms-[100px] p-5 mt-[100px]'>

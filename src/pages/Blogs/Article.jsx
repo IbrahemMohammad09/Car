@@ -42,7 +42,7 @@ const Article = () => {
 
     return (
         <div className="min-h-screen w-full bg-white overflow-x-hidden">
-            <ChangeTitle title="MEI | Blogs" />
+            <ChangeTitle title="Demo | Blogs" />
             <Hero carsHero={carsHero} />
             {error ? (
                 <p>Article not found.</p>

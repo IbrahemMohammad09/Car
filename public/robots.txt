@@ -3,7 +3,7 @@ User-agent: *
 Disallow:
 
 # تحديد خريطة الموقع (Sitemap)
-Sitemap: https://www.meirentacar.com/sitemap.xml
+Sitemap: https://example.invalid/sitemap.xml
 
 # منع محركات البحث من الزحف إلى صفحات حساسة أو خاصة
 Disallow: /dashboard

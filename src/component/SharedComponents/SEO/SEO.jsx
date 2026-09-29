@@ -22,13 +22,13 @@ const SEO = ({ title, description,state,  keywords, name, type = [] }) => {
         {type && <meta property="og:type" content={type} />}
         {title && <meta property='og:title' content={title}/>}
         {description && <meta property='og:descrription' content={description}/>}
-        <meta property='og:image' content='https://meirentacar.com//favicon.png' />
+        <meta property='og:image' content='https://example.invalid/favicon.png' />
         {/* Twitter Meta Tags */}
         {name && <meta name="twitter:creator" content={name} />}
         {type && <meta name="twitter:card" content={type} />}
         {title && <meta name='twitter:title' content={title}/>}
         {description && <meta name='twitter:description' content={description}/>}
-        <meta name='twitter:image' content='https://meirentacar.com//favicon.png' />
+        <meta name='twitter:image' content='https://example.invalid/favicon.png' />
     </Helmet>
   )
 }

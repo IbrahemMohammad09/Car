@@ -92,9 +92,9 @@ const Footer = () => {
             </div>
             <div className="border-t-[1px] border-solid border-[#ccc] mt-[55px] max-[500px]:text-center">
             <p className="my-[36px] text-[15px] leading-[27.75px] font-normal container mx-auto text-center" dir="ltr">
-                © 2024 Powered by SPARK. All rights reserved.{' '}
-                <a target="_blank" href="https://sparkengdev.com/" className="no-underline text-darkblue">
-                    Spark
+                Demo website with fictional contact details.{' '}
+                <a target="_blank" rel="noreferrer" href="https://studio.example.invalid/" className="no-underline text-darkblue">
+                    Demo Studio
                 </a>
             </p>
 

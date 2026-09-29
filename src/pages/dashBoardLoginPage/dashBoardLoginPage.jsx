@@ -22,7 +22,7 @@ function DashBoardLoginPage (){
 
     return(
         <Container className='dash-log'>
-            <ChangeTitle title={"MEI | Log in"} />
+            <ChangeTitle title={"Demo | Log in"} />
             <Row>
                 <Col xs={12} md={6}>
                     <div>

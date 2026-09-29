@@ -9,7 +9,7 @@ import { SiToyota } from "react-icons/si"
 const Sidebar = () => {
     return (
         <div className="fixed left-0 top-0 w-[100px] bg-__brown h-full text-center py-3">
-            <h1 className="text-[2rem] mb-5">MEI</h1>
+            <h1 className="text-[2rem] mb-5">DEMO</h1>
             <Link className="duration-300 hover:scale-105 no-underline w-[40px] h-[40px] mx-auto mb-4 overflow-hidden block" to={'/dashboard'}>
                 <img src={img1} alt={img1} className="w-full h-full"/>
             </Link>

@@ -137,11 +137,11 @@ const carsHero = [
     return (
         <div className='relative w-full overflow-hidden'>
             <SEO 
-                title={"MEI | Search Page"}
+                title={"Demo | Search Page"}
                 description={MetaSEO.search.description}
                 state={"index, follow"}
                 keywords={MetaSEO.search.keywords}
-                name={"MEI Car Rentals Dubai"}
+                name={"Demo Car Rental"}
                 type={"website"}
             />
             <Hero carsHero={carsHero}/>

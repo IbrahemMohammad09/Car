@@ -6,7 +6,7 @@ function ErrorPage (){
 
     return (
         <div className="error-section">
-            <ChangeTitle title={"MEI | Error Page"} />
+            <ChangeTitle title={"Demo | Error Page"} />
             <h1>404</h1>
             <p>Oops! The page you are looking for cannot be found.</p>
             <div className="animation">
