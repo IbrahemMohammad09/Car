@@ -2,9 +2,8 @@ import './carCard.css'
 import seatIcon from '../../../../images/carCards/seats.jpg'
 import gearIcon from '../../../../images/carCards/gear.jpg'
 import { Link } from 'react-router-dom';
-import API, { url } from '../../../../constant/api';
+import { deleteCar } from '../../../../data/staticData';
 import { useState } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import { FaDollarSign, FaEdit, FaTrash, FaUser } from 'react-icons/fa';
 import { BiEditAlt } from 'react-icons/bi';
@@ -13,27 +12,16 @@ import { FaGear } from 'react-icons/fa6';
 function CarCard ({car, setDelete}){
     const [showAlert, setShowAlert] = useState(false);
 
-    const token = localStorage.getItem('token')
-
     const handleDelete = async (car) => {
         setShowAlert(car)
     }
 
     const deleteItem = async (id) => {
-        axios.delete(API.DELETE.CAR+id, {
-            headers: {
-                Authorization: 'Bearer '+ token
-            }
-        })
-            .then(res => {
-                toast.success(res?.data?.message);
-                setDelete(id);
-                setShowAlert(false)
-            })
-            .catch(err => {
-                toast.error(err?.responser?.data?.message);
-                setShowAlert(false)
-            })
+        // Backend version retained: axios.delete(API.DELETE.CAR + id, { headers: { Authorization: `Bearer ${token}` } });
+        deleteCar(id);
+        toast.success('Demo car removed from this device.');
+        setDelete((previous) => !previous);
+        setShowAlert(false);
     }
 
     return(

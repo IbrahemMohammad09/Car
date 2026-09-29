@@ -2,38 +2,21 @@ import React, { useEffect, useState } from 'react';
 import './dasBoardCustomerCar.css';
 import { Table, Badge, Pagination } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
-import API from '../../constant/api';
+import { deleteBooking, getBookings, updateBooking } from '../../data/staticData';
 import Loading from '../../component/SharedComponents/Loading/Loading';
 import DashBoard from "../dashBoard/dasBoard"
 import { ToastContainer, toast } from "react-toastify";
 
 function Bookings() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [bookings, setBookings] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const token = localStorage.getItem('token');
+  const [bookings, setBookings] = useState(getBookings);
 
   const [isDelete, setDelete] = useState();
 
-  useEffect(() => {
-    setLoading(true);
-    axios.get(API.GET.ALLBOOKINGS+currentPage, {
-      headers: {
-        Authorization: 'Bearer ' + token
-      }
-    })
-      .then(res => {
-        if(res?.data?.state === 'success') {
-          setBookings(res.data.messages);
-        }
-        setLoading(false);
-      })
-      .catch(err => {
-        setLoading(false);
-      })
-  }, [isDelete]);
+  // Backend version retained: axios.get(API.GET.ALLBOOKINGS + currentPage, { headers: { Authorization: `Bearer ${token}` } });
+  useEffect(() => setBookings(getBookings()), [isDelete]);
+  const pageCount = Math.max(1, Math.ceil(bookings.length / 10));
+  const visibleBookings = bookings.slice((currentPage - 1) * 10, currentPage * 10);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -42,62 +25,27 @@ function Bookings() {
     const [showAlert, setShowAlert] = useState(false);
 
     const deleteItem = async (id) => {
-        axios.delete(API.DELETE.BOOKING+id, {
-            headers: {
-                Authorization: 'Bearer '+ token
-            }
-        })
-            .then(res => {
-                toast.success(res?.data?.message);
-                setDelete(id);
-                setShowAlert(false)
-            })
-            .catch(err => {
-                toast.error(err?.responser?.data?.message);
-                setShowAlert(false)
-            })
+        // Backend version retained: axios.delete(API.DELETE.BOOKING + id, { headers: { Authorization: `Bearer ${token}` } });
+        deleteBooking(id);
+        toast.success('Demo booking deleted.');
+        setDelete(id);
+        setShowAlert(false);
     }
 
     const handleAccept = (id) => {
-      axios.put(API.PUT.ACCEPTBOOKING+id, null, {
-        headers: {
-          Authorization: 'Bearer '+ token
-        }
-      })
-        .then(res => {
-          if(res.data.state === 'success') {
-            toast.success(res.data.message);
-            setDelete(id)
-            setShowAlert(false)
-          }
-        })
-        .catch(err => {
-          if(err.response.data.state === 'failed') {
-            toast.error(err.response.data.message);
-            setShowAlert(false)
-          }
-        })
+      // Backend version retained: axios.put(API.PUT.ACCEPTBOOKING + id, null, { headers: { Authorization: `Bearer ${token}` } });
+      updateBooking(id, { status: 'accepted' });
+      toast.success('Demo booking accepted.');
+      setDelete(id);
+      setShowAlert(false);
     }
 
     const handleReject = (id) => {
-      axios.put(API.PUT.REGECTBOOKING+id, null, {
-        headers: {
-          Authorization: 'Bearer '+ token
-        }
-      })
-        .then(res => {
-          if(res.data.state === 'success') {
-            toast.success(res.data.message)
-            setDelete(id);
-            setShowAlert(false)
-          }
-        })
-        .catch(err => {
-          if(err.response.data.state === 'failed') {
-            toast.error(err.response.data.message);
-            setShowAlert(false)
-          }
-        })
+      // Backend version retained: axios.put(API.PUT.REGECTBOOKING + id, null, { headers: { Authorization: `Bearer ${token}` } });
+      updateBooking(id, { status: 'rejected' });
+      toast.success('Demo booking rejected.');
+      setDelete(id);
+      setShowAlert(false);
     }
 
   return (
@@ -105,8 +53,7 @@ function Bookings() {
     <ToastContainer/>
     <div className='dash-customer'>
       <h1 className={'mb-5 underline'}>All Bookings</h1>
-      <Loading loading={loading} style={'absolute left-[50%] translate-x-[-50%]'}/>
-      {!loading && bookings && <div className='customer-table'>
+      {bookings && <div className='customer-table'>
         <Table striped hover>
           <thead>
             <tr className='first-row'>
@@ -119,7 +66,7 @@ function Bookings() {
             </tr>
           </thead>
           <tbody>
-            {bookings && bookings.map((book, index) => (
+            {visibleBookings.map((book, index) => (
               <tr key={index} onClick={() => setShowAlert(book)} className={'cursor-pointer'}>
                 <td>{book.name}</td>
                 <td>{book.phone}</td>
@@ -138,7 +85,7 @@ function Bookings() {
         </Table>
         <Pagination>
           <Pagination.First className='Pagination' onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
-          {[...Array(bookings.total)].map((_, index) => (
+          {[...Array(pageCount)].map((_, index) => (
             <Pagination.Item
             className='Pagination'  
               key={index + 1}
@@ -148,7 +95,7 @@ function Bookings() {
               {index + 1}
             </Pagination.Item>
           ))}
-          <Pagination.Last className='Pagination' onClick={() => handlePageChange(bookings.total)} disabled={currentPage === bookings.total} />
+          <Pagination.Last className='Pagination' onClick={() => handlePageChange(pageCount)} disabled={currentPage === pageCount} />
         </Pagination>
       </div>}
     </div>

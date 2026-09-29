@@ -1,9 +1,8 @@
 import { Link, useNavigate } from "react-router-dom"
 import MainTitle from "../MainTitle/MainTitle"
 import { FaPhone, FaWhatsapp } from "react-icons/fa";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import API from "../../../constant/api";
+import { useState } from "react";
+import { getBrands } from "../../../data/staticData";
 import { useTranslation } from 'react-i18next';
 import { phone } from "../../../constant/infoData";
 import { LanguageContext } from "../../../context/LanguageContext";
@@ -31,19 +30,8 @@ const arr4 = [
 const Footer = () => {
 
     const { searchbrands, setSearchBrands, searchcategory, setSearchCategory, searchname, setSearchName,clearStorage } = useContext(StorageContext);
-    const [brands, setBrands] = useState([]);
-
-    useEffect(() => {
-        axios.get(API.GET.ALLBRANDS)
-            .then(res => {
-                if(res?.data.state === 'success') {
-                    setBrands(res?.data?.brands);
-                }
-            })
-            .catch(err => {
-                // setAgain(!again)
-            })
-    }, []);
+    // Backend version retained: axios.get(API.GET.ALLBRANDS).then(res => setBrands(res.data.brands));
+    const [brands] = useState(getBrands);
 
     const [t,il8n]=useTranslation();
     

@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react"
 import DashBoard from "../dashBoard/dasBoard"
-import API from "../../constant/api";
 import { ToastContainer, toast } from "react-toastify";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Container, Row, Col, Card, Image, Button, Form, Dropdown, DropdownButton } from 'react-bootstrap';
-import axios from "axios";
 import MainButton from "../../component/SharedComponents/MainButton/MainButton";
+import { getBrands, getCarById, saveCar } from "../../data/staticData";
 
 const AddCar = () => {
     const [name, setName] = useState();
@@ -33,8 +32,9 @@ const AddCar = () => {
     const handleImgChange = (e) => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
-            const imageUrl = URL.createObjectURL(file);
-            setSelectedImage(prev => [...prev, {file, imageUrl}]);
+            const reader = new FileReader();
+            reader.onload = () => setSelectedImage((previous) => [...previous, { imageUrl: reader.result }]);
+            reader.readAsDataURL(file);
         }
     };
 
@@ -45,34 +45,12 @@ const AddCar = () => {
     };
 
     const handleAddPics = () => {
-        const form = new FormData();
-
-        selectedImage.forEach(({file}) => {
-            form.append('pictures', file);
-        });
-
-        axios.post(API.POST.UPLOAD, form, {
-            headers: {
-                "Content-Type": 'multipart/form-data'
-            }
-        })
-            .then(res => {
-                if(res?.data?.state === 'success') {
-                    if(id) {
-                        setUpdateImgs(prev => [...prev, ...res.data.paths]);
-                    } else {
-                        setPictures(res.data.paths);
-                    }
-                    toast.success('upload images successfully');
-                }
-            })
-            .catch(err => {
-                if(err?.response?.data?.message) {
-                    toast.error(err?.response?.data?.message);
-                } else {
-                    toast.error(err.message);
-                }
-            })
+        // Backend version retained: axios.post(API.POST.UPLOAD, form, { headers: { 'Content-Type': 'multipart/form-data' } });
+        const localImages = selectedImage.map(({ imageUrl }) => imageUrl);
+        if (id) setUpdateImgs((previous) => [...previous, ...localImages]);
+        else setPictures((previous) => [...previous, ...localImages]);
+        setSelectedImage([]);
+        toast.success('Pictures added to this demo car.');
     }
 
     const openFiles = () => {
@@ -85,108 +63,49 @@ const AddCar = () => {
 
     useEffect(() => {
         if(id) {
-            axios.get(API.GET.ONECAR+id)
-                .then(res => {
-                    setBrand(res?.data?.car.brand);
-                    setCategory(res?.data?.car.category);
-                    setColor(res?.data?.car.color);
-                    setDayly(res?.data?.car.price.dayly);
-                    setDescAr(res?.data?.car.description.AR);
-                    setDescEn(res?.data?.car.description.EN);
-                    setGear(res?.data?.car.gear);
-                    setHorse(res?.data?.car.horse);
-                    setModel(res?.data?.car.model);
-                    setMonthly(res?.data?.car.price.monthly);
-                    setTopSpeed(+res?.data?.car.topSpeed);
-                    setName(res?.data?.car.name);
-                    setSeatNumber(+res?.data?.car.seatNumber);
-                    setWeekly(res?.data?.car.price.weekly);
-                    setUpdateImgs(res?.data?.car.pictures);
-                })
-                .catch(err => {
-                    if(err?.response?.state === 'failed') {
-                        to('/error');
-                    }
-                })
+            // Backend version retained: axios.get(API.GET.ONECAR + id).then(res => setUpdateImgs(res.data.car.pictures));
+            const car = getCarById(id);
+            if (!car) return to('/error');
+            setBrand(car.brand);
+            setCategory(car.category);
+            setColor(car.color);
+            setDayly(car.price.dayly);
+            setDescAr(car.description.AR);
+            setDescEn(car.description.EN);
+            setGear(car.gear);
+            setHorse(car.horse);
+            setModel(car.model);
+            setMonthly(car.price.monthly);
+            setTopSpeed(+car.topSpeed);
+            setName(car.name);
+            setSeatNumber(+car.seatNumber);
+            setWeekly(car.price.weekly);
+            setUpdateImgs(car.pictures);
         }
     }, [id])
 
-    const token = localStorage.getItem('token');
-    
     const handleCreate = async () => {
         const data = {
-            name, 
-            brand, 
+            _id: id,
+            name,
+            brand,
             category,
-            pictures: id? updateImgs: pictures,
-            price_monthly: monthly, 
-            price_dayly: dayly,
-            price_weekly: weekly, 
-            description_AR: descAr, 
-            description_EN: descEn,
+            pictures: id ? updateImgs : pictures,
+            price: { monthly, dayly, weekly },
+            description: { AR: descAr, EN: descEn },
             horse,
             model,
-            seat_number: `${seatNumber}`,
-            top_speed: `${topSpeed}`,
+            seatNumber: `${seatNumber}`,
+            topSpeed: `${topSpeed}`,
             gear,
             color
         }
 
-        if(!id) {
-            if(pictures.length == 0) {
-                return toast.error("You must insert one picture at least");
-            }
-
-            axios.post(API.POST.CAR, data,  {
-                headers: {
-                    'Authorization': 'Bearer ' + token,
-                }
-            })
-                .then(res => {
-                    if(res?.data?.state === 'success') {
-                        toast.success(res.data.message);
-                        setBrand("");
-                        setCategory("");
-                        setColor("");
-                        setDayly("");
-                        setDescAr("");
-                        setDescEn("");
-                        setGear("");
-                        setHorse("");
-                        setModel("");
-                        setMonthly("");
-                        setTopSpeed("");
-                        setName("");
-                        setSeatNumber("");
-                        setWeekly("");
-                        setPictures([]);
-                        to('/dashboard/show')
-                    }
-                })
-                .catch(err => {
-                    if(err?.response?.data?.state === 'failed') {
-                        toast.error(err?.response?.data?.message);
-                    }
-                })
-        } else {
-            axios.put(API.PUT.CAR+id, data,  {
-                headers: {
-                    'Authorization': 'Bearer ' + token,
-                }
-            })
-                .then(res => {
-                    if(res?.data?.state === 'success') {
-                        toast.success(res.data.message);
-                        to('/dashboard/show');
-                    }
-                })
-                .catch(err => {
-                    if(err?.response?.data?.state === 'failed') {
-                        toast.error(err?.response?.data?.message);
-                    }
-                })
-
-        }
+        // Backend versions retained: axios.post(API.POST.CAR, data) and axios.put(API.PUT.CAR + id, data).
+        if (!id && !pictures.length) return toast.error('Add at least one picture.');
+        saveCar(data);
+        toast.success(id ? 'Demo car updated.' : 'Demo car added.');
+        to('/dashboard/show');
     }
 
     const [section, setSection] = useState('details');
@@ -213,15 +132,8 @@ const AddCar = () => {
     const [allBrands, setAllBrands] = useState([]);
 
     useEffect(() => {
-        axios.get(API.GET.ALLBRANDS)
-            .then(res => {
-                if(res?.data.state === 'success') {
-                    setAllBrands(res?.data?.brands);
-                }
-            })
-            .catch(err => {
-                // setAgain(!again)
-            })
+        // Backend version retained: axios.get(API.GET.ALLBRANDS).then(res => setAllBrands(res.data.brands));
+        setAllBrands(getBrands());
     }, []);
 
     return (

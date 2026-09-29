@@ -9,8 +9,7 @@ import ScrollAnimation from 'react-animate-on-scroll';
 import '../../animate.css';
 import { useNavigate, useParams,useLocation } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
-import API from '../../constant/api';
+import { getAvailableCars, getCarById, saveBooking } from '../../data/staticData';
 import { useLanguageContext } from '../../hooks/useLanguageContext';
 import MainCard from '../../component/SharedComponents/MainCard/MainCard';
 import Loading from '../../component/SharedComponents/Loading/Loading';
@@ -82,25 +81,17 @@ function BookCar (){
 
     useEffect(() => {
         setLoading1(true);
-        axios.get(API.GET.ONECAR+id)
-            .then(res => {
-                if(res?.data.state === 'success') {
-                    setCar(res?.data?.car);
-                    setOther(res?.data?.other?.otherCars);
-                    setMainimg(res?.data?.car.pictures[0]);
-                    setLoading1(false);
-                }
-                setTimeout(() => {
-                    window.scrollTo(0, 700)
-                  }, 800)
-            })
-
-            .catch(err => {
-                if(err?.response?.data?.state === 'failed') {
-                    setLoading1(false);
-                    to('/error');
-                }
-            })
+        // Backend version retained: axios.get(API.GET.ONECAR + id).then(res => setCar(res.data.car));
+        const selectedCar = getCarById(id);
+        if (!selectedCar) {
+            to('/error');
+            return;
+        }
+        setCar(selectedCar);
+        setOther(getAvailableCars().filter((item) => item._id !== selectedCar._id).slice(0, 3));
+        setMainimg(selectedCar.pictures?.[0]);
+        setLoading1(false);
+        setTimeout(() => window.scrollTo(0, 700), 800);
             
     }, [pathname]);
     
@@ -134,25 +125,15 @@ function BookCar (){
 
         setLoading(true);
 
-        axios.post(API.POST.BOOKING+id, {
-            phone,
-            name,
-            start: startDate,
-            end: endDate
-        })
-            .then(res => {
-                if(res?.data?.state === 'success') {
-                    setLoading(false);
-                    toast.success(res?.data?.message);
-                    to('/');
-                }
-            })
-            .catch(err => {
-                if(err?.response?.data?.state === 'failed') {
-                    setLoading(false);
-                    return toast.error(err?.response?.data?.message);
-                }
-            })
+        // Backend version retained: axios.post(API.POST.BOOKING + id, { phone, name, start: startDate, end: endDate });
+        if (!name || !phone || !startDate || !endDate) {
+            setLoading(false);
+            return toast.error('Please complete all booking fields.');
+        }
+        saveBooking({ name, phone, start: startDate, end: endDate, car });
+        setLoading(false);
+        toast.success('Your demo booking has been saved on this device.');
+        to('/');
     }
     const handleImage = (image)=>{
         setMainimg(image);

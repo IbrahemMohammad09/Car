@@ -3,8 +3,7 @@ import { useTranslation } from 'react-i18next';
 import Hero from '../../component/HomeComponents/Hero/Hero';
 import Footer from '../../component/SharedComponents/Footer/Footer';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import axios from "axios"
-import API from "../../constant/api"
+import { getAvailableCars, getBrands } from "../../data/staticData"
 import MainCard from '../../component/SharedComponents/MainCard/MainCard';
 import SideLink from '../../component/SharedComponents/sideLink/sideLink';
 import { FaCar } from 'react-icons/fa'
@@ -49,54 +48,18 @@ const carsHero = [
 ]
     const [t , il8n] = useTranslation();
     const seeButton = t("seeAllCar");
-    const [Res ,SetRes] = useState();
+    const [Res] = useState(getAvailableCars);
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(false);
-    const [brands, setBrands] = useState([]);
-    const [brandsName , setBrandsName] = useState();
-    const [brandsId, setBrandsId] = useState([]);
-    const [page, setPage] = useState(1);
-    const [total, setTotal] = useState(0);
+    const [brands] = useState(getBrands);
     const notFound =t("noResults");
 
     const { pathname } = useLocation();
 
     const { name, type } = useParams();
 
-    useEffect(() => {
-        setLoading(true)
-        axios.get(API.GET.ALLCARSWITHOUTPAGE, {
-            'Contet-Type': 'application/json',
-        })
-            .then(res => {
-                if(res?.data.state === 'success') {
-                    setLoading(false);
-                    SetRes(res?.data?.cars.filter(e => e.available !== false));
-                    setTotal(res?.data?.count)
-                }
-            })
-            .catch(err => {
-                setLoading(false);
-            })
-            
-    }, [page, name, type]);
-    
-    useEffect(() => {
-        axios.get(API.GET.ALLBRANDS, {
-            'Contet-Type': 'application/json',
-        })
-            .then(res => {
-                if(res?.data.state === 'success') {
-                    setBrands(res?.data?.brands);
-                    brands.forEach(e => setBrandsId(prev => [...prev, e._id]))
-                    const names = brands.map(brand => brand.name);
-                    setBrandsName (names);
-                }
-            })
-            .catch(err => {
-                // setAgain(!again)
-            })
-    }, []);
+    // Backend versions retained:
+    // axios.get(API.GET.ALLCARSWITHOUTPAGE).then(res => SetRes(res.data.cars));
+    // axios.get(API.GET.ALLBRANDS).then(res => setBrands(res.data.brands));
     
 
     const pathParts = pathname.split('/');

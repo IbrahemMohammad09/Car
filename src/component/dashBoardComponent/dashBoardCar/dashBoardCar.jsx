@@ -5,34 +5,16 @@ import { Row ,Col, Container, ToastContainer  } from 'react-bootstrap';
 import CarCard from './carCard/carCard';
 import CarIcon from '../../../images/carCards/photo_2024-06-13_04-31-26.jpg'
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import API from '../../../constant/api';
-import Loading from '../../SharedComponents/Loading/Loading';
+import { getCars } from '../../../data/staticData';
 
 
 
 
 function DashBoardCar (){
-    const [cars, setCars] = useState([]);
+    const [cars, setCars] = useState(getCars);
     const [isDelete, setDelete] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [page, setPage] = useState(1);
-    
-    useEffect(() => {
-        setLoading(true);
-        axios.get(API.GET.ALLCARS+page, {
-            'Contet-Type': 'application/json',
-        })
-            .then(res => {
-                if(res?.data.state === 'success') {
-                    setLoading(false);
-                    setCars(res?.data?.cars);
-                }
-            })
-            .catch(err => {
-                setLoading(false);
-            })
-    }, [isDelete]);
+    // Backend version retained: axios.get(API.GET.ALLCARS + page).then(res => setCars(res.data.cars));
+    useEffect(() => setCars(getCars()), [isDelete]);
 
     return(
         <div className='dash-car'>
@@ -58,8 +40,7 @@ function DashBoardCar (){
                 </Row>
                 <Row>
                     <div className='car-list relative'>
-                        <Loading loading={loading} style={'absolute left-[50%] top-[50%] translate-x-[-50%]'}/>
-                        {!loading && cars && cars?.map(car=> (
+                        {cars.map(car=> (
                             <Col key={car._id}>
                                 <CarCard car={car} setDelete={setDelete} key={car.id} />
                             </Col>

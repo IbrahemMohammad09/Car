@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { FaCar } from 'react-icons/fa';
 import Hero from '../../component/HomeComponents/Hero/Hero';
 import Footer from '../../component/SharedComponents/Footer/Footer';
@@ -6,11 +6,10 @@ import SideLink from '../../component/SharedComponents/sideLink/sideLink';
 import MainTitle from '../../component/SharedComponents/MainTitle/MainTitle';
 import { useTranslation } from 'react-i18next';
 import { motion } from "framer-motion";
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../../component/SharedComponents/SEO/SEO';
 import { MetaSEO } from '../../constant/MetaSEO';
-import Loading  from '../../component/Loading/Loading.jsx'; 
+import { staticArticles } from '../../data/staticData';
 
 const carsHero = [
     { title: 'Sport', icon: <FaCar />, url: "/search" },
@@ -24,9 +23,8 @@ const Blogs = () => {
   const [t, i18n] = useTranslation();
   const BlogTitle = t("BlogTitle");
 
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true); 
-  const [error, setError] = useState(false);
+  // Backend version retained: axios.get('/api/articles/').then(res => setArticles(res.data.data));
+  const articles = staticArticles;
   const Error = t("Error");
   const navigate = useNavigate();
 
@@ -35,32 +33,6 @@ const Blogs = () => {
       window.scrollTo(0, 700);
     }, 800);
 
-    axios.get("https://seomei.pythonanywhere.com/api/articles/")
-      .then((response) => {
-        if (response.data.success) {
-          const data = response.data.data;
-
-          const enArticles = data.map((item) => ({
-            pk: item.pk,
-            header: item.header_en,
-            summary: item.summary_en,
-            description: item.description_en,
-            photo: item.photo,
-            link: item.link,
-            linkTitle: item.link_title_en,
-          }));
-
-          setArticles(enArticles.reverse());
-        } else {
-          setError(true);
-        }
-      })
-      .catch(() => {
-        setError("An error occurred while fetching data.");
-      })
-      .finally(() => {
-        setLoading(false);
-      });
   }, []);
 
   return (
@@ -75,9 +47,7 @@ const Blogs = () => {
       />
       <Hero carsHero={carsHero} />
       <MainTitle title={BlogTitle} />
-      {loading ? (
-        <Loading /> 
-      ) : !error ? (
+      {(
         <div>
           <div className="container mx-auto p-4">
             <div className="flex flex-col gap-8">
@@ -90,7 +60,7 @@ const Blogs = () => {
                   viewport={{ once: false, amount: 0.2 }}
                   className="flex flex-col md:flex-row rounded-lg overflow-hidden shadow-lg"
                 >
-                  <img src={"https://seomei.pythonanywhere.com/" + article.photo} alt={article.header} className="w-[350px] h-[350px] object-cover" />
+                  <img src={article.photo} alt={article.header} className="w-[350px] h-[350px] object-cover" />
                   <div className="p-4 w-full md:w-2/3">
                     <h2 className="text-__brown text-5xl font-semibold mb-2">{article.header}</h2>
                     <p className="text-secondary text-3xl text-gray-600">{article.summary}</p>
@@ -106,8 +76,6 @@ const Blogs = () => {
             </div>
           </div>
         </div>
-      ) : (
-        <MainTitle title={Error} />
       )}
       <Footer />
       <SideLink />

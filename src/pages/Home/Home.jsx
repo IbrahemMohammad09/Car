@@ -14,8 +14,7 @@ import Img4 from '../../images/Home/family.jpg'
 import Img6 from '../../images/Home/convertible.jpg'
 import Loading from '../../component/SharedComponents/Loading/Loading'
 import SideLink from "../../component/SharedComponents/sideLink/sideLink"
-import axios from "axios"
-import API from "../../constant/api"
+import { getAvailableCars, getBrands } from "../../data/staticData"
 import { Link, useNavigate } from "react-router-dom"
 import { MdDashboardCustomize } from "react-icons/md"
 import { useLanguageContext } from "../../hooks/useLanguageContext"
@@ -190,41 +189,12 @@ const Home = () => {
         pauseOnHover: true,
     }
 
-    const [brands, setBrands] = useState([]);
-
-    useEffect(() => {
-        axios.get(API.GET.ALLBRANDS, {
-            'Contet-Type': 'application/json',
-        })
-            .then(res => {
-                if(res?.data.state === 'success') {
-                    setBrands(res?.data?.brands);
-                }
-            })
-            .catch(err => {
-                // setAgain(!again)
-            })
-    }, []);
-    const [allcars ,setAllcars] = useState([])
-    const [cars, setCars] = useState([]);
-
-    useEffect(() => {
-        setLoading(true);
-        axios.get(API.GET.ALLCARSWITHOUTPAGE, {
-            'Contet-Type': 'application/json',
-        })
-            .then(res => {
-                if(res?.data.state === 'success') {
-                    setLoading(false);
-                    setCars(res?.data?.cars.filter(e => e.available !== false));
-                    setAllcars(res?.data?.cars.filter(e => e.available !== false).length > 9? res?.data?.cars.filter(e => e.available !== false).slice(0, 9) : res?.data?.cars.filter(e => e.available !== false));
-                }
-            })
-            .catch(err => {
-                setLoading(false);
-            })
-    
-    }, []);
+    // Backend version retained for reconnecting this page to the API:
+    // axios.get(API.GET.ALLBRANDS).then(res => setBrands(res.data.brands));
+    // axios.get(API.GET.ALLCARSWITHOUTPAGE).then(res => setCars(res.data.cars));
+    const [brands] = useState(getBrands);
+    const [cars] = useState(getAvailableCars);
+    const [allcars, setAllcars] = useState(() => cars.slice(0, 9));
 
 
     const handleShowAllCar =()=>{

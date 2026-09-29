@@ -3,10 +3,9 @@ import DashBoard from "../dashBoard/dasBoard"
 import { useEffect, useRef, useState } from "react"
 import MainButton from "../../component/SharedComponents/MainButton/MainButton";
 import { useLocation, useParams } from "react-router-dom";
-import axios from "axios";
-import API from "../../constant/api";
 import { toast } from "react-toastify";
 import { FaTrash } from "react-icons/fa";
+import { deleteBrand, getBrands, saveBrand } from "../../data/staticData";
 
 const AddBrand = () => {
     const [name, setName] = useState();
@@ -26,9 +25,9 @@ const AddBrand = () => {
     const handleImgChange = (e) => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
-            const imageUrl = URL.createObjectURL(file);
-            setSelectedImage(imageUrl);
-            setImg(file)
+            const reader = new FileReader();
+            reader.onload = () => setSelectedImage(reader.result);
+            reader.readAsDataURL(file);
         }
     };
 
@@ -47,102 +46,42 @@ const AddBrand = () => {
     const [isDelete, setDelete] = useState(false);
 
     useEffect(() => {
-        axios.get(API.GET.ALLBRANDS, {
-            'Contet-Type': 'application/json',
-        })
-            .then(res => {
-                if(res?.data.state === 'success') {
-                    setBrands(res?.data?.brands);
-                }
-            })
-            .catch(err => {
-                // setAgain(!again)
-            })
+        // Backend version retained: axios.get(API.GET.ALLBRANDS).then(res => setBrands(res.data.brands));
+        setBrands(getBrands());
     }, [isDelete, section]);
 
     const [showAlert, setShowAlert] = useState(false);
 
-    const token = localStorage.getItem('token')
-
-
     const handleAddPics = () => {
-        const form = new FormData();
-
-        form.append('pictures', img);
-
-        axios.post(API.POST.UPLOAD, form, {
-            headers: {
-                "Content-Type": 'multipart/form-data'
-            }
-        })
-            .then(res => {
-                if(res?.data?.state === 'success') {
-                    setSuccess(res.data.message)
-                    setError("")
-                    setPicture(res.data.paths);
-                    return toast.success('upload images successfully');
-                }
-            })
-            .catch(err => {
-                setSuccess("")
-                setError("")
-                if(err?.response?.data?.message) {
-                    setError(err?.response?.data?.message)
-                    return toast.error(err?.response?.data?.message);
-                } else {
-                    return toast.error(err.message);
-                }
-            })
+        // Backend version retained: axios.post(API.POST.UPLOAD, form, { headers: { 'Content-Type': 'multipart/form-data' } });
+        if (!selectedImage) return toast.error('Choose a picture first.');
+        setPicture([selectedImage]);
+        setSuccess('Picture selected for this demo brand.');
+        setError('');
+        toast.success('Picture added.');
     }
 
     const deleteItem = async (id) => {
-        axios.delete(API.DELETE.BRAND+id, {
-            headers: {
-                Authorization: 'Bearer '+ token
-            }
-        })
-            .then(res => {
-                toast.success(res?.data?.message);
-                setDelete(id);
-                setPicture("");
-                setShowAlert(false)
-            })
-            .catch(err => {
-                toast.error(err?.response?.data?.message);
-                setShowAlert(false)
-            })
+        // Backend version retained: axios.delete(API.DELETE.BRAND + id, { headers: { Authorization: `Bearer ${token}` } });
+        deleteBrand(id);
+        toast.success('Demo brand deleted.');
+        setDelete((previous) => !previous);
+        setPicture('');
+        setShowAlert(false);
     }
 
     const createBrand = async (id) => {
-        const data = {
-            name, 
-            picture: picture[0]
-        }
-
-            axios.post(API.POST.BRAND, data,{
-                headers: {
-                    Authorization: 'Bearer '+ token
-                }
-            })
-                .then(res => {
-                    if(res.data.state === 'success') {
-                        toast.success(res?.data?.message);
-                        setError("")
-                        setName("")
-                        setPicture("")
-                        setSuccess(res?.data?.message)
-                        setSection('See')
-                    }
-                })
-                .catch(err => {
-                    setError("")
-                    setSuccess("")
-                    if(err.response.data.state === 'failed') {
-                        console.log(1);
-                        setError(err?.response?.data?.message);
-                        toast.error(err?.response?.data?.message);
-                    }
-                })
+        if (!name || !picture?.[0]) return toast.error('Add a brand name and picture first.');
+        // Backend version retained: axios.post(API.POST.BRAND, { name, picture: picture[0] }, { headers: { Authorization: `Bearer ${token}` } });
+        saveBrand({ name, picture: picture[0] });
+        setBrands(getBrands());
+        toast.success('Demo brand added.');
+        setError('');
+        setName('');
+        setPicture('');
+        setSelectedImage('');
+        setSuccess('Brand saved on this device.');
+        setSection('See');
     }
 
     return (

@@ -4,9 +4,9 @@ import Hero from '../../component/HomeComponents/Hero/Hero';
 import Footer from '../../component/SharedComponents/Footer/Footer';
 import SideLink from '../../component/SharedComponents/sideLink/sideLink';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { staticArticles } from '../../data/staticData';
 
 const carsHero = [
     { title: 'Sport', icon: <FaCar/>, url: "/search" },
@@ -32,45 +32,11 @@ const Article = () => {
             window.scrollTo(0, 700)
           }, 800)   
           
-        axios.get("https://seomei.pythonanywhere.com/api/articles/")
-            .then((response) => {
-                if (response.data.success) {
-                    const data = response.data.data;
-
-                    const id = parseInt(pathname.replace("/blogs/", ""), 10);
-
-
-                    const selectedArticle = data.find((item) => item.pk === id);
-
-
-                    if (selectedArticle){
-
-
-                        const enArticle = {
-                            pk: selectedArticle.pk,
-                            header:selectedArticle.header_en,
-                            summary: selectedArticle.summary_en,
-                            description: selectedArticle.description_en,
-                            photo: selectedArticle.photo,
-                            link: selectedArticle.link,
-                            linkTitle: selectedArticle.link_title_en,
-                        };
-                        setArticle(enArticle);
-                    }else{
-                        navigate("/error");
-                    }
-
-                } else {
-                    setError(true);
-                    navigate("/error");
-                }
-
-
-
-
-            })
-            
-            .catch(() => setError(true));
+        // Backend version retained: axios.get('/api/articles/').then(res => setArticle(res.data.data.find(item => item.pk === id)));
+        const id = parseInt(pathname.replace("/blogs/", ""), 10);
+        const selectedArticle = staticArticles.find((item) => item.pk === id);
+        if (selectedArticle) setArticle(selectedArticle);
+        else navigate("/error");
     }, []);
 
 
