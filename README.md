@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Car Rental Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A bilingual car-rental web application built with React. Visitors can browse and search a sample fleet, view vehicle details, and submit bookings. A dashboard provides demo workflows for managing cars, brands, and bookings.
 
-## Available Scripts
+> **Demo project:** The application currently uses seeded sample data stored in the browser's `localStorage`. It does not connect to a production backend or process real reservations.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Responsive vehicle browsing across sport, luxury, family, economy, and convertible categories.
+- Vehicle search and individual booking pages.
+- Arabic and English interface support with `i18next`.
+- Demo dashboard for adding and editing vehicles and brands, and reviewing bookings.
+- Sample blog pages and basic SEO metadata support.
+- Browser persistence for demo cars, brands, and bookings.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React 18 and React Router
+- Vite
+- Bootstrap, Material UI, and Tailwind CSS
+- `i18next` and `react-i18next`
+- Framer Motion and React Icons
 
-### `npm test`
+## Requirements
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js compatible with the installed Vite version
+- npm
 
-### `npm run build`
+## Getting started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone https://github.com/IbrahemMohammad09/Car.git
+cd Car
+npm install
+npm run start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Vite prints the local development URL in the terminal (normally `http://localhost:5173`).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Available commands
 
-### `npm run eject`
+| Command | Description |
+| --- | --- |
+| `npm run start` | Start the Vite development server. |
+| `npm run build` | Build the production bundle into `dist/`. |
+| `npm run preview` | Serve the production build locally for review. |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Demo dashboard
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The seeded demo administrator can sign in with:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Email:** `admin@example.com`
+- **Password:** `admin123`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+These credentials are for local demonstration only. Do not use them for a deployed or public environment. Demo edits and bookings are saved in the current browser's local storage; clearing site data resets the browser-side state to the sample data.
 
-## Learn More
+## Project structure
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```text
+src/
+  component/    Shared UI, home, and dashboard components
+  context/      Search and language contexts
+  data/         Seed data and local-storage helpers
+  locales/      English and Arabic translations
+  pages/        Home, search, booking, blog, and dashboard pages
+  constant/     Application metadata and legacy API configuration
+public/         Static assets and web app metadata
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Backend status
 
-### Code Splitting
+The application uses local sample data through `src/data/staticData.js`. The API endpoint map in `src/constant/api.js` is commented out and is not an active integration. Connect and configure a backend before using this project for real inventory, authentication, or bookings.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## License
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+No license is currently specified. Contact the repository owner before redistributing or using this project beyond its intended demo context.
