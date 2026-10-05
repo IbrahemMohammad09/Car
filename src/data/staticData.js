@@ -4,6 +4,9 @@ import familyImage from '../images/Home/family.jpg';
 import economyImage from '../images/Home/economy.jpg';
 import convertibleImage from '../images/Home/convertible.jpg';
 import carImage from '../images/Home/unsplash_UF2nwAcD8Mo.png';
+import toyotaLogo from '../images/brandLogo/toyota.jpg';
+import mercedesLogo from '../images/brandLogo/mercedes.jpg';
+import BMWLogo from '../images/brandLogo/BMW.jpg';
 
 const STORAGE_KEYS = {
   cars: 'car-demo-cars',
@@ -12,9 +15,9 @@ const STORAGE_KEYS = {
 };
 
 const seedBrands = [
-  { _id: 'brand-toyota', name: 'Toyota', picture: economyImage },
-  { _id: 'brand-mercedes', name: 'Mercedes-Benz', picture: luxuryImage },
-  { _id: 'brand-bmw', name: 'BMW', picture: sportImage },
+  { _id: 'brand-toyota', name: 'Toyota', picture: toyotaLogo },
+  { _id: 'brand-mercedes', name: 'Mercedes-Benz', picture: mercedesLogo },
+  { _id: 'brand-bmw', name: 'BMW', picture: BMWLogo },
   { _id: 'brand-nissan', name: 'Nissan', picture: familyImage },
   { _id: 'brand-porsche', name: 'Porsche', picture: convertibleImage },
 ];
