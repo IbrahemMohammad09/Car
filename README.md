@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# Car Rental Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A bilingual car-rental web application built with React. Visitors can browse and search a sample fleet, view vehicle details, and submit bookings. A dashboard provides demo workflows for managing cars, brands, and bookings.
 
-## Available Scripts
+> **Demo project:** The application currently uses seeded sample data stored in the browser's `localStorage`. It does not connect to a production backend or process real reservations.
 
-In the project directory, you can run:
+## Features
+- Browse vehicles across sport, luxury, family, economy, and convertible categories.
+- Search the sample fleet and open vehicle booking pages.
+- Arabic and English interface support with `i18next`.
+- Demo dashboard for cars, brands, and bookings.
+- Sample blog pages and SEO metadata support.
+- Browser persistence for demo inventory and bookings.
 
-### `npm start`
+## Tech stack
+- React 18, React Router, and Vite
+- Bootstrap, Material UI, and Tailwind CSS
+- `i18next` and `react-i18next`
+- Framer Motion and React Icons
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Getting started
+```bash
+git clone https://github.com/IbrahemMohammad09/Car.git
+cd Car
+npm install
+npm run start
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Vite prints the development URL in the terminal (normally [http://localhost:5173](http://localhost:5173)).
 
-### `npm test`
+## Available scripts
+- `npm run start` — start the Vite development server.
+- `npm run build` — create the production bundle in `dist/`.
+- `npm run preview` — preview the production bundle locally.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Demo dashboard
+The sample administrator credentials are `admin@example.com` / `admin123`. They are for local demonstration only and must not be used in a public deployment. Changes are stored in the current browser's local storage; clearing site data restores the seeded sample state.
 
-### `npm run build`
+## Project structure
+- `src/pages/` — home, search, booking, blog, and dashboard pages.
+- `src/component/` — shared, home, and dashboard UI.
+- `src/data/staticData.js` — sample data and local-storage helpers.
+- `src/locales/` — English and Arabic translations.
+- `public/` — static files and web app metadata.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Backend status
+The app uses local sample data. The endpoint map in `src/constant/api.js` is commented out and is not an active backend integration. Add and configure a backend before using real inventory, accounts, or reservations.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+No license is currently specified. Contact the repository owner before redistributing or using this project beyond its demo context.
