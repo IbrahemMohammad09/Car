@@ -7,6 +7,8 @@ import carImage from '../images/Home/unsplash_UF2nwAcD8Mo.png';
 import toyotaLogo from '../images/brandLogo/toyota.jpg';
 import mercedesLogo from '../images/brandLogo/mercedes.jpg';
 import BMWLogo from '../images/brandLogo/BMW.jpg';
+import nissanLogo from '../images/brandLogo/nissan.jpg';
+import porscheLogo from '../images/brandLogo/porsche.png';
 
 const STORAGE_KEYS = {
   cars: 'car-demo-cars',
@@ -18,8 +20,8 @@ const seedBrands = [
   { _id: 'brand-toyota', name: 'Toyota', picture: toyotaLogo },
   { _id: 'brand-mercedes', name: 'Mercedes-Benz', picture: mercedesLogo },
   { _id: 'brand-bmw', name: 'BMW', picture: BMWLogo },
-  { _id: 'brand-nissan', name: 'Nissan', picture: familyImage },
-  { _id: 'brand-porsche', name: 'Porsche', picture: convertibleImage },
+  { _id: 'brand-nissan', name: 'Nissan', picture: nissanLogo },
+  { _id: 'brand-porsche', name: 'Porsche', picture: porscheLogo },
 ];
 
 const seedCars = [
@@ -29,6 +31,8 @@ const seedCars = [
   { _id: 'car-4', name: 'Nissan Sunny', brand: 'Nissan', category: 'Economy', model: '2024', color: 'White', gear: 'Automatic', horse: 4, seatNumber: 5, topSpeed: 180, available: true, pictures: [economyImage, carImage], price: { dayly: 100, weekly: 650, monthly: 2400 }, description: { EN: 'An economical and practical choice for everyday travel.', AR: 'خيار اقتصادي وعملي للتنقل اليومي.' } },
   { _id: 'car-5', name: 'Porsche 911 Carrera', brand: 'Porsche', category: 'Convertible', model: '2023', color: 'Red', gear: 'Automatic', horse: 6, seatNumber: 2, topSpeed: 293, available: true, pictures: [convertibleImage, sportImage], price: { dayly: 1500, weekly: 9800, monthly: 37000 }, description: { EN: 'An iconic performance car made for open-road drives.', AR: 'سيارة أداء أيقونية للقيادة والاستمتاع بالطريق.' } },
   { _id: 'car-6', name: 'BMW X5', brand: 'BMW', category: 'Luxury', model: '2023', color: 'Blue', gear: 'Automatic', horse: 6, seatNumber: 5, topSpeed: 243, available: true, pictures: [carImage, familyImage], price: { dayly: 650, weekly: 4300, monthly: 16500 }, description: { EN: 'A premium SUV with generous space and a smooth ride.', AR: 'سيارة دفع رباعي فاخرة وواسعة بقيادة مريحة.' } },
+
+  
 ];
 
 export const staticArticles = [
