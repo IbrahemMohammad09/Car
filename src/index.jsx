@@ -18,7 +18,7 @@ root.render(
       <ToastContainer/>
       <LanguageContextProvider>
         <StorageProvider>
-          <BrowserRouter>
+          <BrowserRouter basename={import.meta.env.BASE_URL}>
             <App />
           </BrowserRouter>
         </StorageProvider>
